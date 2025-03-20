@@ -9,3 +9,112 @@
 *::before, *::after {
     box-sizing: border-box;
 }
+
+@font-face {
+    font-family: 'Hobbiton Brushhand';
+    src: url('fonts/hobbiton.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+html {
+    display: flex;
+    min-height: 100%; /*fallback*/
+    min-height: -webkit-fill-available;
+    overflow-x: hidden;
+}
+body {
+    width: 100%;
+    background: url(images/background.jpg) no-repeat;
+    background-position: center top;
+    font-family: sans-serif;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-evenly;
+    row-gap: 30px;
+    max-width: 1920px;
+    min-height: 100%;
+    margin: auto;
+    padding: 45px 10px;
+}
+
+.header .title {
+    font-family: 'Hobbiton Brushhand';
+    font-size: 50px;
+    font-weight: normal;
+}
+
+.content {
+    /*flex-grow: 1;*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+}
+
+.library {
+    display: grid;
+    grid-template: auto/ 1fr 1fr;
+    grid-gap: 30px;
+    max-width: 1500px;
+}
+.library .box {
+    display: flex;
+    column-gap: 4%;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #0001;
+    background-color: #fff;
+    padding: 4%;
+}
+.library .book {
+    text-align: left;
+}
+.library .book img {
+    display: block;
+    max-width: 100%;
+    border-radius: 5px;
+}
+.library .book .image {
+    flex: 0 0 25%;
+}
+.library .book .details {
+    display: flex;
+    flex-flow: column;
+    row-gap: 10px;
+}
+.library .book .title {
+    border-bottom: 1px solid #ddd;
+    font-family: 'Hobbiton Brushhand';
+    font-size: 30px;
+    font-weight: normal;
+}
+.library .book .info {
+    display: flex;
+    column-gap: 6px;
+    padding: 15px 0 10px;
+}
+.library .book .synopsis {
+    flex-grow: 1;
+    max-height: 116px;
+    overflow: hidden;
+    font-size: 15px;
+    line-height: 24px;
+}
+.library .book .action {
+    display: flex;
+    column-gap: 10px;
+    padding-top: 20px;
+}
+.library .book .button {
+    border: none;
+    border-radius: 3px;
+    background-color: #d4eeb2;
+    padding: 8px 10px;
+    cursor: pointer;
+}
