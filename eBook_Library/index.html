@@ -13,7 +13,7 @@
     <div class="container">
         <header class="header">
             <h1 class="title">My J.R.R.Tolkien Books</h1>
-            <button class="button">Add new book</button>
+            <button class="button" id="add_button">Add new book</button>
         </header>
         <div class="library">
             <div class="book">
@@ -88,7 +88,7 @@
         <div class="modal">
             <div class="box">
                 <h3 class="title">Add new book</h3>
-                <button class="close" id="close"></button>
+                <button class="close" id="close_button"></button>
                 <p class="hint">Data fileds marked with <strong class="required">*</strong> are mandatory.</p>
                 <form id="add_form" action="#">
                     <div class="form-input">
@@ -108,14 +108,13 @@
                             <label class="label">Cover image</label>
                             <input class="input" type="url" placeholder="URL address of the image">
                         </div>
-                        <div class="input-group">
-                            <label class="label">Read status</label>
-                            <input class="checkbox" type="checkbox">
-                            <span>I have read the book</span>
+                        <div class="input-group status">
+                            <input class="checkbox" id="status" type="checkbox">
+                            <label for="status" style="cursor:pointer">I have read the book</label>
                         </div>
                     </div>
                     <div class="form-action">
-                        <button type="submit" class="button" id="submit">Create account</button>
+                        <button type="submit" class="button" id="submit_button">Create account</button>
                     </div>
                 </form>
             </div>

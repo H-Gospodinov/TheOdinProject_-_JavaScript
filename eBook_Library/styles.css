@@ -169,12 +169,14 @@ body {
 }
 
 .modal {
+    display: none;
     position: fixed;
     top: 0; right: 0;
     bottom: 0; left: 0;
     z-index: 1;
     border: none;
-    transition: 0.5s ease;
+    transition: 0.5s ease allow-discrete;
+    opacity: 0; /*allow discrete*/
 }
 .modal.active {
     display: block;
@@ -269,11 +271,18 @@ body {
 .modal .input:user-invalid {
     border-color: red;
 }
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
 .modal .input::placeholder {
     color: #ccc;
 }
 .modal .input:focus::placeholder {
     color: #fff;
+}
+.modal .status {
+    padding: 10px 0 5px;
 }
 .modal .checkbox {
     position: relative;
@@ -281,6 +290,9 @@ body {
     margin-right: 5px;
     cursor: pointer;
     opacity: 0.5;
+}
+.modal .checkbox:checked {
+    opacity: 1;
 }
 .modal .form-action {
     margin-top: 20px;
@@ -309,6 +321,7 @@ body {
 .footer a {
     color: #693;
 }
+
 
 @media (max-width: 480px) {
 
