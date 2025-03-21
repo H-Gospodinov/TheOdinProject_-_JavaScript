@@ -16,74 +16,7 @@
             <button class="button" id="add_button">Add new book</button>
         </header>
         <div class="library">
-            <div class="book">
-                <div class="image">
-                    <img src="images/hobbit.jpg" alt="">
-                </div>
-                <div class="details">
-                    <h2 class="title">The Hobbit</h2>
-                    <div class="info">
-                        <span class="data">published: <strong>1937</strong></span>
-                        <span class="data">pages: <strong>310</strong></span>
-                    </div>
-                    <p class="synopsis">The Hobbit, or There and Back Again is a children's fantasy novel by the English author J. R. R. Tolkien. It was published in 1937 to wide critical acclaim, being nominated for the Carnegie Medal and awarded a prize from the New York Herald Tribune for best juvenile fiction.</p>
-                    <div class="action">
-                        <button class="button">Mark as read</button>
-                        <button class="button">Remove</button>
-                    </div>
-                </div>
-            </div>
-            <div class="book">
-                <div class="image">
-                    <img src="images/lotr.jpg" alt="">
-                </div>
-                <div class="details">
-                    <h2 class="title">The Lord of the Rings</h2>
-                    <div class="info">
-                        <span class="data">published: <strong>1954</strong></span>
-                        <span class="data">pages: <strong>1077</strong></span>
-                    </div>
-                    <p class="synopsis">The Lord of the Rings is an epic high fantasy novel written by English author and scholar J. R. R. Tolkien. Set in Middle-earth, the story began as a sequel to Tolkien's 1937 children's book The Hobbit but eventually developed into a much larger work.</p>
-                    <div class="action">
-                        <button class="button">Mark as read</button>
-                        <button class="button">Remove</button>
-                    </div>
-                </div>
-            </div>
-            <div class="book">
-                <div class="image">
-                    <img src="images/silmarillion.jpg" alt="">
-                </div>
-                <div class="details">
-                    <h2 class="title">The Silmarillion</h2>
-                    <div class="info">
-                        <span class="data">published: <strong>1977</strong></span>
-                        <span class="data">pages: <strong>480</strong></span>
-                    </div>
-                    <p class="synopsis">The Silmarillion is a book consisting of a collection of myths and stories in varying styles by the English writer J. R. R. Tolkien. It was edited, partly written, and published posthumously by his son Christopher Tolkien in 1977, assisted by Guy Gavriel Kay.</p>
-                    <div class="action">
-                        <button class="button">Mark as read</button>
-                        <button class="button">Remove</button>
-                    </div>
-                </div>
-            </div>
-            <div class="book">
-                <div class="image">
-                    <img src="images/unfinished.jpg" alt="">
-                </div>
-                <div class="details">
-                    <h2 class="title">Unfinished Tales</h2>
-                    <div class="info">
-                        <span class="data">published: <strong>1980</strong></span>
-                        <span class="data">pages: <strong>452</strong></span>
-                    </div>
-                    <p class="synopsis">Unfinished Tales of Númenor and Middle-earth is a collection of stories and essays by J. R. R. Tolkien that were never completed during his lifetime, but were later edited by his son Christopher Tolkien and published to commercial success in 1980.</p>
-                    <div class="action">
-                        <button class="button">Mark as read</button>
-                        <button class="button">Remove</button>
-                    </div>
-                </div>
-            </div>
+            <!-- books HTML to be injected here -->
         </div>
         <div class="modal">
             <div class="box">
@@ -103,6 +36,10 @@
                         <div class="input-group">
                             <label class="label">Number of pages <strong class="required">*</strong></label>
                             <input class="input" type="number" required>
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Synopsis <strong class="required">*</strong></label>
+                            <input class="input" type="text" required>
                         </div>
                         <div class="input-group">
                             <label class="label">Cover image</label>
