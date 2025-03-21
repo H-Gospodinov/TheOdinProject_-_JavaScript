@@ -168,6 +168,141 @@ body {
     outline-color: #d4eeb2;
 }
 
+.modal {
+    position: fixed;
+    top: 0; right: 0;
+    bottom: 0; left: 0;
+    z-index: 1;
+    border: none;
+    transition: 0.5s ease;
+}
+.modal.active {
+    display: block;
+    opacity: 1;
+    @starting-style {
+        opacity: 0;
+    } /*start value goes last*/
+}
+.modal:before {
+    content: "";
+    position: absolute;
+    top: 0; right: 0;
+    bottom: 0; left: 0;
+    background-color: #000c;
+}
+.modal .box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    transform: translate(-50%,-50%);
+    width: 450px;
+    max-width: 95%;
+    box-shadow: 0 0 20px #0003;
+    border-radius: 5px;
+    background-color: #fff;
+    padding: 20px;
+}
+.modal .close {
+    display: grid;
+    place-items: center;
+    position: absolute;
+    top: 0; right: 0;
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    border: none;
+    background: none;
+    font-size: 0;
+    transition: 0.5s ease;
+    cursor: pointer;
+}
+.modal .close:before,
+.modal .close:after {
+    content: "";
+    grid-area: 1 / 1;
+    width: 16px;
+    height: 2px;
+    background-color: #000;
+}
+.modal .close:before {
+    transform: rotate(-45deg);
+}
+.modal .close:after {
+    transform: rotate(45deg);
+}
+.modal .close:hover {
+    transform: rotate(360deg);
+}
+.modal .title {
+    font-family: 'Hobbiton Brushhand';
+    font-size: 30px;
+    line-height: 50px;
+    font-weight: normal;
+}
+.modal .hint {
+    margin-bottom: 20px;
+    color: #666;
+}
+.modal .required {
+    font-size: 17px;
+    color: red;
+}
+.modal .form-input {
+    display: flex;
+    flex-flow: column;
+    row-gap: 10px;
+}
+.modal .label {
+    display: block;
+    margin-bottom: 5px;
+    font-style: italic;
+}
+.modal .input {
+    width: 100%;
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 0 8px;
+    color: #693;
+}
+.modal .input:user-invalid {
+    border-color: red;
+}
+.modal .input::placeholder {
+    color: #ccc;
+}
+.modal .input:focus::placeholder {
+    color: #fff;
+}
+.modal .checkbox {
+    position: relative;
+    bottom: -1px;
+    margin-right: 5px;
+    cursor: pointer;
+    opacity: 0.5;
+}
+.modal .form-action {
+    margin-top: 20px;
+    text-align: center;
+}
+.modal .button {
+    min-width: 180px;
+    border: none;
+    border-radius: 3px;
+    outline: 1px solid transparent;
+    background-color: #ad6;
+    padding: 15px 20px;
+    font-size: 17px;
+    color: #000c;
+    transition: 0.2s ease;
+    cursor: pointer;
+}
+.modal .button:hover {
+    outline-color: #ad6;
+    color: #000f;
+}
+
 .footer {
     margin: 10px 0 -5px;
 }

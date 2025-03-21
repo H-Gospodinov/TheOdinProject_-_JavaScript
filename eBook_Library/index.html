@@ -11,10 +11,10 @@
 </head>
 <body>
     <div class="container">
-        <div class="header">
+        <header class="header">
             <h1 class="title">My J.R.R.Tolkien Books</h1>
             <button class="button">Add new book</button>
-        </div>
+        </header>
         <div class="library">
             <div class="book">
                 <div class="image">
@@ -83,6 +83,41 @@
                         <button class="button">Remove</button>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="modal">
+            <div class="box">
+                <h3 class="title">Add new book</h3>
+                <button class="close" id="close"></button>
+                <p class="hint">Data fileds marked with <strong class="required">*</strong> are mandatory.</p>
+                <form id="add_form" action="#">
+                    <div class="form-input">
+                        <div class="input-group">
+                            <label class="label">Title <strong class="required">*</strong></label>
+                            <input class="input" type="text" required>
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Year of publishing <strong class="required">*</strong></label>
+                            <input class="input" type="number" required>
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Number of pages <strong class="required">*</strong></label>
+                            <input class="input" type="number" required>
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Cover image</label>
+                            <input class="input" type="url" placeholder="URL address of the image">
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Read status</label>
+                            <input class="checkbox" type="checkbox">
+                            <span>I have read the book</span>
+                        </div>
+                    </div>
+                    <div class="form-action">
+                        <button type="submit" class="button" id="submit">Create account</button>
+                    </div>
+                </form>
             </div>
         </div>
         <footer class="footer">
