@@ -63,13 +63,14 @@ body {
 .header .button {
     min-width: 200px;
     box-shadow: 0 0 10px #0001;
-    background: #ad6;
-    border: none;
+    border: 1px solid transparent;
     border-radius: 4px;
     outline: 1px solid transparent;
+    background-color: #ad6;
     padding: 15px 20px;
     font-size: 17px;
     color: #000c;
+    text-shadow: 1px 1px #fff3;
     text-transform: uppercase;
     transition: 0.2s ease;
     cursor: pointer;
@@ -80,7 +81,10 @@ body {
     100% {outline-color: transparent;}
 }
 .header .button:hover {
-    /*animation-play-state: paused;*/
+    animation-play-state: paused;
+    outline-color: #ad6;
+    border-color: #ad6;
+    background-color: #fffc;
     color: #000f;
 }
 
@@ -156,16 +160,33 @@ body {
     padding-top: 20px;
 }
 .library .book .button {
-    border: none;
+    border: 1px solid #d4eeb2;
     border-radius: 3px;
-    outline: 1px solid transparent;
     background-color: #d4eeb2;
     padding: 8px 10px;
-    transition: 0.2s ease;
+    text-shadow: 1px 1px #fff3;
+    white-space: nowrap;
+    transition: 0.3s ease;
     cursor: pointer;
 }
 .library .book .button:hover {
-    outline-color: #d4eeb2;
+    background-color: transparent;
+}
+.library .book .read {
+    display: flex;
+    align-items: center;
+    column-gap: 6px;
+    background-color: transparent;
+}
+.library .book .read:hover {
+    background-color: #d4eeb2;
+}
+.library .book .read:before {
+    content: "";
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background-color: #ad6;
 }
 
 .modal {
@@ -307,6 +328,7 @@ body {
     padding: 15px 20px;
     font-size: 17px;
     color: #000c;
+    text-shadow: 1px 1px #fff3;
     transition: 0.2s ease;
     cursor: pointer;
 }
