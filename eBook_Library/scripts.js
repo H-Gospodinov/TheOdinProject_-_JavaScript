@@ -116,6 +116,12 @@ bookForm.addEventListener('submit', function(event) {
     const last = currentLibrary.at(-1); // currently added
 
     addBookToPage(last.title, last.date, last.pages, last.synopsis, last.image, last.status, last.identity);
+
+    modalBox.classList.remove('active');
+    window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: 'smooth'
+    });
 });
 
 // REMOVE BOOKS
