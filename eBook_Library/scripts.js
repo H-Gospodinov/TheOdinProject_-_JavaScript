@@ -1,6 +1,7 @@
 
 const library = document.querySelector('.library');
 const modalBox = document.querySelector('.modal');
+const bookForm = document.querySelector('.dataform');
 
 const images = '(?:jpg|jpeg|png|bmp|gif|svg|webp)';
 const imagePath = new RegExp(`^(https?:\/\/.*\\.${images}|images\\/.*\\.${images})$`);
@@ -76,8 +77,34 @@ function addBookToPage(title, date, pages, synopsis, image, status) {
     `;
     library.insertAdjacentHTML('beforeend', bookMarkUp);
 }
-
-currentLibrary.forEach((item) => {
+currentLibrary.forEach((item) => { // render default items
 
     addBookToPage(item.title, item.date, item.pages, item.synopsis, item.image, item.status);
+});
+
+//  BOOK CONSTRUCTOR
+
+function Book(title, date, pages, synopsis, image, status) {
+
+    this.title = title;
+    this.date = date;
+    this.pages = pages;
+    this.synopsis = synopsis;
+    this.image = image;
+    this.status = status;
+}
+
+bookForm.addEventListener('submit', function(event) {
+
+    event.preventDefault(); // prevent reload
+
+    const inputs = [...bookForm.querySelectorAll('.input')];
+    const inputCollection = inputs.map(input => input.value);
+    const createBook = new Book(...inputCollection);
+
+    currentLibrary.push(createBook); // add to library
+
+    const last = currentLibrary.at(-1); // currently added
+
+    addBookToPage(last.title, last.date, last.pages, last.synopsis, last.image, last.status);
 });
