@@ -17,6 +17,19 @@ document.querySelector('#close_button').addEventListener('click', () => {
     modalBox.classList.remove('active');
 });
 
+//  CONSTRUCTOR
+
+function Book(title, date, pages, synopsis, image, status) {
+
+    this.title = title;
+    this.date = date;
+    this.pages = pages;
+    this.synopsis = synopsis;
+    this.image = image;
+    this.status = status;
+    this.identity = randomID();
+}
+
 // CURRENT LIBRARY
 
 let currentLibrary = [
@@ -88,18 +101,7 @@ currentLibrary.forEach((item) => { // render default items
     addBookToPage(item.title, item.date, item.pages, item.synopsis, item.image, item.status, item.identity);
 });
 
-//  BOOK CONSTRUCTOR
-
-function Book(title, date, pages, synopsis, image, status) {
-
-    this.title = title;
-    this.date = date;
-    this.pages = pages;
-    this.synopsis = synopsis;
-    this.image = image;
-    this.status = status;
-    this.identity = randomID();
-}
+// ADD BOOKS
 
 bookForm.addEventListener('submit', function(event) {
 
