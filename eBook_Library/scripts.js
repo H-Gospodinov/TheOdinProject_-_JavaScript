@@ -88,8 +88,8 @@ function addBookToPage(title, date, pages, synopsis, image, status, identity) {
                 </div>
                 <p class="synopsis">${synopsis}</p>
                 <div class="action">
-                    <button class="button ${status}">${status === 'read' ? 'Already read' : 'Mark as read'}</button>
-                    <button class="button remove-button">Remove</button>
+                    <button class="status-button ${status}">${status === 'read' ? 'Already read' : 'Mark as read'}</button>
+                    <button class="remove-button">Remove</button>
                 </div>
             </div>
         </div>
@@ -108,7 +108,11 @@ bookForm.addEventListener('submit', function(event) {
     event.preventDefault(); // prevent reload
 
     const inputs = [...bookForm.querySelectorAll('.input')];
+    const checkbox = bookForm.querySelector('.checkbox');
+
     const inputCollection = inputs.map(input => input.value);
+    inputCollection.push(checkbox.checked ? 'read' : 'unread');
+
     const createBook = new Book(...inputCollection);
 
     currentLibrary.push(createBook); // add to library
@@ -128,11 +132,30 @@ bookForm.addEventListener('submit', function(event) {
 
 library.addEventListener('click', function(event) {
 
-    if (event.target.classList.contains('remove-button')) {
+    const button = event.target;
 
-        const parent = event.target.closest('.book').id;
+    if (button.classList.contains('remove-button')) {
+
+        const parent = button.closest('.book').id;
         currentLibrary = currentLibrary.filter(item => item.identity !== parent);
 
-        event.target.closest('.book').remove();
+        button.closest('.book').remove();
+    }
+});
+
+// CHANGE STATUS
+
+library.addEventListener('click', function(event) {
+
+    const button = event.target;
+
+    if (button.classList.contains('status-button')) {
+
+        const parent = button.closest('.book').id;
+        const storage = currentLibrary.find(item => item.identity === parent);
+        storage.status = (storage.status === 'read') ? 'unread' : 'read';
+
+        button.classList.toggle('read'); button.classList.toggle('unread');
+        button.innerText = button.classList.contains('read') ? 'Already read' : 'Mark as read';
     }
 });

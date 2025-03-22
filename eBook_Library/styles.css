@@ -159,7 +159,7 @@ body {
     column-gap: 10px;
     padding-top: 20px;
 }
-.library .book .button {
+.library .book button {
     border: 1px solid #d4eeb2;
     border-radius: 3px;
     background-color: #d4eeb2;
@@ -169,7 +169,7 @@ body {
     transition: 0.3s ease;
     cursor: pointer;
 }
-.library .book .button:hover {
+.library .book button:hover {
     background-color: transparent;
 }
 .library .book .read {
