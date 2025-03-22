@@ -6,6 +6,8 @@ const bookForm = document.querySelector('.dataform');
 const images = '(?:jpg|jpeg|png|bmp|gif|svg|webp)';
 const imagePath = new RegExp(`^(https?:\/\/.*\\.${images}|images\\/.*\\.${images})$`);
 
+const randomID = () => crypto.randomUUID(); // generate random IDs
+
 // MODAL DIALOG
 
 document.querySelector('#add_button').addEventListener('click', () => {
@@ -24,7 +26,8 @@ const currentLibrary = [
         pages: '310',
         synopsis: 'The Hobbit, or There and Back Again is a children\'s fantasy novel by the English author J. R. R. Tolkien. It was published in 1937 to wide critical acclaim, being nominated for the Carnegie Medal and awarded a prize from the New York Herald Tribune for best juvenile fiction.',
         image: 'images/hobbit.jpg',
-        status: 'read'
+        status: 'read',
+        identity: randomID(),
     },
     {
         title: 'The Lord of the Rings',
@@ -32,7 +35,8 @@ const currentLibrary = [
         pages: '1077',
         synopsis: 'The Lord of the Rings is an epic high fantasy novel written by English author and scholar J. R. R. Tolkien. Set in Middle-earth, the story began as a sequel to Tolkien\'s 1937 children\'s book The Hobbit but eventually developed into a much larger work.',
         image: 'images/lotr.jpg',
-        status: 'read'
+        status: 'read',
+        identity: randomID(),
     },
     {
         title: 'The Silmarillion',
@@ -40,7 +44,8 @@ const currentLibrary = [
         pages: '480',
         synopsis: 'The Silmarillion is a book consisting of a collection of myths and stories in varying styles by the English writer J. R. R. Tolkien. It was edited, partly written, and published posthumously by his son Christopher Tolkien in 1977, assisted by Guy Gavriel Kay.',
         image: 'images/silmarillion.jpg',
-        status: 'read'
+        status: 'read',
+        identity: randomID(),
     },
     {
         title: 'Unfinished Tales',
@@ -48,16 +53,17 @@ const currentLibrary = [
         pages: '452',
         synopsis: 'Unfinished Tales of Númenor and Middle-earth is a collection of stories and essays by J. R. R. Tolkien that were never completed during his lifetime, but were later edited by his son Christopher Tolkien and published to commercial success in 1980.',
         image: 'images/unfinished.jpg',
-        status: 'unread'
+        status: 'unread',
+        identity: randomID(),
     },
 ];
 
 // HTML INJECTION
 
-function addBookToPage(title, date, pages, synopsis, image, status) {
+function addBookToPage(title, date, pages, synopsis, image, status, identity) {
 
     const bookMarkUp = `
-        <div class="book">
+        <div class="book" id="${identity}">
             <div class="image">
                 <img src="${imagePath.test(image) ? image : 'images/missing.jpg'}" alt="">
             </div>
@@ -79,7 +85,7 @@ function addBookToPage(title, date, pages, synopsis, image, status) {
 }
 currentLibrary.forEach((item) => { // render default items
 
-    addBookToPage(item.title, item.date, item.pages, item.synopsis, item.image, item.status);
+    addBookToPage(item.title, item.date, item.pages, item.synopsis, item.image, item.status, item.identity);
 });
 
 //  BOOK CONSTRUCTOR
@@ -92,6 +98,7 @@ function Book(title, date, pages, synopsis, image, status) {
     this.synopsis = synopsis;
     this.image = image;
     this.status = status;
+    this.identity = randomID();
 }
 
 bookForm.addEventListener('submit', function(event) {
@@ -106,5 +113,5 @@ bookForm.addEventListener('submit', function(event) {
 
     const last = currentLibrary.at(-1); // currently added
 
-    addBookToPage(last.title, last.date, last.pages, last.synopsis, last.image, last.status);
+    addBookToPage(last.title, last.date, last.pages, last.synopsis, last.image, last.status, last.identity);
 });
