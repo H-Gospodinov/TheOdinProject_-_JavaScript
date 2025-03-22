@@ -2,6 +2,9 @@
 const library = document.querySelector('.library');
 const modalBox = document.querySelector('.modal');
 
+const images = '(?:jpg|jpeg|png|bmp|gif|svg|webp)';
+const imagePath = new RegExp(`^(https?:\/\/.*\\.${images}|images\\/.*\\.${images})$`);
+
 // MODAL DIALOG
 
 document.querySelector('#add_button').addEventListener('click', () => {
@@ -55,7 +58,7 @@ function addBookToPage(title, date, pages, synopsis, image, status) {
     const bookMarkUp = `
         <div class="book">
             <div class="image">
-                <img src="${image}" alt="">
+                <img src="${imagePath.test(image) ? image : 'images/missing.jpg'}" alt="">
             </div>
             <div class="details">
                 <h2 class="title">${title}</h2>
@@ -73,6 +76,7 @@ function addBookToPage(title, date, pages, synopsis, image, status) {
     `;
     library.insertAdjacentHTML('beforeend', bookMarkUp);
 }
+
 currentLibrary.forEach((item) => {
 
     addBookToPage(item.title, item.date, item.pages, item.synopsis, item.image, item.status);
