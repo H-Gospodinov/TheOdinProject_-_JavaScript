@@ -19,7 +19,7 @@ document.querySelector('#close_button').addEventListener('click', () => {
 
 // CURRENT LIBRARY
 
-const currentLibrary = [
+let currentLibrary = [
     {
         title: 'The Hobbit',
         date: '1937',
@@ -76,7 +76,7 @@ function addBookToPage(title, date, pages, synopsis, image, status, identity) {
                 <p class="synopsis">${synopsis}</p>
                 <div class="action">
                     <button class="button ${status}">${status === 'read' ? 'Already read' : 'Mark as read'}</button>
-                    <button class="button">Remove</button>
+                    <button class="button remove-button">Remove</button>
                 </div>
             </div>
         </div>
@@ -114,4 +114,17 @@ bookForm.addEventListener('submit', function(event) {
     const last = currentLibrary.at(-1); // currently added
 
     addBookToPage(last.title, last.date, last.pages, last.synopsis, last.image, last.status, last.identity);
+});
+
+// REMOVE BOOKS
+
+library.addEventListener('click', function(event) {
+
+    if (event.target.classList.contains('remove-button')) {
+
+        const parent = event.target.closest('.book').id;
+        currentLibrary = currentLibrary.filter(item => item.identity !== parent);
+
+        event.target.closest('.book').remove();
+    }
 });
