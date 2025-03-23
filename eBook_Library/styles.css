@@ -410,3 +410,9 @@ body {
         max-width: 735px;
     }
 }
+@media (min-width: 2000px) {
+
+    html body /*UHD*/ {
+        background-size: cover;
+    }
+}
