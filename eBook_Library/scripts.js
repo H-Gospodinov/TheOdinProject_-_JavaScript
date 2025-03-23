@@ -8,6 +8,7 @@ const imagePath = new RegExp(`^(https?:\/\/.*\\.${images}|images\\/.*\\.${images
 
 const randomID = () => crypto.randomUUID(); // generate random IDs
 
+
 // MODAL DIALOG
 
 document.querySelector('#add_button').addEventListener('click', () => {
@@ -88,7 +89,7 @@ function addBookToPage(title, date, pages, synopsis, image, status, identity) {
                 </div>
                 <p class="synopsis">${synopsis}</p>
                 <div class="action">
-                    <button class="status-button ${status}">${status === 'read' ? 'Already read' : 'Mark as read'}</button>
+                    <span><button class="status-button ${status}">${status === 'read' ? 'Already read' : 'Mark as read'}</button></span>
                     <button class="remove-button">Remove</button>
                 </div>
             </div>
@@ -128,22 +129,7 @@ bookForm.addEventListener('submit', function(event) {
     });
 });
 
-// REMOVE BOOKS
-
-library.addEventListener('click', function(event) {
-
-    const button = event.target;
-
-    if (button.classList.contains('remove-button')) {
-
-        const parent = button.closest('.book').id;
-        currentLibrary = currentLibrary.filter(item => item.identity !== parent);
-
-        button.closest('.book').remove();
-    }
-});
-
-// CHANGE STATUS
+// UPDATE BOOKS
 
 library.addEventListener('click', function(event) {
 
@@ -151,11 +137,42 @@ library.addEventListener('click', function(event) {
 
     if (button.classList.contains('status-button')) {
 
-        const parent = button.closest('.book').id;
-        const storage = currentLibrary.find(item => item.identity === parent);
-        storage.status = (storage.status === 'read') ? 'unread' : 'read';
+        function updateLibrary() {
 
-        button.classList.toggle('read'); button.classList.toggle('unread');
-        button.innerText = button.classList.contains('read') ? 'Already read' : 'Mark as read';
+            const parent = button.closest('.book').id;
+            const storage = currentLibrary.find(item => item.identity === parent);
+            storage.status = (storage.status === 'read') ? 'unread' : 'read';
+        }
+        function updateButton(element) {
+
+            element.classList.toggle('read');
+            element.classList.toggle('unread');
+            element.innerText = element.classList.contains('read') ? 'Already read' : 'Mark as read';
+        }
+        button.style.setProperty('pointer-events','none'); // prevent hover
+
+        if (!button.parentNode.classList.contains('flagged')) {
+
+            updateLibrary(); // execute once
+            updateButton(button); // execute once
+
+            button.parentNode.classList.add('flagged');
+        }
+        button.parentNode.onclick = () => {
+
+            updateLibrary(); // execute after
+            updateButton(button); // execute after
+        }
+        button.parentNode.onmouseleave = () => {
+
+            button.removeAttribute('style'); // restore hover
+        }
+    }
+    if (button.classList.contains('remove-button')) {
+
+        const parent = button.closest('.book').id;
+        currentLibrary = currentLibrary.filter(item => item.identity !== parent);
+
+        button.closest('.book').remove();
     }
 });

@@ -172,6 +172,9 @@ body {
 .library .book button:hover {
     background-color: transparent;
 }
+.library .book .flagged {
+    cursor: pointer;
+}
 .library .book .read {
     display: flex;
     align-items: center;
