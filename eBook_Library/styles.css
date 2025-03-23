@@ -347,7 +347,13 @@ body {
     color: #693;
 }
 
+@media (hover: none) {
 
+    .status-button,
+    .status-button:hover {
+        background: #fff !important;
+    }
+}
 @media (max-width: 480px) {
 
     .header .title {
