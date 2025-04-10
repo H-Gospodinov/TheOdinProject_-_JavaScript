@@ -53,17 +53,20 @@ body {
 }
 
 .board {
-    display: flex;
-    flex-flow: column;
-    row-gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2px 2px;
     width: 330px;
     height: 330px;
-    border: 1px solid #fff8;
-    border-bottom-color: #fff1;
-    border-radius: 10px;
-    box-shadow: 0 0 20px 0px #0002;
+}
+.segment {
+    border-radius: 3px;
     background: linear-gradient(45deg, #bbb, #ccc);
-    padding: 10px;
+    transition: 0.3s ease;
+    cursor: pointer;
+}
+.segment:hover {
+    opacity: 0.9;
 }
 
 .footer {
