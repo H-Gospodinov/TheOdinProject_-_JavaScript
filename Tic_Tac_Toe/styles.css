@@ -36,8 +36,17 @@ body {
     padding: 45px 10px;
 }
 
-.header h1 {
+.header .title {
     color: #ad6;
+}
+.header .score {
+    display: inline-flex;
+    align-items: center;
+    column-gap: 5px;
+    margin-top: 20px;
+}
+.header .display {
+    margin: 0 5px;
 }
 
 .content {
@@ -51,7 +60,8 @@ body {
     max-width: 100%;
     max-height: 700px;
 }
-.current {
+
+.status {
     display: flex;
     align-items: center;
     min-height: 30px;
@@ -160,6 +170,7 @@ p:has(.no-winner) .player {
 .segment.O.win::before {
     border-color: #333;
 }
+
 .restart {
     min-width: 120px;
     border: none;

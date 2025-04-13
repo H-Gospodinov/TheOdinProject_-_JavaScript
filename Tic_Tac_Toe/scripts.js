@@ -18,6 +18,7 @@ const playStatus = document.querySelector('#playStatus');
 let currentPlayer = 'X';
 let currentWinner = '';
 let turnCounter = new Set();
+let actionAllowed = true;
 
 const selected_X = []; // Player X
 const selected_O = []; // Player O
@@ -36,6 +37,7 @@ function takeTurn(clickTarget, targetIndex) {
 
         if (determineWinner(selected_X)) {
             currentWinner = 'X';
+            updateScore(currentWinner);
             preventClick(gameBoard);
             return;
         }
@@ -51,6 +53,7 @@ function takeTurn(clickTarget, targetIndex) {
 
         if (determineWinner(selected_O)) {
             currentWinner = 'O';
+            updateScore(currentWinner);
             preventClick(gameBoard);
             return;
         }
@@ -107,6 +110,28 @@ function determineWinner(selection) {
             return pattern; // some winner
         }
     } return null; // no winner
+}
+
+// UPDATE SCORE
+
+function updateScore(winner) {
+
+    const score_X = document.querySelector('#score_X .display');
+    const score_O = document.querySelector('#score_O .display');
+
+    if (winner && actionAllowed) {
+        score_X.insertAdjacentHTML('beforebegin', '<span>X</span>');
+        score_X.style.color = '#6ad';
+        score_O.insertAdjacentHTML('afterend', '<span>O</span>');
+        score_O.style.color = '#d6a';
+        actionAllowed = false;
+    }
+    if (winner === 'X') {
+        score_X.innerText = Number(score_X.innerText) + 1;
+    }
+    else {
+        score_O.innerText = Number(score_O.innerText) + 1;
+    }
 }
 
 // RESTART GAME
