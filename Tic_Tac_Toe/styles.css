@@ -116,6 +116,11 @@ p:has(.no-winner) .player {
     grid-gap: 2px 2px;
     width: 330px;
     height: 330px;
+    animation: fadein 1s;
+}
+@keyframes fadein {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
 }
 .segment {
     display: grid;
