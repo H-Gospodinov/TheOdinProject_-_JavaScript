@@ -11,7 +11,7 @@ for (let i = 0; i < 9; i++) {
 
 // GAMEBOARD EVENTS
 
-const boardSegment = gameBoard.querySelectorAll('.segment');
+const boardSegments = gameBoard.querySelectorAll('.segment');
 const playerName = document.querySelector('#playerName');
 const playStatus = document.querySelector('#playStatus');
 
@@ -61,7 +61,7 @@ function takeTurn(clickTarget, targetIndex) {
         }, 100);
     }
 }
-boardSegment.forEach((segment, index) => {
+boardSegments.forEach((segment, index) => {
 
     segment.addEventListener('click', () => {
 
@@ -70,7 +70,7 @@ boardSegment.forEach((segment, index) => {
         playStatus.innerText = currentWinner ? 'wins' : 'go';
 
         turnCounter.add(index);
-        if(turnCounter.size === boardSegment.length && !currentWinner) {
+        if(turnCounter.size === boardSegments.length && !currentWinner) {
             playStatus.innerText = 'No winner';
             playStatus.classList.add('no-winner');
         }
@@ -86,9 +86,27 @@ function determineWinner(selection) {
         [0, 3, 6], [1, 4, 7], [2, 5, 8], // Columns
         [0, 4, 8], [2, 4, 6]             // Diagonals
     ];
+    // old version, works fine but doesn't return the exact winning pattern:
+    /*
     return winPatterns.some(pattern =>
         pattern.every(index => selection.includes(index))
-    );
+    );*/
+
+    // new version, returns the exact winning pattern:
+
+    for (let pattern of winPatterns) {
+
+        if (pattern.every(index => selection.includes(index))) {
+
+            const patternNodes = pattern.map(index => boardSegments[index]);
+
+            patternNodes.forEach((node) => {
+                node.style.background = (selection === selected_X) ? '#6ad' : '#d6a';
+                node.classList.add('win');
+            });
+            return pattern; // some winner
+        }
+    } return null; // no winner
 }
 
 // RESTART GAME
@@ -97,8 +115,8 @@ restartGame.addEventListener('click', () => {
 
     gameBoard.removeAttribute('style');
 
-    boardSegment.forEach((segment) => {
-        segment.classList.remove('X','O');
+    boardSegments.forEach((segment) => {
+        segment.classList.remove('X','O','win');
         segment.removeAttribute('style');
     });
     currentWinner = '';

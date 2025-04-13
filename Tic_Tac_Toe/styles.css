@@ -153,6 +153,13 @@ p:has(.no-winner) .player {
 @keyframes flip {
     100% {transform: scale(-1);}
 }
+.segment.X.win::before,
+.segment.X.win::after {
+    background-color: #fff;
+}
+.segment.O.win::before {
+    border-color: #333;
+}
 .restart {
     min-width: 120px;
     border: none;
