@@ -2,87 +2,99 @@
 // HTML INJECTION
 
 const gameBoard = document.querySelector('#gameBoard');
+const playerName = document.querySelector('#playerName');
+const playStatus = document.querySelector('#playStatus');
 const restartGame = document.querySelector('#restartGame');
-const preventClick = (el) => el.style.pointerEvents = 'none';
 
 for (let i = 0; i < 9; i++) {
     gameBoard.insertAdjacentHTML('beforeend', '<div class="segment"></div>');
 }
-
-// GAMEBOARD EVENTS
-
 const boardSegments = gameBoard.querySelectorAll('.segment');
-const playerName = document.querySelector('#playerName');
-const playStatus = document.querySelector('#playStatus');
 
-let currentPlayer = 'X';
-let currentWinner = '';
-let turnCounter = new Set();
-let actionAllowed = true;
+// CLICK HANDLER
 
-const selected_X = []; // Player X
-const selected_O = []; // Player O
-
-function takeTurn(clickTarget, targetIndex) {
-
-    preventClick(clickTarget);
-
-    playerName.classList.remove('blink');
-    setTimeout(() => {playerName.classList.add('blink')}, 0);
-
-    if (currentPlayer === 'X') {
-
-        clickTarget.classList.add('X');
-        selected_X.push(targetIndex);
-
-        if (determineWinner(selected_X)) {
-            currentWinner = 'X';
-            updateScore(currentWinner);
-            preventClick(gameBoard);
-            return;
-        }
-        currentPlayer = 'O';
-        setTimeout(() => {
-            playerName.classList.remove('player-1');
-            playerName.classList.add('player-2');
-        }, 100);
-    }
-    else {
-        clickTarget.classList.add('O');
-        selected_O.push(targetIndex);
-
-        if (determineWinner(selected_O)) {
-            currentWinner = 'O';
-            updateScore(currentWinner);
-            preventClick(gameBoard);
-            return;
-        }
-        currentPlayer = 'X';
-        setTimeout(() => {
-            playerName.classList.remove('player-2');
-            playerName.classList.add('player-1');
-        }, 100);
-    }
-}
 boardSegments.forEach((segment, index) => {
 
     segment.addEventListener('click', () => {
 
-        takeTurn(segment, index); // main action
+        takeTurn(segment, index); // gameplay
+        turnCounter.add(index); // counter
 
-        playStatus.innerText = currentWinner ? 'wins' : 'go';
-
-        turnCounter.add(index);
-        if(turnCounter.size === boardSegments.length && !currentWinner) {
+        if (turnCounter.size < boardSegments.length) {
+            playStatus.innerText = currentWinner ? 'wins' : 'go';
+        }
+        else if (currentWinner) {
+            playStatus.innerText = 'wins';
+        }
+        else { // game over
             playStatus.innerText = 'No winner';
             playStatus.classList.add('no-winner');
         }
     });
 });
 
+// GAMEPLAY EVENTS
+
+let currentPlayer = 'X';
+let currentWinner = '';
+let turnCounter = new Set();
+let actionAllowed = true;
+
+const selected_X = []; // player X
+const selected_O = []; // player O
+
+function takeTurn(clickTarget, targetIndex) {
+
+    clickTarget.classList.add(currentPlayer);
+
+    if (currentPlayer === 'X') {
+
+        selected_X.push(targetIndex);
+        if (checkWinner(selected_X)) {
+            displayWinner();
+            return;
+        }
+        currentPlayer = 'O';
+        displayPlayer('player-1','player-2');
+    }
+    else {
+        selected_O.push(targetIndex);
+        if (checkWinner(selected_O)) {
+            displayWinner();
+            return;
+        }
+        currentPlayer = 'X';
+        displayPlayer('player-2','player-1');
+    }
+    preventClick(clickTarget);
+
+    function preventClick (element) {
+        element.style.pointerEvents = 'none';
+    }
+    function displayWinner() {
+        // just a wrapper
+        currentWinner = currentPlayer;
+        updateScore(currentWinner);
+        preventClick(gameBoard);
+    }
+}
+
+// DISPLAY PLAYER
+
+function displayPlayer(oldClass, newClass) {
+
+    playerName.classList.remove('blink');
+    setTimeout(() => {playerName.classList.add('blink')}, 0);
+
+    setTimeout(() => {
+        playerName.classList.remove(oldClass);
+        playerName.classList.add(newClass);
+    }, 100);
+}
+
 // DETERMINE WINNER
 
-function determineWinner(selection) {
+function checkWinner(selection) {
 
     const winPatterns = [
         [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
@@ -94,14 +106,13 @@ function determineWinner(selection) {
     return winPatterns.some(pattern =>
         pattern.every(index => selection.includes(index))
     );*/
-
     // new version, returns the exact winning pattern:
 
     for (let pattern of winPatterns) {
 
-        if (pattern.every(index => selection.includes(index))) {
+        if (pattern.every(item => selection.includes(item))) {
 
-            const patternNodes = pattern.map(index => boardSegments[index]);
+            const patternNodes = pattern.map(item => boardSegments[item]);
 
             patternNodes.forEach((node) => {
                 node.style.background = (selection === selected_X) ? '#6ad' : '#d6a';
