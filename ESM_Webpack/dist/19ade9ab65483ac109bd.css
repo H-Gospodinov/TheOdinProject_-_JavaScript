@@ -35,6 +35,14 @@ body {
     font-family: 'segoe ui', ubuntu, helvetica, sans-serif;
     color: #fff;
 }
+.container {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    max-width: 1920px;
+    min-height: 100%;
+    margin: auto;
+}
 .header {
     display: flex;
     align-items: center;
@@ -69,14 +77,6 @@ body {
     margin: 7px 0 0 -21px;
     background-color: #fff;
     transform: rotate(45deg);
-}
-.container {
-    display: flex;
-    flex-flow: column;
-    justify-content: space-between;
-    max-width: 1920px;
-    min-height: 100%;
-    margin: auto;
 }
 .content {
     display: flex;
