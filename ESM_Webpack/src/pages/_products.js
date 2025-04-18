@@ -7,7 +7,7 @@ function htmlBlock(title, image, text, price) {
     return `
     <div class="block">
         <h2>${title}</h2>
-        <img src=${image} alt="">
+        <img src=${image} width="340" height="340" alt="">
         <p>${text}</p>
         <span><strong>€ ${price}</strong> / kg</span>
     </div>`

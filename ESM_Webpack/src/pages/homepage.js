@@ -7,7 +7,7 @@ const pageTitle = `
 `;
 const heroBanner = `
     <div class="big-banner">
-        <img class="hero" src="${banner}" alt="">
+        <img class="hero" src="${banner}" width="1600" height="500" alt="">
     </div>
 `;
 function createHomePage() {
