@@ -43,12 +43,9 @@ body {
     background-color: #111;
     padding: 15px;
 }
-.logo img {
+.header img {
     margin-right: 10px;
     transform: translateY(3px);
-}
-.logo span {
-    color: #ad6;
 }
 .header .tab {
     margin: 0 14px;
