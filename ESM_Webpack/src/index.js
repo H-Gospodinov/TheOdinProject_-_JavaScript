@@ -1,5 +1,5 @@
 
-import "./styles.css";
+//import "./styles.css"; //excluded to avoid FOUC
 import createNavBar from "./pages/_navigation.js";
 import createHomePage from "./pages/homepage.js";
 import createInfoPage from "./pages/infopage.js";
@@ -12,6 +12,9 @@ const pageBox = document.querySelector('#content');
 function injectContent(target, data) {
     target.insertAdjacentHTML('afterbegin', data);
 }
+import bckgrnd from "./img/background.jpg";
+document.body.style.backgroundImage = `url(${bckgrnd})`;
+
 // INITIAL LOAD
 
 injectContent(navBar, createNavBar());
