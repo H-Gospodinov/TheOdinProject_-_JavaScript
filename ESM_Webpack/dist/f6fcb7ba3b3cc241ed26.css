@@ -30,10 +30,14 @@ html {
 body {
     width: 100%;
     overflow-x: hidden;
-    background: #121922 no-repeat;
-    background-position: center top;
-    font-family: 'segoe ui', ubuntu, helvetica, sans-serif;
+    background-color: #121922;
+    font-family: 'segoe ui',
+    ubuntu, helvetica, sans-serif;
     color: #fff;
+}
+body > div {
+    background-position: center top;
+    background-repeat: no-repeat;
 }
 .container {
     display: flex;
