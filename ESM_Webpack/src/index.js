@@ -1,10 +1,11 @@
 
-//import "./styles.css"; //excluded to avoid FOUC
+//import "./styles/styles.css"; //excluded to avoid FOUC
+import "./styles/media.css"; // if styles.css is excluded
+
 import createNavBar from "./pages/_navigation.js";
 import createHomePage from "./pages/homepage.js";
 import createInfoPage from "./pages/infopage.js";
 
-const wrapper = document.querySelector('.container');
 const navBar = document.querySelector('#navBar');
 const pageBox = document.querySelector('#content');
 
@@ -13,9 +14,6 @@ const pageBox = document.querySelector('#content');
 function injectContent(target, data) {
     target.insertAdjacentHTML('afterbegin', data);
 }
-import bckgrnd from "./img/background.jpg";
-wrapper.style.backgroundImage = `url(${bckgrnd})`;
-
 // INITIAL LOAD
 
 injectContent(navBar, createNavBar());

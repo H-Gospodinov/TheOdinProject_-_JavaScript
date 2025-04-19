@@ -35,10 +35,6 @@ body {
     ubuntu, helvetica, sans-serif;
     color: #fff;
 }
-body > div {
-    background-position: center top;
-    background-repeat: no-repeat;
-}
 .container {
     display: flex;
     flex-flow: column;
