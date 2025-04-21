@@ -479,7 +479,7 @@ module.exports = __webpack_require__.p + "b1937ffc0658e2133ebc.jpg";
   \********************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-module.exports = __webpack_require__.p + "6ef9df83f15091391949.jpg";
+module.exports = __webpack_require__.p + "4598a7b8615c363e294e.jpg";
 
 /***/ }),
 
@@ -737,7 +737,7 @@ const info = [
         text: 'Component-based website prototype with no static content, just a demo for ES6 Modules & Webpack bundling.'
     },
     {
-        text: `Check source code on <a href="https://github.com/H-Gospodinov/TheOdinProject_-_JavaScript/tree/main/ESM_Webpack" target="_blank" rel="noopener">GitHub</a>`
+        text: `Check source code on <a href="https://github.com/H-Gospodinov/TheOdinProject_-_JavaScript/tree/main/ESM_Demo" target="_blank" rel="noopener">GitHub</a>`
     },
 ];
 function createText() {
