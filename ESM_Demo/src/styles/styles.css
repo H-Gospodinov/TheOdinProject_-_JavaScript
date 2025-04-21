@@ -47,6 +47,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    column-gap: 15px;
     background-color: #0c7e7c;
     padding: 15px;
     color: #fff;
@@ -161,13 +162,13 @@ body {
     flex-grow: 1;
     display: flex;
     justify-content: center;
+    max-width: calc(100% - 150px);
 }
 button.prev,
 button.next {
     flex: 0 0 50px;
     position: relative;
     z-index: 2;
-    width: 50px;
     height: 50px;
     background: none;
     border: solid #0c7e7c;
@@ -209,7 +210,7 @@ button.next {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     justify-items: center;
-    grid-gap: 5%;
+    grid-gap: 20px 5%;
     width: calc(1600px + 8%);
     max-width: 100%;
     padding: 0 4%;
@@ -242,4 +243,89 @@ button.next {
 .footer a {
     margin-left: 1px;
     color: #fff;
+}
+
+@media (max-width: 900px) {
+
+    .header nav {
+        column-gap: 12px;
+    }
+    .header .tab {
+        border: 1px solid #fff9;
+        border-radius: 3px;
+        background: none;
+        padding: 10px;
+        font-size: 14px;
+        font-weight: 400;
+        white-space: nowrap;
+        transform: none;
+    }
+    .header .tab span {
+        transform: none;
+    }
+    .header > span {
+        display: none;
+    }
+    .page-title {
+        font-size: 24px;
+    }
+    .clipper {
+        max-width: calc(100% - 80px);
+    }
+    button.prev,
+    button.next {
+        flex-basis: 25px;
+        height: 25px;
+    }
+    button.prev {
+        margin-left: 15px;
+    }
+    button.next {
+        margin-right: 15px;
+    }
+    .reader {
+        padding: 0 30px;
+        font-size: 20px;
+        font-weight: 400;
+    }
+    .block h2 {
+        font-size: 20px;
+    }
+    .block p {
+        max-height: 42px;
+        overflow: hidden;
+    }
+}
+@media (max-width: 600px) {
+
+    .page-title::before,
+    .page-title::after {
+        display: none;
+    }
+    .wrapper::before,
+    .wrapper::after {
+        display: none;
+    }
+    button.prev,
+    button.next {
+        display: none;
+    }
+    .clipper {
+        max-width: 100%;
+    }
+    .reader {
+        padding: 0 15px;
+        font-size: 17px;
+        transform: none;
+    }
+    .grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@media (max-width: 480px) {
+
+    .header .tab {
+        padding: 8px;
+        font-size: 12px;
+    }
 }

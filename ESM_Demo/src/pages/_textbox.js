@@ -1,4 +1,4 @@
-const info = [
+const paragraphs = [
     {
         text: 'Component-based website prototype with no static content, just a demo for ES6 Modules & Webpack bundling.'
     },
@@ -8,7 +8,7 @@ const info = [
 ];
 function createText() {
     // expects an array of data objects
-    const content = info.map(item => {
+    const content = paragraphs.map(item => {
         return `<p>${item.text}</p>`;
     }).join('');
 
