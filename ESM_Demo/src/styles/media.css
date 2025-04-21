@@ -1,0 +1,10 @@
+
+/* CSS media must be bundled separately
+if styles.css is excluded from bundling */
+
+body {
+    background-image: url(../img/background.jpg);
+    background-position: center -60px;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+}
