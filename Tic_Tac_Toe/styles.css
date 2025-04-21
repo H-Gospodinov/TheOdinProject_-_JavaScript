@@ -42,11 +42,16 @@ body {
 .header .score {
     display: inline-flex;
     align-items: center;
-    column-gap: 5px;
+    column-gap: 10px;
     margin-top: 20px;
 }
-.header .display {
-    margin: 0 5px;
+.header #score_X,
+.header #score_O {
+    display: flex;
+    column-gap: 10px;
+    border-radius: 3px;
+    background-color: #102030;
+    padding: 10px 15px;
 }
 
 .content {
