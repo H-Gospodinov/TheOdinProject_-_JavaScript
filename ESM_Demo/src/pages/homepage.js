@@ -3,7 +3,7 @@ import createText from "./_textbox.js";
 import createProducts from "./_products.js";
 
 const pageTitle = `
-    <h1 class="page-title">ESM & Webpack demo</h1>
+    <h1 class="page-title">ES6 modules demo</h1>
 `;
 const heroBanner = `
     <div class="big-banner">
