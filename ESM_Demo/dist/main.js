@@ -654,41 +654,47 @@ function createSlider(sliderBox) {
 
     // clone content
 
-    function cloneContent() {
+    function cloneContent(direction) {
 
-        const clones = document.createDocumentFragment();
+        const content = parent.children[0].cloneNode(true);
 
-        for (let i = 0; i < 2; i++) {
-            const clone = parent.children[0].cloneNode(true);
-            clones.appendChild(clone);
+        if (direction === 'previous') {
+            parent.style.justifyContent = 'flex-end';
+            parent.prepend(content);
         }
-        parent.prepend(clones.firstChild);
-        parent.append(clones.lastChild);
+        else if (direction === 'next') {
+            parent.style.justifyContent = 'flex-start';
+            parent.append(content);
+        }
     }
 
     // slide action
 
-    function slideAction(class1, class2, cleanUp) {
+    function slideAction(direction, class1, class2) {
 
-        cloneContent(); // initialize
+        cloneContent(direction); // initialize
         disabled(true); // disable buttons
 
         const slides = [...parent.children];
     
         slides.forEach(slide => {
             slide.removeAttribute('style');
-            setTimeout(function() {
+            // slide action
+            setTimeout(() => {
                 slide.classList.remove(class2);
                 slide.classList.add(class1);
             }, 50);
         });
-        setTimeout(function() {
-            while (parent.children.length > 1) {
-                parent.removeChild(cleanUp());
+        setTimeout(() => { // clean up
+            if (direction === 'previous') {
+                parent.removeChild(parent.lastChild);
+            }
+            else if (direction === 'next') {
+                parent.removeChild(parent.firstChild);
             }
             const newContent = parent.children[0];
             newContent.style.transition = 'none';
-            newContent.classList.remove('move-left','move-right');
+            newContent.classList.remove(class1, class2);
 
             disabled(false); // enable buttons
         }, 1000);
@@ -698,7 +704,7 @@ function createSlider(sliderBox) {
 
     const startInterval = () => {
         intervalId = setInterval(() => {
-            slideAction('move-left', 'move-right', () => parent.firstChild);
+            slideAction('next', 'move-left', 'move-right');
         }, 4000);
     }
     let intervalId; // current
@@ -710,11 +716,11 @@ function createSlider(sliderBox) {
     } // reset time
 
     prevBtn.addEventListener('click', () => {
-        slideAction('move-right', 'move-left', () => parent.lastChild);
+        slideAction('previous', 'move-right', 'move-left');
         restartInterval();
     });
     nextBtn.addEventListener('click', () => {
-        slideAction('move-left', 'move-right', () => parent.firstChild);
+        slideAction('next', 'move-left', 'move-right');
         restartInterval();
     });
 }

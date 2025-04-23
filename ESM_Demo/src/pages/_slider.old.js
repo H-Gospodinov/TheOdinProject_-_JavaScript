@@ -12,43 +12,37 @@ function createSlider(sliderBox) {
 
     // clone content
 
-    function cloneContent(direction) {
+    function cloneContent() {
 
-        const content = parent.children[0].cloneNode(true);
+        const clones = document.createDocumentFragment();
 
-        if (direction === 'previous') {
-            parent.style.justifyContent = 'flex-end';
-            parent.prepend(content);
+        for (let i = 0; i < 2; i++) {
+            const clone = parent.children[0].cloneNode(true);
+            clones.appendChild(clone);
         }
-        else if (direction === 'next') {
-            parent.style.justifyContent = 'flex-start';
-            parent.append(content);
-        }
+        parent.prepend(clones.firstChild);
+        parent.append(clones.lastChild);
     }
 
     // slide action
 
-    function slideAction(direction, class1, class2) {
+    function slideAction(class1, class2, cleanUp) {
 
-        cloneContent(direction); // initialize
+        cloneContent(); // initialize
         disabled(true); // disable buttons
 
         const slides = [...parent.children];
     
         slides.forEach(slide => {
             slide.removeAttribute('style');
-            // slide action
-            setTimeout(() => {
+            setTimeout(function() {
                 slide.classList.remove(class2);
                 slide.classList.add(class1);
             }, 50);
         });
-        setTimeout(() => { // clean up
-            if (direction === 'previous') {
-                parent.removeChild(parent.lastChild);
-            }
-            else if (direction === 'next') {
-                parent.removeChild(parent.firstChild);
+        setTimeout(function() {
+            while (parent.children.length > 1) {
+                parent.removeChild(cleanUp());
             }
             const newContent = parent.children[0];
             newContent.style.transition = 'none';
@@ -62,7 +56,7 @@ function createSlider(sliderBox) {
 
     const startInterval = () => {
         intervalId = setInterval(() => {
-            slideAction('next', 'move-left', 'move-right');
+            slideAction('move-left', 'move-right', () => parent.firstChild);
         }, 4000);
     }
     let intervalId; // current
@@ -74,11 +68,11 @@ function createSlider(sliderBox) {
     } // reset time
 
     prevBtn.addEventListener('click', () => {
-        slideAction('previous', 'move-right', 'move-left');
+        slideAction('move-right', 'move-left', () => parent.lastChild);
         restartInterval();
     });
     nextBtn.addEventListener('click', () => {
-        slideAction('next', 'move-left', 'move-right');
+        slideAction('move-left', 'move-right', () => parent.firstChild);
         restartInterval();
     });
 }
