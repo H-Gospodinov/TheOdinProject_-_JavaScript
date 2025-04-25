@@ -11,7 +11,7 @@ class Task {
         this.label = label;
         this.id = crypto.randomUUID();
     }
-    getLabel() {
+    assign() {
         return this.label;
     }
     render() {

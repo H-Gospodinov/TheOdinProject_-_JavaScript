@@ -1,25 +1,23 @@
 import Task from "./_task.js";
 import sampleData from './_data.json';
 
-let newTask = '';
+let tasks = [];
+
+function createTask(data) {
+    // expects array of arguments
+    const task = new Task(...data);
+    tasks.push(task.render());
+}
 
 for (const data of sampleData) {
     const values = Object.values(data);
     createTask(values);
 }
 
-function createTask(data) {
-
-    const content = new Task(...data);
-    const html = content.render();
-    newTask += html;
-}
-
 function createGrid() {
-
     return `
         <div class="grid">
-            ${newTask}
+            ${tasks.join('')}
         </div>
     `;
 }
