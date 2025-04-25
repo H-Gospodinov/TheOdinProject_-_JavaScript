@@ -12,13 +12,44 @@
 <body>
     <div class="container">
         <header class="header">
+            <!-- <button type="button">Create task</button> -->
         </header>
+        <nav></nav>
         <div class="content" id="content">
             <!--content-->
         </div>
         <footer class="footer">
             <span>Check source code on <a href="https://h-gospodinov.github.io/H-Gospodinov/" target="_blank" rel="noopener">GitHub</a></span>
         </footer>
+
+        <form class="dataform" id="task_form" action="#">
+            <div class="form-input">
+                <div class="input-group">
+                    <label class="label">Title <strong class="required">*</strong></label>
+                    <input class="input" id="title" type="text" required>
+                </div>
+                <div class="input-group">
+                    <label class="label">Details</label>
+                    <input class="input" id="details" type="text">
+                </div>
+                <div class="input-group">
+                    <label class="label">Due date</label>
+                    <input class="input" id="dueDate" type="number" placeholder="numbers">
+                </div>
+                <div class="input-group">
+                    <label class="label">Priority</label>
+                    <input class="input" id="priority" type="text">
+                </div>
+                <div class="input-group">
+                    <label class="label">Label</label>
+                    <input class="input" id="label" type="text">
+                </div>
+            </div>
+            <div class="form-action">
+                <button type="submit" class="button" id="submit_button">Add New Task</button>
+            </div>
+        </form>
+
     </div>
 </body>
 </html>
