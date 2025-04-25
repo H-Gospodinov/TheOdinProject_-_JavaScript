@@ -2,7 +2,7 @@
 class Task {
 
     constructor(
-        title, details, dueDate, priority, label
+        { title, details, dueDate, priority, label }
     ) {
         this.title = title;
         this.details = details;

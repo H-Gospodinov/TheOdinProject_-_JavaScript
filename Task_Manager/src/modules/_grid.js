@@ -1,18 +1,18 @@
-import Task from "./_task.js";
-import sampleData from './_data.json';
+import {currentData, createTask} from "./_data.js";
 
-let tasks = [];
+let tasks = []; // all tasks
 
-function createTask(data) {
-    // expects array of arguments
-    const task = new Task(...data);
-    tasks.push(task.render());
-}
+function updateTasks() {
 
-for (const data of sampleData) {
-    const values = Object.values(data);
-    createTask(values);
-}
+    tasks.length = 0; // reset
+
+    for (const data of currentData) {
+        const task = createTask(data);
+        tasks.push(task);
+    }
+} updateTasks();
+
+document.addEventListener('dataChange', updateTasks);
 
 function createGrid() {
     return `
