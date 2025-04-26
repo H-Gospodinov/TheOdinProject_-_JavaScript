@@ -1,4 +1,5 @@
-import {currentData, createTask} from "./_data.js";
+import {currentData} from "./_data.js";
+import createTask from "./_task.js";
 
 let tasks = []; // all tasks
 

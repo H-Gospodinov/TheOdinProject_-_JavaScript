@@ -26,6 +26,11 @@ class Task {
                 </span>
             </div>
         `;
-    }
+    } // input must be object
 }
-export default Task;
+function createTask(data) {
+    // expects a single object
+    const task = new Task(data);
+    return task.render();
+}
+export default createTask;
