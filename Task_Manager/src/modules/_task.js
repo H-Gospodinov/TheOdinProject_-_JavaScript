@@ -2,14 +2,14 @@
 class Task {
 
     constructor(
-        { title, details, dueDate, priority, label }
+        { title, details, dueDate, priority, label, id }
     ) {
         this.title = title;
         this.details = details;
         this.dueDate = dueDate;
         this.priority = priority;
         this.label = label;
-        this.id = crypto.randomUUID();
+        this.id = id;
     }
     assign() {
         return this.label;
@@ -21,6 +21,9 @@ class Task {
                 <span>${this.details}</span>
                 <span>${this.dueDate}</span>
                 <span>${this.priority}</span>
+                <span>
+                    <button id="delete" type="button">Delete</button>
+                </span>
             </div>
         `;
     }
