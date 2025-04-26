@@ -2,9 +2,15 @@
 /* CSS media must be bundled separately
 if styles.css is excluded from bundling */
 
-/* body {
-    background-image: url(../img/background.jpg);
-    background-position: center top;
+.sidebar {
+    background-image: url(../images/background.png);
+    background-position: center bottom;
     background-repeat: no-repeat;
     background-size: 100% auto;
-} */
+}
+.task #edit {
+    background-image: url(../images/btn1.png);
+ }
+.task #delete {
+    background-image: url(../images/btn2.png);
+}
