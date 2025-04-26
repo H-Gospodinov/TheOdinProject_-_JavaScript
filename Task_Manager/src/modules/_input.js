@@ -11,17 +11,17 @@ function getInput() {
         const data = {}; // must be object
 
         for (const input of inputs) {
-            data[input.id] = input.value || '...';
+            data[input.id] = input.value || '';
         }
         updateData(data);
     });
 }
-function setInput(object) {
+function setInput(data) {
 
     const values = [];
 
-    for (const key in object) {
-        values.push(object[key]);
+    for (const key in data) {
+        values.push(data[key]);
     }
     for (let i = 0; i < inputs.length; i++) {
         inputs[i].value = values[i];
