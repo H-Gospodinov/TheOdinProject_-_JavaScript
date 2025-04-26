@@ -1,14 +1,13 @@
 import {updateData} from "./_data.js";
 
-function getInput() {
+const dataForm = document.querySelector('#task_form');
+const inputs = dataForm.querySelectorAll('.input');
 
-    const dataForm = document.querySelector('#task_form');
+function getInput() {
 
     dataForm.addEventListener('submit', (event) => {
 
         event.preventDefault(); // prevent reload
-
-        const inputs = dataForm.querySelectorAll('.input');
         const data = {}; // must be object
 
         for (const input of inputs) {
@@ -17,4 +16,15 @@ function getInput() {
         updateData(data);
     });
 }
-export default getInput;
+function setInput(object) {
+
+    const values = [];
+
+    for (const key in object) {
+        values.push(object[key]);
+    }
+    for (let i = 0; i < inputs.length; i++) {
+        inputs[i].value = values[i];
+    }
+}
+export {getInput, setInput};
