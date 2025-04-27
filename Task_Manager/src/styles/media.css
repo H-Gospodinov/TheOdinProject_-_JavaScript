@@ -8,7 +8,10 @@ if styles.css is excluded from bundling */
     background-repeat: no-repeat;
     background-size: 100% auto;
 }
-.task #edit {
+.task #complete {
+    background-image: url(../images/btn0.png);
+ }
+.task #change {
     background-image: url(../images/btn1.png);
  }
 .task #delete {

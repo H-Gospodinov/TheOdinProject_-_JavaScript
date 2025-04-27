@@ -22,8 +22,9 @@ class Task {
                 <span>${this.dueDate}</span>
                 <span>${this.priority}</span>
                 <span>
-                    <button id="edit" type="button">Edit</button>
-                    <button id="delete" type="button">Delete</button>
+                    <button id="complete" type="button"></button>
+                    <button id="change" type="button"></button>
+                    <button id="delete" type="button"></button>
                 </span>
             </div>
         `;
