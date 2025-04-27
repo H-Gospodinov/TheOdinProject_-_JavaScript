@@ -2,6 +2,7 @@ import {updateData} from "./_data.js";
 
 const dataForm = document.querySelector('#task_form');
 const inputs = dataForm.querySelectorAll('.input');
+const close = dataForm.parentNode.querySelector('.close');
 
 function getInput() {
 
@@ -17,6 +18,7 @@ dataForm.addEventListener('submit', (e) => {
     // prevent reload
     e.preventDefault();
     getInput();
+    close.click();
 });
 
 function setInput(data) {

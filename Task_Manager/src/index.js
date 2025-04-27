@@ -5,31 +5,43 @@ import "./styles/media.css"; // include image css
 import createGrid from "./modules/_grid.js";
 import {updateData} from "./modules/_data.js";
 
-const container = document.querySelector('#content')
+const content = document.querySelector('.content');
+const modalBox = document.querySelector('.modal');
 
 // (RE)CREATE GRID
 
-container.innerHTML = createGrid();
+content.innerHTML = createGrid();
 
 document.addEventListener('dataChange', () => {
-    container.innerHTML = createGrid();
+    content.innerHTML = createGrid();
 });
 
 // EVENT HANDLERS
 
-container.addEventListener('click', (e) => {
+document.addEventListener('click', (e) => {
 
     const button = e.target;
     const parent = button.closest('div');
 
     switch(button.id) {
 
-        case 'edit':
+        case 'change':
             updateData(null, parent);
+            modalBox.classList.add('active');
             break;
 
         case 'delete':
             updateData(null, null, parent);
+            break;
+
+        case 'add_task':
+            modalBox.querySelector('#task_form').reset();
+            modalBox.querySelector('#id').value = '';
+            modalBox.classList.add('active');
+            break;
+
+        case 'closer':
+            modalBox.classList.remove('active');
             break;
     }
 });
