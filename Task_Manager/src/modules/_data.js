@@ -1,5 +1,5 @@
 import sampleData from './_data.json';
-import {setInput} from "./_input.js";
+import setInput from "./_input.js";
 
 let currentData = sampleData;
 
@@ -31,7 +31,7 @@ function updateData(newData, editData, removeData) {
 
     else if (editData) {
         const data = currentData.find(item => {
-            return item.id === editData;
+            return item.id === editData.id;
         });
         setInput(data);
     }
@@ -40,7 +40,7 @@ function updateData(newData, editData, removeData) {
 
     else if (removeData) {
         const index = currentData.findIndex(item => {
-            return item.id === removeData;
+            return item.id === removeData.id;
         });
         if (index > -1) {
             currentData.splice(index, 1);

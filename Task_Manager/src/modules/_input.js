@@ -5,17 +5,20 @@ const inputs = dataForm.querySelectorAll('.input');
 
 function getInput() {
 
-    dataForm.addEventListener('submit', (event) => {
+    const data = {}; // must be object
 
-        event.preventDefault(); // prevent reload
-        const data = {}; // must be object
-
-        for (const input of inputs) {
-            data[input.id] = input.value || '';
-        }
-        updateData(data);
-    });
+    for (const input of inputs) {
+        data[input.id] = input.value || '';
+    }
+    updateData(data);
 }
+
+dataForm.addEventListener('submit', (e) => {
+    // prevent reload
+    e.preventDefault();
+    getInput();
+});
+
 function setInput(data) {
 
     const values = [];
@@ -27,4 +30,4 @@ function setInput(data) {
         inputs[i].value = values[i];
     }
 }
-export {getInput, setInput};
+export default setInput;
