@@ -39,20 +39,18 @@
                                 <input class="input" id="title" type="text" required>
                             </div>
                             <div class="input-group">
-                                <label class="label">Details</label>
-                                <input class="input" id="details" type="text">
-                            </div>
-                            <div class="input-group">
                                 <label class="label">Due date</label>
                                 <input class="input" id="dueDate" type="text">
                             </div>
-                            <div class="input-group">
-                                <label class="label">Priority</label>
-                                <input class="input" id="priority" type="text">
-                            </div>
-                            <div class="input-group">
+                            <div class="input-group select">
                                 <label class="label">Label</label>
-                                <input class="input" id="label" type="text">
+                                <select class="input" id="label">
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                            <div class="input-group priority">
+                                <input class="input checkbox" id="priority" type="checkbox" value="low">
+                                <label for="priority">Mark as high priority</label>
                             </div>
                             <input class="input" id="id" type="hidden" value="">
                         </div>

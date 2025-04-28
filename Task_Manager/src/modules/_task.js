@@ -2,13 +2,12 @@
 class Task {
 
     constructor(
-        { title, details, dueDate, priority, label, id }
+        { title, dueDate, label, priority, id }
     ) {
         this.title = title;
-        this.details = details;
         this.dueDate = dueDate;
-        this.priority = priority;
         this.label = label;
+        this.priority = priority;
         this.id = id;
     }
     assign() {
@@ -16,11 +15,12 @@ class Task {
     }
     render() {
         return `
-            <div class="task" id="${this.id}">
-                <span>${this.title}</span>
-                <span>${this.details}</span>
+            <div class="task ${this.priority == 'high' ? 'prioritize' : ''}" id="${this.id}">
+                <span class="text">
+                    <strong>${this.title}</strong>
+                </span>
                 <span>${this.dueDate}</span>
-                <span>${this.priority}</span>
+                <span>${this.label}</span>
                 <span>
                     <button id="complete" type="button"></button>
                     <button id="change" type="button"></button>

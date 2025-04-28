@@ -1,23 +1,20 @@
 [
     {
-        "title": "title 1",
-        "details": "details 1",
-        "dueDate": "dueDate 1",
-        "priority": "priority 1",
-        "label": "label 1"
+        "title": "Spend at least two hours playing 'Days Gone'",
+        "dueDate": "26.04.2025",
+        "label": "Home",
+        "priority": "high"
     },
     {
-        "title": "title 2",
-        "details": "details 2",
-        "dueDate": "dueDate 2",
-        "priority": "priority 2",
-        "label": "label 2"
+        "title": "Don't forget to go to work",
+        "dueDate": "14.05.2025",
+        "label": "Work",
+        "priority": "low"
     },
     {
-        "title": "title 3",
-        "details": "details 3",
-        "dueDate": "dueDate 3",
-        "priority": "priority 3",
-        "label": "label 3"
+        "title": "Don't forget to eat and sleep",
+        "dueDate": "21.05.2015",
+        "label": "",
+        "priority": "low"
     }
 ]

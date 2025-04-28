@@ -18,6 +18,10 @@ button {
     transition: 0.2s ease;
     cursor: pointer;
 }
+select {
+    appearance: none;
+    cursor: pointer;
+}
 
 html {
     display: flex;
@@ -100,7 +104,7 @@ body {
 }
 .grid {
     display: grid;
-    grid-template-columns: auto repeat(4, max-content);
+    grid-template-columns: auto repeat(3, max-content);
     background-color: #fff;
     grid-gap: 10px 0;
 }
@@ -121,6 +125,17 @@ body {
 }
 .task span:last-child {
     border-radius: 0 5px 5px 0;
+}
+.task span:empty::before {
+    content: "...";
+}
+.task .text {
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+}
+.task strong {
+    font-weight: 400;
 }
 .task button {
     width: 30px;
@@ -231,33 +246,62 @@ body {
     height: 40px;
     border: 1px solid #ccc;
     border-radius: 3px;
+    background-color: #fff;
     padding: 0 8px;
     color: #0c7e7c;
     transition: 0.2s ease;
 }
+.modal .input:focus {
+    border-color: #000;
+}
 .modal .input:user-invalid {
     border-color: red;
 }
-::-webkit-inner-spin-button,
-::-webkit-outer-spin-button {
-    -webkit-appearance: none;
+:-webkit-autofill {
+    box-shadow: inset 0 0 0 30px #fff;
+    -webkit-text-fill-color: #0c7e7c;
 }
-.modal .input:focus {
-    border-color: #0c7e7c11;
-    background-color: #0c7e7c11;
+.modal .select {
+    position: relative;
 }
-.modal .status {
+.modal .select::after {
+    content: "";
+    position: absolute;
+    right: 12px;
+    bottom: 17px;
+    width: 12px;
+    height: 12px;
+    border: solid #000;
+    border-width: 0 1px 1px 0;
+    transform: rotate(45deg);
+    pointer-events: none;
+}
+.modal option {
+    background-color: #fff;
+    font-size: 17px;
+    color: #000;
+}
+.modal option:empty,
+.modal option:disabled {
+    display: none;
+}
+.modal .priority {
     padding: 10px 0 5px;
 }
 .modal .checkbox {
     position: relative;
     bottom: -1px;
+    width: unset;
+    height: unset;
     margin-right: 5px;
     cursor: pointer;
     opacity: 0.5;
 }
 .modal .checkbox:checked {
     opacity: 1;
+}
+.modal .checkbox +label {
+    cursor: pointer;
 }
 .modal .form-action {
     margin-top: 20px;

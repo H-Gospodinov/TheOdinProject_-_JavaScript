@@ -23,10 +23,18 @@ document.addEventListener('click', (e) => {
     const button = e.target;
     const parent = button.closest('div');
 
+    function changeText(elements, text) {
+
+        for (const element of elements) {
+            modalBox.querySelector(element).innerText = text;
+        }
+    }
+
     switch(button.id) {
 
         case 'change':
             updateData(null, parent);
+            changeText(['.title','.submit'],'Edit task');
             modalBox.classList.add('active');
             break;
 
@@ -37,11 +45,19 @@ document.addEventListener('click', (e) => {
         case 'add_task':
             modalBox.querySelector('#task_form').reset();
             modalBox.querySelector('#id').value = '';
+            changeText(['.title','.submit'],'Add new task');
             modalBox.classList.add('active');
             break;
 
         case 'closer':
             modalBox.classList.remove('active');
             break;
+    }
+}); document.addEventListener('change', (e) => {
+
+    const element = e.target;
+
+    if (element.type === 'checkbox') {
+        element.value = element.checked ? 'high' : 'low';
     }
 });

@@ -8,6 +8,13 @@ if styles.css is excluded from bundling */
     background-repeat: no-repeat;
     background-size: 100% auto;
 }
+.prioritize .text::before {
+    content: "!";
+    margin: -5px 0;
+    font-size: 30px;
+    font-weight: 700;
+    color: red;
+}
 .task #complete {
     background-image: url(../images/btn0.png);
  }

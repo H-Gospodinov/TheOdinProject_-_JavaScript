@@ -2,6 +2,7 @@ import {updateData} from "./_data.js";
 
 const dataForm = document.querySelector('#task_form');
 const inputs = dataForm.querySelectorAll('.input');
+const checkbox = dataForm.querySelector('#priority');
 const close = dataForm.parentNode.querySelector('.close');
 
 function getInput() {
@@ -30,6 +31,12 @@ function setInput(data) {
     }
     for (let i = 0; i < inputs.length; i++) {
         inputs[i].value = values[i];
+    }
+    if (data.priority === 'high') {
+        checkbox.checked = true;
+    }
+    else {
+        checkbox.checked = false;
     }
 }
 export default setInput;
