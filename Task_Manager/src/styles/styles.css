@@ -19,6 +19,8 @@ select {
     cursor: pointer;
 }
 button {
+    border: none;
+    background: none;
     cursor: pointer;
 }
 
@@ -53,17 +55,40 @@ body {
 .logo {
     display: flex;
     align-items: center;
-    column-gap: 10px;
+    column-gap: 12px;
 }
 .logo img {
-    margin-left: -5px;
-    border: 10px solid;
-    border-radius: 50%;
+    width: 50px;
+    margin: 5px 0 5px -5px;
+    border: 5px solid;
+    border-radius: 10px;
+    background-color: #fff;
 }
 .logo span {
+    margin: 0 2px;
     font-size: 28px;
     letter-spacing: 1px;
     text-transform: uppercase;
+}
+.nav-list {
+    display: flex;
+    flex-flow: column;
+    row-gap: 5px;
+    margin-top: 20px;
+    list-style: none;
+}
+.nav-item {
+    padding: 10px 0 8px;
+}
+.nav-link {
+    font-size: 16px;
+    line-height: 22px;
+    text-transform: uppercase;
+    transition: 0.2s ease;
+    color: #fff;
+}
+.nav-link:hover {
+    text-shadow: 0 0 5px #fffc;
 }
 .header {
     display: flex;
@@ -82,7 +107,6 @@ body {
     display: flex;
     align-items: center;
     column-gap: 10px;
-    border: none;
     border-radius: 5px;
     background-color: #0c7e7c;
     padding: 10px 15px;
@@ -141,8 +165,6 @@ body {
     width: 30px;
     height: 30px;
     margin: 0 -5px;
-    border: none;
-    background: none;
 }
 .task button + button {
     margin-left: 5px;
@@ -192,8 +214,6 @@ body {
     width: 40px;
     height: 40px;
     overflow: hidden;
-    border: none;
-    background: none;
     font-size: 0;
     transition: 0.5s ease;
     cursor: pointer;
@@ -306,7 +326,6 @@ body {
 }
 .modal .submit {
     min-width: 180px;
-    border: none;
     border-radius: 5px;
     background-color: #fa0;
     padding: 15px 20px;

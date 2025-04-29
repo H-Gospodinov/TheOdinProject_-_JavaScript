@@ -8,6 +8,29 @@ if styles.css is excluded from bundling */
     background-repeat: no-repeat;
     background-size: 100% auto;
 }
+.nav-item {
+    background-position: left center;
+    background-repeat: no-repeat;
+    background-size: 30px auto;
+    padding-left: 40px;
+}
+.nav-item.home {
+    background-image: url(../images/nav1.png);
+    background-position-y: 4px;
+}
+.nav-item.upcoming {
+    background-image: url(../images/nav2.png);
+    background-position-y: 5px;
+}
+.nav-item.overdue {
+    background-image: url(../images/nav3.png);
+}
+.nav-item.important {
+    background-image: url(../images/nav4.png);
+}
+.nav-item.archive {
+    background-image: url(../images/nav5.png);
+}
 .task .main::before {
     background-image: url(../images/icon1.png);
     background-position: center;
