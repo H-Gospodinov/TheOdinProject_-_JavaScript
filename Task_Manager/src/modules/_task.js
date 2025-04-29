@@ -15,17 +15,17 @@ class Task {
     }
     render() {
         return `
-            <div class="task ${this.priority == 'high' ? 'prioritize' : ''}" id="${this.id}">
-                <span class="text">
-                    <strong>${this.title}</strong>
-                </span>
-                <span>${this.dueDate}</span>
-                <span>${this.label}</span>
-                <span>
-                    <button id="complete" type="button"></button>
-                    <button id="change" type="button"></button>
-                    <button id="delete" type="button"></button>
-                </span>
+            <div id="${this.id}" class="task ${this.priority == 'high' ? 'prioritize' : ''}">
+                <div class="data main">
+                    <span>${this.title}</span>
+                </div>
+                <div class="data">${this.dueDate}</div>
+                <div class="data">${this.label}</div>
+                <div class="data">
+                    <button id="complete" type="button" title="complete"></button>
+                    <button id="change" type="button" title="edit"></button>
+                    <button id="delete" type="button" title="delete"></button>
+                </div>
             </div>
         `;
     } // input must be object

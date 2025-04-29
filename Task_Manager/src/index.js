@@ -21,7 +21,7 @@ document.addEventListener('dataChange', () => {
 document.addEventListener('click', (e) => {
 
     const button = e.target;
-    const parent = button.closest('div');
+    const parent = button.closest('.task');
 
     function changeText(elements, text) {
 

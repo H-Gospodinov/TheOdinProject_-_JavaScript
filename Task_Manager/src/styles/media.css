@@ -8,12 +8,19 @@ if styles.css is excluded from bundling */
     background-repeat: no-repeat;
     background-size: 100% auto;
 }
-.prioritize .text::before {
-    content: "!";
-    margin: -5px 0;
-    font-size: 30px;
-    font-weight: 700;
-    color: red;
+.task .main::before {
+    background-image: url(../images/icon1.png);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.prioritize .main::before {
+    margin-bottom: -1px;
+    height: 32px; /**/
+    background-image: url(../images/icon2.png);
+}
+.task button {
+    background-position: center;
+    background-repeat: no-repeat;
 }
 .task #complete {
     background-image: url(../images/btn0.png);

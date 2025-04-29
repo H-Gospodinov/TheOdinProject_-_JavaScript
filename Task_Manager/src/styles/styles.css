@@ -14,12 +14,11 @@ img {
     max-width: 100%;
     height: auto;
 }
-button {
-    transition: 0.2s ease;
-    cursor: pointer;
-}
 select {
     appearance: none;
+    cursor: pointer;
+}
+button {
     cursor: pointer;
 }
 
@@ -104,48 +103,46 @@ body {
 }
 .grid {
     display: grid;
-    grid-template-columns: auto repeat(3, max-content);
-    background-color: #fff;
+    grid-template-columns: auto repeat(2, minmax(0, 20%)) max-content;
     grid-gap: 10px 0;
 }
 .task {
     display: contents;
 }
-.task span {
+.task .data {
     align-content: center;
     border: 1px solid #0003;
-    background-color: #0c7e7c11;
-    padding: 15px 30px;
+    padding: 15px 25px;
 }
-.task span + span {
+.task .data +.data {
     border-left: none;
 }
-.task span:first-child {
+.task .data:first-child {
     border-radius: 5px 0 0 5px;
 }
-.task span:last-child {
+.task .data:last-child {
     border-radius: 0 5px 5px 0;
 }
-.task span:empty::before {
+.task .data:empty::before {
     content: "...";
 }
-.task .text {
+.task .main {
     display: flex;
     align-items: center;
     column-gap: 15px;
 }
-.task strong {
-    font-weight: 400;
+.task .main::before {
+    content: "";
+    width: 24px;
+    height: 24px;
+    margin-left: -5px;
 }
 .task button {
     width: 30px;
     height: 30px;
     margin: 0 -5px;
     border: none;
-    background-color: #fff;
-    background-position: center;
-    background-repeat: no-repeat;
-    font-size: 0;
+    background: none;
 }
 .task button + button {
     margin-left: 5px;
