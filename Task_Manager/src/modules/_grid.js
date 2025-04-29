@@ -18,7 +18,7 @@ document.addEventListener('dataChange', updateTasks);
 function createGrid() {
     return `
         <div class="grid">
-            ${tasks.join('')}
+            ${tasks.reverse().join('')}
         </div>
     `;
 }

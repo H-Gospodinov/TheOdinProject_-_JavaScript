@@ -1,20 +1,44 @@
 [
     {
-        "title": "Spend at least two hours playing 'Days Gone'",
+        "title": "Start the Task Manager project",
+        "dueDate": "25.04.2025",
+        "label": "Home",
+        "priority": "high"
+    },
+    {
+        "title": "Don't forget to eat and sleep",
+        "dueDate": "25.04.2015",
+        "label": "",
+        "priority": "low"
+    },
+    {
+        "title": "Create primary logic for the Task Manager project",
         "dueDate": "26.04.2025",
         "label": "Home",
         "priority": "high"
     },
     {
-        "title": "Don't forget to go to work",
-        "dueDate": "14.05.2025",
-        "label": "Work",
+        "title": "Do nothing else because it's weekend",
+        "dueDate": "26.04.2015",
+        "label": "",
         "priority": "low"
     },
     {
-        "title": "Don't forget to eat and sleep",
-        "dueDate": "21.05.2015",
-        "label": "",
+        "title": "Create additional logic for the Task Manager project",
+        "dueDate": "27.04.2015",
+        "label": "Home",
+        "priority": "high"
+    },
+    {
+        "title": "Spend at least two hours playing 'Days Gone'",
+        "dueDate": "27.04.2025",
+        "label": "Home",
+        "priority": "high"
+    },
+    {
+        "title": "Don't forget to go to work",
+        "dueDate": "28.04.2025",
+        "label": "Work",
         "priority": "low"
     }
 ]
