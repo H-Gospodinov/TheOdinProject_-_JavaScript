@@ -49,6 +49,9 @@ body {
     display: flex;
     flex-flow: column;
     background-color: #0c7e7c;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
     padding: 20px;
     color: #fff;
 }
@@ -78,7 +81,10 @@ body {
     list-style: none;
 }
 .nav-item {
-    padding: 10px 0 8px;
+    background-position: left center;
+    background-repeat: no-repeat;
+    background-size: 30px auto;
+    padding: 10px 0 8px 40px;
 }
 .nav-link {
     font-size: 16px;
@@ -103,24 +109,30 @@ body {
     /*font-weight: 300;*/
     color: #0c7e7c;
 }
-.create.task {
+.action {
     display: flex;
-    align-items: center;
     column-gap: 10px;
+}
+.action .create {
+    outline: 1px solid transparent;
     border-radius: 5px;
-    background-color: #0c7e7c;
-    padding: 10px 15px;
+    background-repeat: no-repeat;
+    background-position: 15px center;
+    padding: 12px 15px 12px 50px;
     font-size: 18px;
+    transition: 0.3s ease;
+}
+.action .create:hover {
+    outline-color: #0c7e7c;
+    box-shadow: inset 0 0 0 1px #0c7e7cdd;
+}
+.action .task {
+    background-color: #0c7e7c;
     color: #fff;
 }
-.create.task::before {
-    content: "+";
-    width: 30px;
-    height: 30px;
-    padding: 2px;
-    border: 2px solid;
-    border-radius: 50%;
-    font-size: 20px;
+.action .label {
+    box-shadow: inset 0 0 0 2px #0c7e7cdd;
+    color: #0c7e7c;
 }
 .content {
     padding: 40px;
@@ -130,7 +142,7 @@ body {
     grid-template-columns: auto repeat(2, minmax(0, 20%)) max-content;
     grid-gap: 10px 0;
 }
-.task {
+div.task {
     display: contents;
 }
 .task .data {
@@ -160,11 +172,19 @@ body {
     width: 24px;
     height: 24px;
     margin-left: -5px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.task.prioritize .main::before {
+    margin-bottom: -1px;
+    height: 32px;
 }
 .task button {
     width: 30px;
     height: 30px;
     margin: 0 -5px;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 .task button + button {
     margin-left: 5px;
@@ -326,15 +346,17 @@ body {
 }
 .modal .submit {
     min-width: 180px;
+    outline: 1px solid transparent;
     border-radius: 5px;
     background-color: #fa0;
     padding: 15px 20px;
     font-size: 17px;
     color: #fff;
-    transition: 0.2s ease;
+    transition: 0.3s ease;
     cursor: pointer;
 }
 .modal .submit:hover {
+    outline-color: #ffb74d;
     background-color: #ffb74d;
 }
 .footer {

@@ -4,15 +4,6 @@ if styles.css is excluded from bundling */
 
 .sidebar {
     background-image: url(../images/background.png);
-    background-position: center bottom;
-    background-repeat: no-repeat;
-    background-size: 100% auto;
-}
-.nav-item {
-    background-position: left center;
-    background-repeat: no-repeat;
-    background-size: 30px auto;
-    padding-left: 40px;
 }
 .nav-item.home {
     background-image: url(../images/nav1.png);
@@ -31,19 +22,17 @@ if styles.css is excluded from bundling */
 .nav-item.archive {
     background-image: url(../images/nav5.png);
 }
+.action .task {
+    background-image: url(../images/add1.svg);
+}
+.action .label {
+    background-image: url(../images/add2.svg);
+}
 .task .main::before {
     background-image: url(../images/icon1.png);
-    background-position: center;
-    background-repeat: no-repeat;
 }
-.prioritize .main::before {
-    margin-bottom: -1px;
-    height: 32px; /**/
+.task.prioritize .main::before {
     background-image: url(../images/icon2.png);
-}
-.task button {
-    background-position: center;
-    background-repeat: no-repeat;
 }
 .task #complete {
     background-image: url(../images/btn0.png);
