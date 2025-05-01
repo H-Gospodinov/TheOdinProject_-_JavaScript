@@ -8,6 +8,9 @@ import {updateData} from "./modules/_data.js";
 const content = document.querySelector('.content');
 const modalBox = document.querySelector('.modal');
 
+const taskForm = document.querySelector('#task_form');
+const labelForm = document.querySelector('#label_form');
+
 // (RE)CREATE GRID
 
 content.innerHTML = createGrid();
@@ -23,19 +26,24 @@ document.addEventListener('click', (e) => {
     const button = e.target;
     const parent = button.closest('.task');
 
-    function changeText(elements, text) {
+    function updateForm(text, show, hide) {
 
+        show.hidden = false;
+        hide.hidden = true;
+
+        const elements = ['.title','.submit'];
         for (const element of elements) {
             modalBox.querySelector(element).innerText = text;
+            console.log(modalBox.querySelector(element))
         }
+        modalBox.classList.add('active');
     }
 
     switch(button.id) {
 
         case 'change':
             updateData(null, parent);
-            changeText(['.title','.submit'],'Edit task');
-            modalBox.classList.add('active');
+            updateForm('Edit task', taskForm, labelForm);
             break;
 
         case 'delete':
@@ -43,10 +51,15 @@ document.addEventListener('click', (e) => {
             break;
 
         case 'add_task':
-            modalBox.querySelector('#task_form').reset();
-            modalBox.querySelector('#id').value = '';
-            changeText(['.title','.submit'],'Add new task');
-            modalBox.classList.add('active');
+            taskForm.reset();
+            taskForm.querySelector('#priority').value = '';
+            taskForm.querySelector('#id').value = '';
+            updateForm('Add new task', taskForm, labelForm);
+            break;
+
+        case 'add_label':
+            labelForm.reset();
+            updateForm('Create label', labelForm, taskForm);
             break;
 
         case 'closer':
