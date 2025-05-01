@@ -34,27 +34,26 @@ document.addEventListener('click', (e) => {
         const elements = ['.title','.submit'];
         for (const element of elements) {
             modalBox.querySelector(element).innerText = text;
-            console.log(modalBox.querySelector(element))
         }
         modalBox.classList.add('active');
     }
 
     switch(button.id) {
 
-        case 'change':
-            updateData(null, parent);
-            updateForm('Edit task', taskForm, labelForm);
-            break;
-
-        case 'delete':
-            updateData(null, null, parent);
-            break;
-
         case 'add_task':
             taskForm.reset();
             taskForm.querySelector('#priority').value = '';
             taskForm.querySelector('#id').value = '';
             updateForm('Add new task', taskForm, labelForm);
+            break;
+
+        case 'edit_task':
+            updateData(null, parent);
+            updateForm('Edit task', taskForm, labelForm);
+            break;
+
+        case 'remove_task':
+            updateData(null, null, parent);
             break;
 
         case 'add_label':

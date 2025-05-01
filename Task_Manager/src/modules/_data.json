@@ -2,7 +2,7 @@
     {
         "title": "Start the Task Manager project",
         "dueDate": "25.04.2025",
-        "label": "Home",
+        "label": "Personal",
         "priority": "high"
     },
     {
@@ -14,7 +14,7 @@
     {
         "title": "Create primary logic for the Task Manager project",
         "dueDate": "26.04.2025",
-        "label": "Home",
+        "label": "Personal",
         "priority": "high"
     },
     {
@@ -26,13 +26,13 @@
     {
         "title": "Create additional logic for the Task Manager project",
         "dueDate": "27.04.2015",
-        "label": "Home",
+        "label": "Personal",
         "priority": "high"
     },
     {
         "title": "Spend at least two hours playing 'Days Gone'",
         "dueDate": "27.04.2025",
-        "label": "Home",
+        "label": "",
         "priority": "high"
     },
     {

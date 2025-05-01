@@ -22,10 +22,15 @@ if styles.css is excluded from bundling */
 .nav-item.archive {
     background-image: url(../images/nav5.png);
 }
-.action .task {
+.nav-item.label {
+    background-image: url(../images/pointer.png);
+    background-position-x: 3px;
+    background-size: 28px;
+}
+.header #add_task {
     background-image: url(../images/add1.svg);
 }
-.action .label {
+.header #add_label {
     background-image: url(../images/add2.svg);
 }
 .task .main::before {
@@ -37,9 +42,11 @@ if styles.css is excluded from bundling */
 .task #complete {
     background-image: url(../images/btn0.png);
  }
-.task #change {
+.task #edit_task,
+.label #edit_label {
     background-image: url(../images/btn1.png);
  }
-.task #delete {
+.task #remove_task,
+.label #remove_label {
     background-image: url(../images/btn2.png);
 }

@@ -23,8 +23,8 @@ class Task {
                 <div class="data">${this.label}</div>
                 <div class="data">
                     <button id="complete" type="button" title="complete"></button>
-                    <button id="change" type="button" title="edit"></button>
-                    <button id="delete" type="button" title="delete"></button>
+                    <button id="edit_task" type="button" title="edit"></button>
+                    <button id="remove_task" type="button" title="delete"></button>
                 </div>
             </div>
         `;
