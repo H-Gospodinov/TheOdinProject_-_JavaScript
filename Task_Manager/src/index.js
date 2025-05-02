@@ -2,10 +2,11 @@
 //import "./styles/styles.css"; //excluded to avoid FOUC
 import "./styles/media.css"; // include image css
 
-import createGrid from "./modules/_grid.js";
+import {createGrid, createMenu} from "./modules/_grid.js";
 import {updateData} from "./modules/_data.js";
 
 const content = document.querySelector('.content');
+const labels = document.querySelector('.labels');
 const modalBox = document.querySelector('.modal');
 
 const taskForm = document.querySelector('#task_form');
@@ -18,6 +19,14 @@ content.innerHTML = createGrid();
 document.addEventListener('dataChange', () => {
     content.innerHTML = createGrid();
 });
+
+// (RE)CREATE MENU
+
+labels.innerHTML = createMenu();
+
+// document.addEventListener('dataChange', () => {
+//     labels.innerHTML = createMenu();
+// });
 
 // EVENT HANDLERS
 
