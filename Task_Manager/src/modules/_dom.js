@@ -1,14 +1,16 @@
 import {currentData} from "./_data.js";
-import createLabel from "./_label.js";
+import {createLabel, createOption} from "./_label.js";
 import createTask from "./_task.js";
 
-let tasks = []; // all tasks
-let labels = []; // all labels
+let tasks = [];
+let labels = [];
+let options = [];
 let filter = '' // filter out identical labels
 
 function updatePage(nodes) {
 
-    nodes.length = 0; // reset
+    nodes.length = 0;
+    options.length = 0;
 
     for (const data of currentData) {
 
@@ -21,20 +23,29 @@ function updatePage(nodes) {
             nodes.push(
                 createLabel(data.label) // render
             );
+            options.push(
+                createOption(data.label) // render
+            );
             filter = data.label;
         }
     } // render all
 }
-updatePage(tasks); // init
-updatePage(labels); // init
+updatePage(tasks);
+updatePage(labels);
 
-document.addEventListener('dataChange', () => {
+document.addEventListener(
+    'dataChange', () => {
     updatePage(tasks);
 });
 
 function createMenu() {
     // do not reverse
     return labels.join('');
+}
+
+function createOptions() {
+    // do not reverse
+    return options.join('');
 }
 
 function createGrid() {
@@ -44,4 +55,4 @@ function createGrid() {
         </div>
     `;
 }
-export {createGrid, createMenu};
+export {createGrid, createMenu, createOptions};

@@ -4,6 +4,9 @@ class Label {
     constructor(name) {
         this.name = name;
     }
+    select() {
+        return `<option value="${this.name}">${this.name}</option>`;
+    }
     render() {
         return `
             <li class="nav-item label">
@@ -20,4 +23,8 @@ function createLabel(name) {
     const label = new Label(name);
     return label.render();
 }
-export default createLabel;
+function createOption(name) {
+    const option = new Label(name);
+    return option.select();
+}
+export {createLabel, createOption};

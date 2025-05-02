@@ -2,7 +2,7 @@
 //import "./styles/styles.css"; //excluded to avoid FOUC
 import "./styles/media.css"; // include image css
 
-import {createGrid, createMenu} from "./modules/_dom.js";
+import {createGrid, createMenu, createOptions} from "./modules/_dom.js";
 import {updateData} from "./modules/_data.js";
 
 const content = document.querySelector('.content');
@@ -10,23 +10,18 @@ const labels = document.querySelector('.labels');
 const modalBox = document.querySelector('.modal');
 
 const taskForm = document.querySelector('#task_form');
+const labelSelect = taskForm.querySelector('select#label');
 const labelForm = document.querySelector('#label_form');
 
-// (RE)CREATE GRID
+// (RE)CREATE PAGE
 
 content.innerHTML = createGrid();
+labels.innerHTML = createMenu();
+labelSelect.innerHTML += createOptions();
 
 document.addEventListener('dataChange', () => {
     content.innerHTML = createGrid();
 });
-
-// (RE)CREATE MENU
-
-labels.innerHTML = createMenu();
-
-// document.addEventListener('dataChange', () => {
-//     labels.innerHTML = createMenu();
-// });
 
 // EVENT HANDLERS
 
@@ -68,6 +63,14 @@ document.addEventListener('click', (e) => {
         case 'add_label':
             labelForm.reset();
             updateForm('Create label', labelForm, taskForm);
+            break;
+
+        case 'edit_label':
+            //
+            break;
+
+        case 'remove_label':
+            //
             break;
 
         case 'closer':
