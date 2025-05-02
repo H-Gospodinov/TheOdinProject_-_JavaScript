@@ -2,7 +2,7 @@
 //import "./styles/styles.css"; //excluded to avoid FOUC
 import "./styles/media.css"; // include image css
 
-import {createGrid, createMenu} from "./modules/_grid.js";
+import {createGrid, createMenu} from "./modules/_dom.js";
 import {updateData} from "./modules/_data.js";
 
 const content = document.querySelector('.content');
