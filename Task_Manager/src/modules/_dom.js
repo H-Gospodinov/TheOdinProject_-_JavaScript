@@ -38,21 +38,11 @@ document.addEventListener(
     updatePage(tasks);
 });
 
-function createMenu() {
-    // do not reverse
-    return labels.join('');
+function createContent() {
+    return {
+        createGrid: () => tasks.reverse().join(''),
+        createMenu: () => labels.join(''),
+        createOptions: () => options.join('')
+    }
 }
-
-function createOptions() {
-    // do not reverse
-    return options.join('');
-}
-
-function createGrid() {
-    return `
-        <div class="grid">
-            ${tasks.reverse().join('')}
-        </div>
-    `;
-}
-export {createGrid, createMenu, createOptions};
+export default createContent;

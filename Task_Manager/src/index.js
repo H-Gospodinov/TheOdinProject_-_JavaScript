@@ -2,25 +2,27 @@
 //import "./styles/styles.css"; //excluded to avoid FOUC
 import "./styles/media.css"; // include image css
 
-import {createGrid, createMenu, createOptions} from "./modules/_dom.js";
+import createContent from "./modules/_dom.js";
 import {updateData} from "./modules/_data.js";
 
-const content = document.querySelector('.content');
-const labels = document.querySelector('.labels');
-const modalBox = document.querySelector('.modal');
+const grid = document.querySelector('.grid');
+const menu = document.querySelector('.labels');
+const modal = document.querySelector('.modal');
 
 const taskForm = document.querySelector('#task_form');
-const labelSelect = taskForm.querySelector('select#label');
 const labelForm = document.querySelector('#label_form');
+const labelSelect = document.querySelector('select#label');
 
 // (RE)CREATE PAGE
 
-content.innerHTML = createGrid();
-labels.innerHTML = createMenu();
-labelSelect.innerHTML += createOptions();
+const render = createContent();
+
+grid.innerHTML = render.createGrid();
+menu.innerHTML = render.createMenu();
+labelSelect.innerHTML += render.createOptions();
 
 document.addEventListener('dataChange', () => {
-    content.innerHTML = createGrid();
+    grid.innerHTML = render.createGrid();
 });
 
 // EVENT HANDLERS
@@ -37,9 +39,9 @@ document.addEventListener('click', (e) => {
 
         const elements = ['.title','.submit'];
         for (const element of elements) {
-            modalBox.querySelector(element).innerText = text;
+            modal.querySelector(element).innerText = text;
         }
-        modalBox.classList.add('active');
+        modal.classList.add('active');
     }
 
     switch(button.id) {
@@ -74,7 +76,7 @@ document.addEventListener('click', (e) => {
             break;
 
         case 'closer':
-            modalBox.classList.remove('active');
+            modal.classList.remove('active');
             break;
     }
 }); document.addEventListener('change', (e) => {
