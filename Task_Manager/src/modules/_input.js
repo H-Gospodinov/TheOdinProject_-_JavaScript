@@ -3,7 +3,7 @@ import {updateData} from "./_data.js";
 const dataForm = document.querySelector('#task_form');
 const inputs = dataForm.querySelectorAll('.input');
 const checkbox = dataForm.querySelector('#priority');
-const close = dataForm.parentNode.querySelector('.close');
+const label = document.querySelector('#new_label');
 
 function getInput() {
 
@@ -15,15 +15,12 @@ function getInput() {
     updateData(data);
 }
 
-dataForm.addEventListener('submit', (e) => {
-    // prevent reload
-    e.preventDefault();
-    getInput();
-    close.click();
-});
+function setInput(data, type) {
 
-function setInput(data) {
-
+    if (type === 'label') {
+        label.value = data.id;
+        return;
+    }
     const values = [];
 
     for (const key in data) {
@@ -39,4 +36,4 @@ function setInput(data) {
         checkbox.checked = false;
     }
 }
-export default setInput;
+export {getInput, setInput};

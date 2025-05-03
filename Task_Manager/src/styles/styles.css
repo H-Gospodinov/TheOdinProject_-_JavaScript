@@ -109,7 +109,7 @@ body {
 .nav-item:hover .action {
     opacity: 1;
 }
-.nav-item .manage {
+.nav-item .label-btn {
     width: 24px;
     height: 18px;
     background-position: center;
@@ -165,7 +165,8 @@ body {
     display: contents;
 }
 .grid .data {
-    align-content: center;
+    display: flex;
+    align-items: center;
     border: 1px solid #0003;
     padding: 15px 25px;
 }
@@ -182,8 +183,6 @@ body {
     content: "...";
 }
 .task .main {
-    display: flex;
-    align-items: center;
     column-gap: 15px;
 }
 .task .main::before {
@@ -194,19 +193,19 @@ body {
     background-position: center;
     background-repeat: no-repeat;
 }
-.task.prioritize .main::before {
+.prioritize .main::before {
     margin-bottom: -1px;
     height: 32px;
 }
-.task button {
+.task .task-btn {
     width: 30px;
     height: 30px;
     margin: 0 -5px;
     background-position: center;
     background-repeat: no-repeat;
 }
-.task button + button {
-    margin-left: 5px;
+.task-btn +.task-btn {
+    margin-left: 9px;
 }
 .modal {
     display: none;
@@ -336,10 +335,6 @@ body {
     background-color: #fff;
     font-size: 17px;
     color: #000;
-}
-.modal option:empty,
-.modal option:disabled {
-    display: none;
 }
 .modal .priority {
     padding: 10px 0 5px;

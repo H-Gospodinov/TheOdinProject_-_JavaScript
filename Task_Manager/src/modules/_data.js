@@ -1,5 +1,5 @@
 import sampleData from './_data.json';
-import setInput from "./_input.js";
+import {setInput} from "./_input.js";
 
 let currentData = sampleData;
 
@@ -8,7 +8,7 @@ for (const item of currentData) {
 }
 function updateData(newData, editData, removeData) {
 
-    // CREATE TASK
+    // CREATE DATA
 
     if (newData) {
         // check existing
@@ -27,24 +27,35 @@ function updateData(newData, editData, removeData) {
         } // add new 🡑
     }
 
-    // UPDATE TASK
+    // UPDATE DATA
 
     else if (editData) {
+
         const data = currentData.find(item => {
             return item.id === editData.id;
         });
-        setInput(data);
+        if (data) {
+            setInput(data, 'task');
+        }
+        else {
+            setInput(editData, 'label')
+        }
     }
 
-    // DELETE TASK
+    // DELETE DATA
 
     else if (removeData) {
+
         const index = currentData.findIndex(item => {
             return item.id === removeData.id;
         });
         if (index > -1) {
             currentData.splice(index, 1);
         }
+        for (const item of currentData) {
+            if (item.label === removeData.id) {
+                item.label = '';
+        }}
     }
     // TRIGGER EVENT
 

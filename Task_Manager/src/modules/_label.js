@@ -9,11 +9,11 @@ class Label {
     }
     render() {
         return `
-            <li class="nav-item label">
+            <li class="nav-item label" id="${this.name}">
                 <button class="nav-link" type="button">${this.name}</button>
                 <div class="action">
-                    <button class="manage" id="edit_label" type="button" title="edit"></button>
-                    <button class="manage" id="remove_label" type="button" title="remove"></button>
+                    <button class="label-btn" id="edit_label" type="button" title="edit"></button>
+                    <button class="label-btn" id="remove_label" type="button" title="remove"></button>
                 </div>
             </li>
         `;

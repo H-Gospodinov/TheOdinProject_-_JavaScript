@@ -10,9 +10,6 @@ class Task {
         this.priority = priority;
         this.id = id;
     }
-    assign() {
-        return this.label;
-    }
     render() {
         return `
             <div id="${this.id}" class="task ${this.priority == 'high' ? 'prioritize' : ''}">
@@ -22,9 +19,9 @@ class Task {
                 <div class="data">${this.dueDate}</div>
                 <div class="data">${this.label}</div>
                 <div class="data">
-                    <button id="complete" type="button" title="complete"></button>
-                    <button id="edit_task" type="button" title="edit"></button>
-                    <button id="remove_task" type="button" title="delete"></button>
+                    <button class="task-btn" id="complete" type="button" title="complete"></button>
+                    <button class="task-btn" id="edit_task" type="button" title="edit"></button>
+                    <button class="task-btn" id="remove_task" type="button" title="delete"></button>
                 </div>
             </div>
         `;
