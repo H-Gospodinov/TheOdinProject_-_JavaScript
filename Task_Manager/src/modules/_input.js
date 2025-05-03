@@ -1,39 +1,64 @@
 import {updateData} from "./_data.js";
 
-const dataForm = document.querySelector('#task_form');
-const inputs = dataForm.querySelectorAll('.input');
-const checkbox = dataForm.querySelector('#priority');
-const label = document.querySelector('#new_label');
+const taskForm = document.querySelector('#task_form');
+const labelForm = document.querySelector('#label_form');
+const inputs = taskForm.querySelectorAll('.input');
+const checkbox = taskForm.querySelector('#priority');
+const label = labelForm.querySelector('#new_label');
 
-function getInput() {
+export const editLabel = {id: ''}; // old label
 
-    const data = {}; // must be object
 
-    for (const input of inputs) {
-        data[input.id] = input.value || '';
+// GET NEW OR EDITED
+
+function getInput(form) {
+
+    switch(form) {
+
+        case 'labelForm':
+
+            updateData(null, label.value);
+            break;
+
+        case 'taskForm':
+
+            const data = {}; // must be object
+
+            for (const input of inputs) {
+                data[input.id] = input.value || '';
+            }
+            updateData(data);
+
+        // read from
     }
-    updateData(data);
 }
 
-function setInput(data, type) {
+// SET FOR EDITING
 
-    if (type === 'label') {
-        label.value = data.id;
-        return;
-    }
-    const values = [];
+function setInput(data, form) {
 
-    for (const key in data) {
-        values.push(data[key]);
-    }
-    for (let i = 0; i < inputs.length; i++) {
-        inputs[i].value = values[i];
-    }
-    if (data.priority === 'high') {
-        checkbox.checked = true;
-    }
-    else {
-        checkbox.checked = false;
+    switch(form) {
+
+        case 'labelForm':
+
+            label.value = data.id;
+            editLabel.id = data.id;
+            break;
+
+        case 'taskForm':
+
+            const values = [];
+            const check = data.priority === 'high';
+
+            for (const key in data) {
+                values.push(data[key]);
+            }
+            for (let i = 0; i < inputs.length; i++) {
+                inputs[i].value = values[i];
+            }
+            checkbox.checked = check ? true : false;
+
+        // fill out
     }
 }
 export {getInput, setInput};

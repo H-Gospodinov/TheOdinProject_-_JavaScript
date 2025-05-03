@@ -1,42 +1,34 @@
-import {currentData} from "./_data.js";
+import {currentData, currentLabels} from "./_data.js";
 import {createLabel, createOption} from "./_label.js";
 import createTask from "./_task.js";
 
-let tasks = [];
-let labels = [];
-let options = [];
-let filter = '' // filter out identical labels
+let tasks = []; // all tasks
+let labels = []; // all labels
+let options = ['<option value="">none</option>'];
 
-function updatePage(nodes) {
+function updatePage() {
 
-    nodes.length = 0;
-    options.length = 0;
+    tasks.length = 0;
+    labels.length = 0;
+    options.length = 1;
 
     for (const data of currentData) {
+        tasks.push(
+            createTask(data) // render
+        );
+    }
+    for (const name of currentLabels) {
+        if (!name) continue;
+        labels.push(
+            createLabel(name) // render
+        );
+        options.push(
+            createOption(name) // render
+        );
+    }
+} updatePage();
 
-        if (nodes === tasks) {
-            nodes.push(
-                createTask(data) // render
-            );
-        }
-        else if (data.label && data.label !== filter) {
-            nodes.push(
-                createLabel(data.label) // render
-            );
-            options.push(
-                createOption(data.label) // render
-            );
-            filter = data.label;
-        }
-    } // render all
-}
-updatePage(tasks);
-updatePage(labels);
-
-document.addEventListener(
-    'dataChange', () => {
-    updatePage(tasks);
-});
+document.addEventListener('dataChange', updatePage);
 
 function createContent() {
     return {

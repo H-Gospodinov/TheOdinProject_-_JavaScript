@@ -5,7 +5,6 @@ import "./styles/media.css"; // include image css
 import createContent from "./modules/_dom.js";
 import {updateData} from "./modules/_data.js";
 import {getInput} from "./modules/_input.js";
-import {createLabel, createOption} from "./modules/_label.js";
 
 const grid = document.querySelector('.grid');
 const menu = document.querySelector('.labels');
@@ -21,10 +20,13 @@ const render = createContent();
 
 grid.innerHTML = render.createGrid();
 menu.innerHTML = render.createMenu();
-labelSelect.innerHTML += render.createOptions();
+labelSelect.innerHTML = render.createOptions();
 
 document.addEventListener('dataChange', () => {
+
     grid.innerHTML = render.createGrid();
+    menu.innerHTML = render.createMenu();
+    labelSelect.innerHTML = render.createOptions();
 });
 
 // EVENT HANDLERS
@@ -60,12 +62,12 @@ document.addEventListener('click', (e) => {
             break;
 
         case 'edit_task':
-            updateData(null, parent.task);
+            updateData(null, null, parent.task);
             updateForm('Edit task', taskForm, labelForm);
             break;
 
         case 'remove_task':
-            updateData(null, null, parent.task);
+            updateData(null, null, null, parent.task);
             break;
 
         case 'add_label':
@@ -74,18 +76,12 @@ document.addEventListener('click', (e) => {
             break;
 
         case 'edit_label':
-            updateData(null, parent.label);
+            updateData(null, null, parent.label);
             updateForm('Edit label', labelForm, taskForm);
             break;
 
         case 'remove_label':
-            const options = labelSelect.children;
-            for (const option of options) {
-                if (option.value === parent.label.id) {
-                    option.remove();
-                }
-            } parent.label.remove();
-            updateData(null, null, parent.label);
+            updateData(null, null, null, parent.label);
             break;
 
         case 'closer':
@@ -109,12 +105,10 @@ document.addEventListener('submit', (e) => {
     const form = e.target;
 
     if (form === labelForm) {
-
-        const newLabel = form.new_label.value;
-
-        menu.innerHTML += createLabel(newLabel);
-        labelSelect.innerHTML += createOption(newLabel);
+        getInput('labelForm');
     }
-    else getInput();
+    if (form === taskForm) {
+        getInput('taskForm');
+    }
     modal.classList.remove('active');
 });
