@@ -31,6 +31,8 @@ document.addEventListener('dataChange', () => {
 
 // EVENT HANDLERS
 
+const update = updateData();
+
 document.addEventListener('click', (e) => {
 
     if (e.target.tagName !== 'BUTTON') {
@@ -62,12 +64,12 @@ document.addEventListener('click', (e) => {
             break;
 
         case 'edit_task':
-            updateData(null, null, parent.task);
+            update.editData(parent.task, 'task');
             updateForm('Edit task', taskForm, labelForm);
             break;
 
         case 'remove_task':
-            updateData(null, null, null, parent.task);
+            update.clearData(parent.task, 'task');
             break;
 
         case 'add_label':
@@ -76,12 +78,12 @@ document.addEventListener('click', (e) => {
             break;
 
         case 'edit_label':
-            updateData(null, null, parent.label);
+            update.editData(parent.label, 'label');
             updateForm('Edit label', labelForm, taskForm);
             break;
 
         case 'remove_label':
-            updateData(null, null, null, parent.label);
+            update.clearData(parent.label, 'label');
             break;
 
         case 'closer':
@@ -93,7 +95,6 @@ document.addEventListener('click', (e) => {
 document.addEventListener('change', (e) => {
 
     const element = e.target;
-
     if (element.type === 'checkbox') {
         element.value = element.checked ? 'high' : 'low';
     }
@@ -102,13 +103,6 @@ document.addEventListener('change', (e) => {
 document.addEventListener('submit', (e) => {
 
     e.preventDefault();
-    const form = e.target;
-
-    if (form === labelForm) {
-        getInput('labelForm');
-    }
-    if (form === taskForm) {
-        getInput('taskForm');
-    }
+    getInput(e.target); //
     modal.classList.remove('active');
 });
