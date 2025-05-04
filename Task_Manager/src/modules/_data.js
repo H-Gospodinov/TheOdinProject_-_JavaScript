@@ -1,4 +1,4 @@
-import sampleData from './_data.json';
+import sampleData from '../data.json';
 import {setInput, editLabel} from "./_input.js";
 
 let currentData = sampleData;
