@@ -9,6 +9,7 @@ import {getInput} from "./modules/_input.js";
 const grid = document.querySelector('.grid');
 const menu = document.querySelector('.labels');
 const modal = document.querySelector('.modal');
+const title = document.querySelector('.header h1');
 
 const taskForm = document.querySelector('#task_form');
 const labelForm = document.querySelector('#label_form');
@@ -27,6 +28,11 @@ document.addEventListener('dataChange', () => {
     grid.innerHTML = render.createGrid();
     menu.innerHTML = render.createMenu();
     labelSelect.innerHTML = render.createOptions();
+});
+
+document.addEventListener('dataFilter', () => {
+
+    grid.innerHTML = render.createGrid();
 });
 
 // EVENT HANDLERS
@@ -52,6 +58,10 @@ document.addEventListener('click', (e) => {
         modal.querySelector('.title').innerText = text;
         show.querySelector('.submit').innerText = text;
         modal.classList.add('active');
+    }
+
+    function updateText(text) {
+        title.innerText = text;
     }
 
     switch(button.id) {
@@ -89,6 +99,20 @@ document.addEventListener('click', (e) => {
         case 'closer':
             modal.classList.remove('active');
             break;
+
+        case 'all_tasks':
+            update.newData(); // trigger dataChange
+            updateText(button.textContent);
+            break;
+
+        case 'important':
+            update.filterData(button, 'task');
+            updateText(button.textContent);
+            break;
+
+        case '': // labels
+            update.filterData(parent.label, 'label');
+            updateText(parent.label.id);
     }
 });
 

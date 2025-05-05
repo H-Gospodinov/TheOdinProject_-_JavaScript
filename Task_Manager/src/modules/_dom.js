@@ -1,4 +1,4 @@
-import {currentData, currentLabels} from "./_data.js";
+import {currentData, currentLabels, currentFilter} from "./_data.js";
 import {createLabel, createOption} from "./_label.js";
 import createTask from "./_task.js";
 
@@ -28,7 +28,18 @@ function updatePage() {
     }
 } updatePage();
 
+function filterPage() {
+
+    tasks.length = 0;
+
+    for (const data of currentFilter) {
+        tasks.push(
+            createTask(data) // render
+        );
+    }
+}
 document.addEventListener('dataChange', updatePage);
+document.addEventListener('dataFilter', filterPage);
 
 function createContent() {
     return {

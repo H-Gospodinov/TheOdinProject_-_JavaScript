@@ -3,6 +3,7 @@ import {setInput, editLabel} from "./_input.js";
 
 let currentData = sampleData;
 let currentLabels = [];
+let currentFilter = [];
 
 // SAMPLE DATA
 
@@ -19,6 +20,7 @@ function updateData() {
 
     // custom event for data changes
     const dataChange = new CustomEvent('dataChange');
+    const dataFilter = new CustomEvent('dataFilter');
 
     return {
 
@@ -69,6 +71,29 @@ function updateData() {
             document.dispatchEvent(dataChange);
         },
 
+        filterData: (data, type) => {
+
+            switch(type) {
+
+                case 'task': // filter by data
+
+                    if (data.id === 'important') {
+                        currentFilter = currentData.filter(item => {
+                            return item.priority === 'high'; 
+                        });
+                    }
+                    break;
+
+                case 'label': // filter by label
+
+                    currentFilter = currentData.filter(item => {
+                        return item.label === data.id;
+                    }); 
+                    break;
+            }
+            document.dispatchEvent(dataFilter);
+        },
+
         editData: (data, type) => {
 
             switch(type) {
@@ -116,4 +141,4 @@ function updateData() {
         },
     }
 }
-export {currentData, currentLabels, updateData};
+export {currentData, currentLabels, currentFilter, updateData};

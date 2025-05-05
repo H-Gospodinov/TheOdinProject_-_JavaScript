@@ -18,11 +18,21 @@
             </div>
             <nav class="menu">
                 <ul class="nav-list">
-                    <li class="nav-item home"><button class="nav-link" type="button">All tasks</button></li>
-                    <li class="nav-item upcoming"><button class="nav-link" type="button">Upcoming</button></li>
-                    <li class="nav-item important"><button class="nav-link" type="button">High priority</button></li>
-                    <li class="nav-item overdue"><button class="nav-link" type="button">Overdue</button></li>
-                    <li class="nav-item archive"><button class="nav-link" type="button">Archive</button></li>
+                    <li class="nav-item home">
+                        <button class="nav-link" id="all_tasks" type="button">All tasks</button>
+                    </li>
+                    <li class="nav-item upcoming">
+                        <button class="nav-link" id="upcoming" type="button">Upcoming</button>
+                    </li>
+                    <li class="nav-item important">
+                        <button class="nav-link" id="important" type="button">High priority</button>
+                    </li>
+                    <li class="nav-item overdue">
+                        <button class="nav-link" id="overdue" type="button">Overdue</button>
+                    </li>
+                    <li class="nav-item archive">
+                        <button class="nav-link" id="archive" type="button">Archive</button>
+                    </li>
                 </ul>
                 <ul class="nav-list labels">
                     <!--labels-->
@@ -31,7 +41,7 @@
         </header>
         <main class="board">
             <div class="header">
-                <h1 class="title">Dashboard - all tasks</h1>
+                <h1 class="title">All tasks</h1>
                 <div class="action">
                     <button class="create task" id="add_task" type="button">Create task</button>
                     <button class="create label" id="add_label" type="button">Create label</button>
@@ -69,7 +79,7 @@
                             <input class="input" id="id" type="hidden" value="">
                         </div>
                         <div class="form-action">
-                            <button class="submit" type="submit">Add New Task</button>
+                            <button class="submit" id="submit_task" type="submit">Add New Task</button>
                         </div>
                     </form>
                     <form id="label_form" action="#" hidden>
@@ -80,7 +90,7 @@
                             </div>
                         </div>
                         <div class="form-action">
-                            <button class="submit" type="submit">Create label</button>
+                            <button class="submit" id="submit_label" type="submit">Create label</button>
                         </div>
                     </form>
                     <button class="close" id="closer" type="button"></button>
