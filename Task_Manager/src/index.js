@@ -1,4 +1,3 @@
-
 //import "./styles/styles.css"; //excluded to avoid FOUC
 import "./styles/media.css"; // include image css
 
@@ -96,7 +95,7 @@ document.addEventListener('click', (e) => {
             update.clearData(parent.label, 'label');
             break;
 
-        case 'closer':
+        case 'close_form':
             modal.classList.remove('active');
             break;
 
@@ -106,6 +105,16 @@ document.addEventListener('click', (e) => {
             break;
 
         case 'important':
+            update.filterData(button, 'task');
+            updateText(button.textContent);
+            break;
+
+        case 'upcoming':
+            update.filterData(button, 'task');
+            updateText(button.textContent);
+            break;
+
+        case 'overdue':
             update.filterData(button, 'task');
             updateText(button.textContent);
             break;

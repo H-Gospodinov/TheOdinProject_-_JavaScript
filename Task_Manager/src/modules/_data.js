@@ -1,5 +1,6 @@
 import sampleData from '../data.json';
 import {setInput, editLabel} from "./_input.js";
+//import {currentTime} from "./_time.js";
 
 let currentData = sampleData;
 let currentLabels = [];
@@ -77,12 +78,26 @@ function updateData() {
 
                 case 'task': // filter by data
 
-                    if (data.id === 'important') {
-                        currentFilter = currentData.filter(item => {
-                            return item.priority === 'high'; 
-                        });
-                    }
-                    break;
+                    switch(data.id) {
+
+                        case 'important':
+                            currentFilter = currentData.filter(item => {
+                                return item.priority === 'high';
+                            });
+                            break;
+
+                        case 'upcoming':
+                            currentFilter = currentData.filter(item => {
+                                return item.dueDate >= currentTime();
+                            });
+                            break;
+
+                        case 'overdue':
+                            currentFilter = currentData.filter(item => {
+                                return item.dueDate < currentTime();
+                            });
+                            break;
+                    } break;
 
                 case 'label': // filter by label
 
@@ -141,4 +156,17 @@ function updateData() {
         },
     }
 }
+// CURRENT TIME
+
+function currentTime() {
+
+    const date = new Date();
+
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+
+    return `${year}-${month}-${day}`;
+}
+
 export {currentData, currentLabels, currentFilter, updateData};

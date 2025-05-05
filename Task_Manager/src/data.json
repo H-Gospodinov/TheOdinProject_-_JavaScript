@@ -1,44 +1,50 @@
 [
     {
         "title": "Start the Task Manager project",
-        "dueDate": "25.04.2025",
+        "dueDate": "2025-04-25",
         "label": "Personal",
         "priority": "high"
     },
     {
         "title": "Don't forget to eat and sleep",
-        "dueDate": "25.04.2015",
+        "dueDate": "2025-04-25",
         "label": "",
         "priority": "low"
     },
     {
         "title": "Create primary logic for the Task Manager project",
-        "dueDate": "26.04.2025",
+        "dueDate": "2025-04-26",
         "label": "Personal",
         "priority": "high"
     },
     {
         "title": "Do nothing else because it's weekend",
-        "dueDate": "26.04.2015",
+        "dueDate": "2025-04-26",
         "label": "",
         "priority": "low"
     },
     {
         "title": "Create additional logic for the Task Manager project",
-        "dueDate": "27.04.2015",
+        "dueDate": "2025-04-27",
         "label": "Personal",
         "priority": "high"
     },
     {
         "title": "Spend at least two hours playing 'Days Gone'",
-        "dueDate": "27.04.2025",
+        "dueDate": "2025-04-27",
         "label": "",
         "priority": "high"
     },
     {
         "title": "Don't forget to go to work",
-        "dueDate": "28.04.2025",
+        "dueDate": "2025-04-28",
         "label": "Work",
         "priority": "low"
+    },
+    {
+        "title": "Wake up in the distant future",
+        "dueDate": "2075-04-28",
+        "label": "",
+        "priority": "high"
     }
 ]
