@@ -18,6 +18,18 @@ const render = createContent();
 render.createTasks();
 render.createLabels();
 
+// UPDATE FORM
+
+function updateForm(text, show, hide) {
+
+    show.hidden = false;
+    hide.hidden = true;
+
+    modal.querySelector('.title').innerText = text;
+    show.querySelector('.submit').innerText = text;
+    modal.classList.add('active');
+}
+
 // EVENT HANDLERS
 
 const update = updateData();
@@ -33,26 +45,10 @@ document.addEventListener('click', (e) => {
         label: button.closest('.label')
     };
 
-    function updateForm(text, show, hide) {
-
-        show.hidden = false;
-        hide.hidden = true;
-
-        modal.querySelector('.title').innerText = text;
-        show.querySelector('.submit').innerText = text;
-        modal.classList.add('active');
+    if (button.className === 'nav-link') {
+        title.innerText = button.id ? 
+        button.textContent : parent.label.id;
     }
-
-    (function updateText() {
-
-        if (button.className !== 'nav-link') {
-            return;
-        }
-        if (button.id) {
-            title.innerText = button.textContent;
-        }
-        else title.innerText = parent.label.id;
-    })();
 
     switch(button.id) {
 
@@ -91,19 +87,25 @@ document.addEventListener('click', (e) => {
             break;
 
         case 'all_tasks':
-            update.newData(); // trigger dataChange
+            update.newData(); // just trigger dataChange
             break;
 
         case 'important':
-            update.filterData(button, 'task');
-            break;
-
         case 'upcoming':
-            update.filterData(button, 'task');
-            break;
-
         case 'overdue':
             update.filterData(button, 'task');
+            break;
+
+        case 'archive':
+            render.showArchive();
+            break;
+
+        case 'complete':
+            update.archiveData(parent.task, 'archive');
+            break;
+
+        case 'restore':
+            update.archiveData(parent.task, 'restore');
             break;
 
         case '': // labels

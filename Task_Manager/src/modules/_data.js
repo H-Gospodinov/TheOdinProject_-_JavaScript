@@ -1,6 +1,5 @@
 import sampleData from '../data.json';
 import {setInput, editLabel} from "./_input.js";
-//import {currentTime} from "./_time.js";
 
 let currentData = sampleData;
 let currentLabels = [];
@@ -19,9 +18,10 @@ for (const item of currentData) {
 
 function updateData() {
 
-    // custom event for data changes
+    // custom events for data changes
     const dataChange = new CustomEvent('dataChange');
     const dataFilter = new CustomEvent('dataFilter');
+    const dataMove = new CustomEvent('dataMove');
 
     return {
 
@@ -134,11 +134,15 @@ function updateData() {
 
                 case 'task': // delete task
 
-                    const taskIndex = currentData.findIndex(item => {
+                    const index = currentData.findIndex(item => {
                         return item.id === data.id;
                     });
-                    if (taskIndex > -1) {
-                        currentData.splice(taskIndex, 1);
+                    if (index > -1) {
+                        currentData.splice(index, 1);
+                    }
+                    if (data.dataset.type === 'archive') {
+                        document.dispatchEvent(dataMove);
+                        return;
                     } break;
 
                 case 'label': // delete label
@@ -151,6 +155,26 @@ function updateData() {
                             item.label = '';
                         }
                     } break;
+            }
+            document.dispatchEvent(dataChange);
+        },
+
+        archiveData: (data, type) => {
+
+            let task = currentData.find(item => {
+                return item.id === data.id;
+            });
+            
+            switch(type) {
+
+                case 'archive':
+                    task.completed = true;
+                    break;
+
+                case 'restore':
+                    task.completed = false;
+                    document.dispatchEvent(dataMove);
+                    return;
             }
             document.dispatchEvent(dataChange);
         },

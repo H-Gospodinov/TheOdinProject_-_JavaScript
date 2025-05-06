@@ -2,17 +2,19 @@
 class Task {
 
     constructor(
-        { title, dueDate, label, priority, id }
+        { title, dueDate, label, priority, id, completed }
     ) {
         this.title = title;
         this.dueDate = dueDate;
         this.label = label;
         this.priority = priority;
-        this.id = id;
+        this.id = id; // random
+        this.completed = completed;
     }
     render() {
         return `
-            <div id="${this.id}" class="task ${this.priority == 'high' ? 'prioritize' : ''}">
+            <div id="${this.id}" data-type="${this.completed ? 'archive' : ''}"
+                                 class="task ${this.priority == 'high' ? 'prioritize' : ''} ${this.completed ? 'completed' : ''}">
                 <div class="data main">
                     <span>${this.title}</span>
                 </div>
@@ -20,6 +22,7 @@ class Task {
                 <div class="data">${this.label}</div>
                 <div class="data">
                     <button class="task-btn" id="complete" type="button" title="complete"></button>
+                    <button class="task-btn" id="restore" type="button" title="restore" hidden></button>
                     <button class="task-btn" id="edit_task" type="button" title="edit"></button>
                     <button class="task-btn" id="remove_task" type="button" title="delete"></button>
                 </div>

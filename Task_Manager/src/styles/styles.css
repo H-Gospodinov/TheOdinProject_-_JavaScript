@@ -162,10 +162,11 @@ body {
 }
 .grid:empty::before {
     content: "No results";
-    grid-area: 1 / 1 / 1 / 4;
-    border: 1px solid #0003;
-    border-radius: 5px;
-    padding: 20px 25px;
+    background-position: 12px center;
+    background-repeat: no-repeat;
+    padding: 20px 25px 20px 45px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 .grid .task {
     display: contents;
@@ -199,10 +200,6 @@ body {
     background-position: center;
     background-repeat: no-repeat;
 }
-.prioritize .main::before {
-    margin-bottom: -1px;
-    height: 32px;
-}
 .task .task-btn {
     width: 30px;
     height: 30px;
@@ -212,6 +209,24 @@ body {
 }
 .task-btn +.task-btn {
     margin-left: 9px;
+}
+.prioritize .main::before {
+    margin-bottom: -1px;
+    height: 32px;
+}
+.completed .data {
+    color: #999;
+}
+.completed .main {
+    text-decoration: line-through;
+}
+.completed #complete,
+.completed #edit_task {
+    display: none;
+}
+.completed #restore {
+    display: block;
+    margin-left: 0;
 }
 .modal {
     display: none;

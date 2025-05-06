@@ -39,14 +39,23 @@ if styles.css is excluded from bundling */
 .task.prioritize .main::before {
     background-image: url(../images/icon2.png);
 }
-.task #complete {
-    background-image: url(../images/btn0.png);
- }
 .task #edit_task,
 .label #edit_label {
     background-image: url(../images/btn1.png);
- }
+}
 .task #remove_task,
 .label #remove_label {
     background-image: url(../images/btn2.png);
+}
+.task #complete {
+    background-image: url(../images/btn3.png);
+}
+.task #restore {
+    background-image: url(../images/btn4.png);
+}
+.grid:empty::before {
+    background-image: url(../images/btn2.png);
+}
+.task.completed .main::before {
+    background-image: url(../images/btn3.png);
 }

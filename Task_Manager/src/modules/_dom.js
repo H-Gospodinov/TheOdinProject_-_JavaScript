@@ -21,6 +21,9 @@ function createContent() {
             tasks.length = 0;
 
             for (const data of currentData) {
+
+                if (data.completed) continue; // skip old
+
                 tasks.push(
                     createTask(data) // render
                 );
@@ -34,7 +37,9 @@ function createContent() {
             options.length = 1;
 
             for (const name of currentLabels) {
-                if (!name) continue;
+
+                if (!name) continue; // skip empty
+
                 labels.push(
                     createLabel(name) // render
                 );
@@ -51,6 +56,24 @@ function createContent() {
             tasks.length = 0;
 
             for (const data of currentFilter) {
+
+                if (data.completed) continue; // skip old
+
+                tasks.push(
+                    createTask(data) // render
+                );
+            }
+            grid.innerHTML = tasks.reverse().join('');
+        },
+
+        showArchive: () => {
+
+            tasks.length = 0;
+
+            for (let data of currentData) {
+
+                if (!data.completed) continue; // skip active
+
                 tasks.push(
                     createTask(data) // render
                 );
@@ -67,6 +90,9 @@ document.addEventListener('dataChange', () => {
 });
 document.addEventListener('dataFilter', () => {
     createContent().filterTasks();
+});
+document.addEventListener('dataMove', () => {
+    createContent().showArchive();
 });
 
 export default createContent;
