@@ -5,34 +5,18 @@ import createContent from "./modules/_dom.js";
 import {updateData} from "./modules/_data.js";
 import {getInput} from "./modules/_input.js";
 
-const grid = document.querySelector('.grid');
-const menu = document.querySelector('.labels');
 const modal = document.querySelector('.modal');
 const title = document.querySelector('.header h1');
 
 const taskForm = document.querySelector('#task_form');
 const labelForm = document.querySelector('#label_form');
-const labelSelect = document.querySelector('select#label');
 
-// (RE)CREATE PAGE
+// CREATE PAGE
 
 const render = createContent();
 
-grid.innerHTML = render.createGrid();
-menu.innerHTML = render.createMenu();
-labelSelect.innerHTML = render.createOptions();
-
-document.addEventListener('dataChange', () => {
-
-    grid.innerHTML = render.createGrid();
-    menu.innerHTML = render.createMenu();
-    labelSelect.innerHTML = render.createOptions();
-});
-
-document.addEventListener('dataFilter', () => {
-
-    grid.innerHTML = render.createGrid();
-});
+render.createTasks();
+render.createLabels();
 
 // EVENT HANDLERS
 
@@ -59,9 +43,16 @@ document.addEventListener('click', (e) => {
         modal.classList.add('active');
     }
 
-    function updateText(text) {
-        title.innerText = text;
-    }
+    (function updateText() {
+
+        if (button.className !== 'nav-link') {
+            return;
+        }
+        if (button.id) {
+            title.innerText = button.textContent;
+        }
+        else title.innerText = parent.label.id;
+    })();
 
     switch(button.id) {
 
@@ -101,27 +92,22 @@ document.addEventListener('click', (e) => {
 
         case 'all_tasks':
             update.newData(); // trigger dataChange
-            updateText(button.textContent);
             break;
 
         case 'important':
             update.filterData(button, 'task');
-            updateText(button.textContent);
             break;
 
         case 'upcoming':
             update.filterData(button, 'task');
-            updateText(button.textContent);
             break;
 
         case 'overdue':
             update.filterData(button, 'task');
-            updateText(button.textContent);
             break;
 
         case '': // labels
             update.filterData(parent.label, 'label');
-            updateText(parent.label.id);
     }
 });
 
