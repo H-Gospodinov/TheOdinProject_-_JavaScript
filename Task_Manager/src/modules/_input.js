@@ -6,7 +6,6 @@ const inputs = taskForm.querySelectorAll('.input');
 const checkbox = taskForm.querySelector('#priority');
 const label = labelForm.querySelector('#new_label');
 
-const createData = updateData();
 const editLabel = {id: ''}; // old label
 
 
@@ -18,7 +17,7 @@ function getInput(form) {
 
         case labelForm:
 
-            createData.newData(label.value, 'label');
+            updateData().newData(label.value, 'label');
             break;
 
         case taskForm:
@@ -28,7 +27,7 @@ function getInput(form) {
             for (const input of inputs) {
                 data[input.id] = input.value || '';
             }
-            createData.newData(data, 'task');
+            updateData().newData(data, 'task');
 
         // read form
     }

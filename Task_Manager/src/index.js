@@ -1,7 +1,7 @@
 //import "./styles/styles.css"; //excluded to avoid FOUC
 import "./styles/media.css"; // include image css
 
-import createContent from "./modules/_dom.js";
+import {createContent, viewArchive} from "./modules/_dom.js";
 import {currentFilter, updateData} from "./modules/_data.js";
 import {getInput} from "./modules/_input.js";
 
@@ -46,8 +46,9 @@ document.addEventListener('click', (e) => {
     };
 
     if (button.className === 'nav-link') {
-        title.innerText = button.id ? 
+        title.innerText = button.id ?
         button.textContent : parent.label.id;
+        viewArchive.state = false;
     }
 
     switch(button.id) {
@@ -98,7 +99,8 @@ document.addEventListener('click', (e) => {
             break;
 
         case 'archive':
-            render.showArchive();
+            viewArchive.state = true;
+            update.filterData(button, 'task');
             break;
 
         case 'complete':
@@ -125,6 +127,10 @@ document.addEventListener('change', (e) => {
 document.addEventListener('submit', (e) => {
 
     e.preventDefault();
-    getInput(e.target); //
+    getInput(e.target);
+
+    if (currentFilter.length && e.target === taskForm) {
+        document.querySelector('#all_tasks').click();
+    }
     modal.classList.remove('active');
 });

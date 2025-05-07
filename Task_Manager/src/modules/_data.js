@@ -21,7 +21,7 @@ function updateData() {
     // custom events for data changes
     const dataChange = new CustomEvent('dataChange');
     const dataFilter = new CustomEvent('dataFilter');
-    const dataMove = new CustomEvent('dataMove');
+
 
     function triggerEvent() {
         if (currentFilter.length) {
@@ -123,13 +123,19 @@ function updateData() {
                                 return item.dueDate < currentTime();
                             });
                             break;
+
+                        case 'archive':
+                            currentFilter = currentData.filter(item => {
+                                return item.completed;
+                            });
+                            break;
                     } break;
 
                 case 'label': // filter by label
 
                     currentFilter = currentData.filter(item => {
                         return item.label === data.id;
-                    }); 
+                    });
                     break;
             }
             document.dispatchEvent(dataFilter);
@@ -161,12 +167,14 @@ function updateData() {
                 case 'task': // delete task
 
                     spliceData(currentData, data, 'task', 'remove');
-                    currentFilter.length ?
-                    spliceData(currentFilter, data, 'task', 'remove') : null;
 
-                    if (data.dataset.type === 'archive') {
-                        document.dispatchEvent(dataMove);
-                        return;
+                    if (currentFilter.length) {
+
+                        spliceData(currentFilter, data, 'task', 'remove');
+                        if (!currentFilter.length) {
+                            document.dispatchEvent(dataFilter); // no results
+                            return;
+                        }
                     } break;
 
                 case 'label': // delete label
@@ -190,8 +198,6 @@ function updateData() {
 
                 case 'restore':
                     task.completed = false;
-                    document.dispatchEvent(dataMove);
-                    return;
             }
             triggerEvent();
         },

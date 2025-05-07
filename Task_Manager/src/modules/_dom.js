@@ -10,23 +10,21 @@ let tasks = []; // visible tasks
 let labels = []; // available labels
 let options = ['<option value="">none</option>'];
 
+let viewArchive = {state: false};
+
 // CREATE CONTENT
 
 function createContent() {
 
-    function handleTasks(target, state) {
+    function handleTasks(target) {
 
         tasks.length = 0;
 
         for (const data of target) {
 
-            switch(state) { // skip if
-
-                case 'active':
-                    if (data.completed) continue; break;
-
-                case 'completed':
-                    if (!data.completed) continue;
+            if (data.completed && !viewArchive.state ||
+                !data.completed && viewArchive.state) {
+                continue; // skip
             }
             tasks.push( createTask(data) ); // render
         }
@@ -37,7 +35,7 @@ function createContent() {
 
         createTasks: () => {
 
-            handleTasks(currentData, 'active');
+            handleTasks(currentData);
         },
 
         createLabels: () => {
@@ -61,13 +59,7 @@ function createContent() {
         },
 
         filterTasks: () => {
-
-            handleTasks(currentFilter, 'active');
-        },
-
-        showArchive: () => {
-
-            handleTasks(currentData, 'completed');
+            handleTasks(currentFilter);
         },
     }
 }
@@ -86,9 +78,4 @@ document.addEventListener('dataFilter', () => {
     createContent().createLabels();
 });
 
-document.addEventListener('dataMove', () => {
-
-    createContent().showArchive();
-});
-
-export default createContent;
+export {createContent, viewArchive};
