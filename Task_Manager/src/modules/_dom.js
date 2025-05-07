@@ -87,9 +87,11 @@ function createContent() {
 document.addEventListener('dataChange', () => {
     createContent().createTasks();
     createContent().createLabels();
+    currentFilter.length = 0;
 });
 document.addEventListener('dataFilter', () => {
     createContent().filterTasks();
+    createContent().createLabels();
 });
 document.addEventListener('dataMove', () => {
     createContent().showArchive();

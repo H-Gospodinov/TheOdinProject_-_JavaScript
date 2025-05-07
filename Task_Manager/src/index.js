@@ -2,7 +2,7 @@
 import "./styles/media.css"; // include image css
 
 import createContent from "./modules/_dom.js";
-import {updateData} from "./modules/_data.js";
+import {currentFilter, updateData} from "./modules/_data.js";
 import {getInput} from "./modules/_input.js";
 
 const modal = document.querySelector('.modal');
@@ -87,6 +87,7 @@ document.addEventListener('click', (e) => {
             break;
 
         case 'all_tasks':
+            currentFilter.length = 0;
             update.newData(); // just trigger dataChange
             break;
 

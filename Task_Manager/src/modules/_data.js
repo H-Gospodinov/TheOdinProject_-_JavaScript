@@ -23,6 +23,13 @@ function updateData() {
     const dataFilter = new CustomEvent('dataFilter');
     const dataMove = new CustomEvent('dataMove');
 
+    function triggerEvent() {
+        if (currentFilter.length) {
+            document.dispatchEvent(dataFilter);
+        }
+        else document.dispatchEvent(dataChange);
+    }
+
     return {
 
         newData: (data, type) => {
@@ -32,11 +39,19 @@ function updateData() {
                 case 'task': // create task
 
                     if (data.id) {
-                        const index = currentData.findIndex(item => {
-                            return item.id === data.id;
-                        });
-                        if (index > -1) {
-                            currentData.splice(index, 1, data); // replace
+
+                        function createData(target) {
+
+                            const index = target.findIndex(item => {
+                                return item.id === data.id;
+                            });
+                            if (index > -1) {
+                                target.splice(index, 1, data); // replace
+                            }
+                        } createData(currentData);
+
+                        if (currentFilter.length) {
+                            createData(currentFilter);
                         }
                     } else {
                         data.id = crypto.randomUUID();
@@ -69,7 +84,7 @@ function updateData() {
                     }
                     break;
             }
-            document.dispatchEvent(dataChange);
+            triggerEvent();
         },
 
         filterData: (data, type) => {
@@ -134,11 +149,17 @@ function updateData() {
 
                 case 'task': // delete task
 
-                    const index = currentData.findIndex(item => {
-                        return item.id === data.id;
-                    });
-                    if (index > -1) {
-                        currentData.splice(index, 1);
+                    function removeData(target) {
+                        const index = target.findIndex(item => {
+                            return item.id === data.id;
+                        });
+                        if (index > -1) {
+                            target.splice(index, 1);
+                        }
+                    } removeData(currentData);
+
+                    if (currentFilter.length) {
+                        removeData(currentFilter);
                     }
                     if (data.dataset.type === 'archive') {
                         document.dispatchEvent(dataMove);
@@ -156,7 +177,7 @@ function updateData() {
                         }
                     } break;
             }
-            document.dispatchEvent(dataChange);
+            triggerEvent();
         },
 
         archiveData: (data, type) => {
@@ -164,7 +185,6 @@ function updateData() {
             let task = currentData.find(item => {
                 return item.id === data.id;
             });
-            
             switch(type) {
 
                 case 'archive':
@@ -176,7 +196,7 @@ function updateData() {
                     document.dispatchEvent(dataMove);
                     return;
             }
-            document.dispatchEvent(dataChange);
+            triggerEvent();
         },
     }
 }
