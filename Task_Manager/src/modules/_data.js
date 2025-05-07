@@ -30,6 +30,34 @@ function updateData() {
         else document.dispatchEvent(dataChange);
     }
 
+    function spliceData(target, data, type, mode) {
+
+        const index = target.findIndex(item => {
+
+            switch (type) { // task or label
+
+                case 'task': return item.id === data.id;
+                case 'label': return item === data.id;
+                case 'else': return item === editLabel.id;
+            }
+        }); if (index < 0) return;
+
+        switch (mode) { // replace or remove
+
+            case 'replace': target.splice(index, 1, data); break;
+            case 'remove': target.splice(index, 1);
+        }
+    }
+
+    function updateLabels(old, New) {
+
+        for (const item of currentData) {
+            if (item.label === old.id) {
+                item.label = New;
+            }
+        } // update assigned labels
+    }
+
     return {
 
         newData: (data, type) => {
@@ -38,24 +66,15 @@ function updateData() {
 
                 case 'task': // create task
 
-                    if (data.id) {
+                    if (data.id) { // check existing
 
-                        function createData(target) {
-
-                            const index = target.findIndex(item => {
-                                return item.id === data.id;
-                            });
-                            if (index > -1) {
-                                target.splice(index, 1, data); // replace
-                            }
-                        } createData(currentData);
-
-                        if (currentFilter.length) {
-                            createData(currentFilter);
-                        }
-                    } else {
+                        spliceData(currentData, data, 'task', 'replace');
+                        currentFilter.length ?
+                        spliceData(currentFilter, data, 'task', 'replace') : null;
+                    }
+                    else {
                         data.id = crypto.randomUUID();
-                        currentData.push(data); // add new
+                        currentData.push(data);
                     }
                     break;
 
@@ -67,17 +86,9 @@ function updateData() {
                     }
                     else if (editLabel.id) {
 
-                        const index = currentLabels.findIndex(item => {
-                            return item === editLabel.id;
-                        });
-                        if (index > -1) {
-                            currentLabels.splice(index, 1, data); // replace
-                        }
-                        for (const item of currentData) {
-                            if (item.label === editLabel.id) {
-                                item.label = data;
-                            }
-                        } editLabel.id = ''; // reset
+                        spliceData(currentLabels, data, 'else', 'replace');
+                        updateLabels(editLabel, data);
+                        editLabel.id = ''; // reset
                     }
                     else {
                         currentLabels.push(data); // add new
@@ -149,18 +160,10 @@ function updateData() {
 
                 case 'task': // delete task
 
-                    function removeData(target) {
-                        const index = target.findIndex(item => {
-                            return item.id === data.id;
-                        });
-                        if (index > -1) {
-                            target.splice(index, 1);
-                        }
-                    } removeData(currentData);
+                    spliceData(currentData, data, 'task', 'remove');
+                    currentFilter.length ?
+                    spliceData(currentFilter, data, 'task', 'remove') : null;
 
-                    if (currentFilter.length) {
-                        removeData(currentFilter);
-                    }
                     if (data.dataset.type === 'archive') {
                         document.dispatchEvent(dataMove);
                         return;
@@ -168,14 +171,8 @@ function updateData() {
 
                 case 'label': // delete label
 
-                    currentLabels = currentLabels.filter(item => {
-                        return item !== data.id;
-                    });
-                    for (const item of currentData) {
-                        if (item.label === data.id) {
-                            item.label = '';
-                        }
-                    } break;
+                    spliceData(currentLabels, data, 'label', 'remove');
+                    updateLabels(data, '');
             }
             triggerEvent();
         },

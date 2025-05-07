@@ -6,29 +6,38 @@ const grid = document.querySelector('.grid');
 const menu = document.querySelector('.labels');
 const select = document.querySelector('select#label');
 
-let tasks = []; // all tasks
-let labels = []; // all labels
+let tasks = []; // visible tasks
+let labels = []; // available labels
 let options = ['<option value="">none</option>'];
 
 // CREATE CONTENT
 
 function createContent() {
 
+    function handleTasks(target, state) {
+
+        tasks.length = 0;
+
+        for (const data of target) {
+
+            switch(state) { // skip if
+
+                case 'active':
+                    if (data.completed) continue; break;
+
+                case 'completed':
+                    if (!data.completed) continue;
+            }
+            tasks.push( createTask(data) ); // render
+        }
+        grid.innerHTML = tasks.reverse().join('');
+    }
+
     return {
 
         createTasks: () => {
 
-            tasks.length = 0;
-
-            for (const data of currentData) {
-
-                if (data.completed) continue; // skip old
-
-                tasks.push(
-                    createTask(data) // render
-                );
-            }
-            grid.innerHTML = tasks.reverse().join('');
+            handleTasks(currentData, 'active');
         },
 
         createLabels: () => {
@@ -38,7 +47,7 @@ function createContent() {
 
             for (const name of currentLabels) {
 
-                if (!name) continue; // skip empty
+                if (!name) continue; // skip
 
                 labels.push(
                     createLabel(name) // render
@@ -53,47 +62,32 @@ function createContent() {
 
         filterTasks: () => {
 
-            tasks.length = 0;
-
-            for (const data of currentFilter) {
-
-                if (data.completed) continue; // skip old
-
-                tasks.push(
-                    createTask(data) // render
-                );
-            }
-            grid.innerHTML = tasks.reverse().join('');
+            handleTasks(currentFilter, 'active');
         },
 
         showArchive: () => {
 
-            tasks.length = 0;
-
-            for (let data of currentData) {
-
-                if (!data.completed) continue; // skip active
-
-                tasks.push(
-                    createTask(data) // render
-                );
-            }
-            grid.innerHTML = tasks.reverse().join('');
+            handleTasks(currentData, 'completed');
         },
     }
 }
 // UPDATE CONTENT
 
 document.addEventListener('dataChange', () => {
+
     createContent().createTasks();
     createContent().createLabels();
     currentFilter.length = 0;
 });
+
 document.addEventListener('dataFilter', () => {
+
     createContent().filterTasks();
     createContent().createLabels();
 });
+
 document.addEventListener('dataMove', () => {
+
     createContent().showArchive();
 });
 
