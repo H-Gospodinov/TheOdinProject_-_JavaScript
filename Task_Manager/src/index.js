@@ -2,11 +2,12 @@
 import "./styles/media.css"; // include image css
 
 import {createContent, viewArchive} from "./modules/_dom.js";
-import {currentFilter, updateData} from "./modules/_data.js";
+import {currentFilter, currentTime, updateData} from "./modules/_data.js";
 import {getInput} from "./modules/_input.js";
 
 const modal = document.querySelector('.modal');
 const title = document.querySelector('.header h1');
+const cdate = document.querySelector('.header .date');
 
 const taskForm = document.querySelector('#task_form');
 const labelForm = document.querySelector('#label_form');
@@ -17,6 +18,8 @@ const render = createContent();
 
 render.createTasks();
 render.createLabels();
+
+cdate.innerText = currentTime();
 
 // UPDATE FORM
 

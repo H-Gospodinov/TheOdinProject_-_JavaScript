@@ -216,4 +216,4 @@ function currentTime() {
     return `${year}-${month}-${day}`;
 }
 
-export {currentData, currentLabels, currentFilter, updateData};
+export {currentData, currentLabels, currentFilter, currentTime, updateData};

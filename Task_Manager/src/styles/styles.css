@@ -122,8 +122,15 @@ body {
     padding: 20px 40px;
 }
 .header h1 {
+    margin-right: auto;
     font-size: 31px;
     font-weight: 400;
+    color: #0c7e7c;
+}
+.header .date {
+    order: -1;
+    margin-right: 20px;
+    font-size: 31px;
     color: #0c7e7c;
 }
 .header .action {
