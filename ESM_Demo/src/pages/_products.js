@@ -3,16 +3,6 @@ import redImage from "../img/ngVcKlCQBY_440.jpg";
 import brownImage from "../img/TYmp2rf_440.jpg";
 import orangeImage from "../img/wTJaQur2HY_440.jpg";
 
-function htmlBlock(title, image, text, price) {
-    return `
-    <div class="block">
-        <h2>${title}</h2>
-        <img src=${image} width="340" height="340" alt="">
-        <p>${text}</p>
-        <span><strong>€ ${price}</strong> / kg</span>
-    </div>`
-}; // source code
-
 const products = [
     { 
         title: 'Green stuff',
@@ -39,12 +29,25 @@ const products = [
         price: '2.45'
     },
 ];
-function createProducts() {
-    // expects an array of data objects
-    const content = products.map(({title, image, text, price}) => {
-        return htmlBlock(title, image, text, price);
-    }).join('');
 
-    return `<div class="grid">${content}</div>`;
+function newProduct(
+    {title, image, text, price}
+) {
+    return `
+    <div class="block">
+        <h2>${title}</h2>
+        <img src=${image} width="340" height="340" alt="">
+        <p>${text}</p>
+        <span><strong>€ ${price}</strong> / kg</span>
+    </div>`
+};
+
+function createProducts() {
+
+    const content = products.map(item => {
+        return newProduct(item);
+    });
+    return `<div class="grid">${content.join('')}</div>`;
 }
+
 export default createProducts;
