@@ -543,22 +543,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+
 const tabs = [
     {
-        id: 'tab_1',
-        text: 'Home page'
+        id: 'tab_1', text: 'Home page',
     },
     {
-        id: 'tab_2',
-        text: 'Some page'
+        id: 'tab_2', text: 'Some page',
     },
 ];
+
 function createNavBar() {
-    // expects an array of data objects
-    return tabs.map(({id, text}) => {
-        return `<button type="button" class="tab" id="${id}"><span>${text}</span></button>`;
-    }).join('');
+
+    const content = tabs.map(item => {
+        return `
+            <button class="tab" id="${item.id}" type="button">
+                <span>${item.text}</span>
+            </button>`
+    });
+    return content.join('');
 }
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createNavBar);
 
 /***/ }),
@@ -581,16 +586,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-function htmlBlock(title, image, text, price) {
-    return `
-    <div class="block">
-        <h2>${title}</h2>
-        <img src=${image} width="340" height="340" alt="">
-        <p>${text}</p>
-        <span><strong>€ ${price}</strong> / kg</span>
-    </div>`
-}; // source code
 
 const products = [
     { 
@@ -618,14 +613,27 @@ const products = [
         price: '2.45'
     },
 ];
-function createProducts() {
-    // expects an array of data objects
-    const content = products.map(({title, image, text, price}) => {
-        return htmlBlock(title, image, text, price);
-    }).join('');
 
-    return `<div class="grid">${content}</div>`;
+function newProduct(
+    {title, image, text, price}
+) {
+    return `
+    <div class="block">
+        <h2>${title}</h2>
+        <img src=${image} width="340" height="340" alt="">
+        <p>${text}</p>
+        <span><strong>€ ${price}</strong> / kg</span>
+    </div>`
+};
+
+function createProducts() {
+
+    const content = products.map(item => {
+        return newProduct(item);
+    });
+    return `<div class="grid">${content.join('')}</div>`;
 }
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createProducts);
 
 /***/ }),
@@ -738,22 +746,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+
 const paragraphs = [
     {
         text: 'Component-based website prototype with no static content, just a demo for ES6 Modules & Webpack bundling.'
     },
     {
-        text: `Check source code on <a href="https://github.com/H-Gospodinov/TheOdinProject_-_JavaScript" target="_blank" rel="noopener">GitHub</a>`
+        text: 'Check source code on <a href="https://github.com/H-Gospodinov/TheOdinProject_-_JavaScript" target="_blank" rel="noopener">GitHub</a>'
     },
 ];
+
 function createText() {
-    // expects an array of data objects
+
     const content = paragraphs.map(item => {
         return `<p>${item.text}</p>`;
-    }).join('');
-
-    return `<div class="reader">${content}</div>`;
+    });
+    return `<div class="reader">${content.join('')}</div>`;
 }
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createText);
 
 /***/ }),
@@ -775,26 +785,33 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const pageTitle = `
-    <h1 class="page-title">ES6 modules demo</h1>
-`;
-const heroBanner = `
-    <div class="big-banner">
-        <img class="hero" src="${_img_banner_jpg__WEBPACK_IMPORTED_MODULE_0__}" width="1600" height="500" alt="">
-    </div>
-`;
-const textSlider = `
-    <div class="carousel">
-        <div class="wrapper">
-            <button type="button" class="prev"></button>
-            <div class="clipper">${(0,_textbox_js__WEBPACK_IMPORTED_MODULE_1__["default"])()}</div>
-            <button type="button" class="next"></button>
-        </div>
-    </div>
-`;
+const elements = [
+    {
+        title: '<h1 class="page-title">ES6 modules demo</h1>'
+    },
+    {
+        banner: `<div class="big-banner">
+                    <img class="hero" src="${_img_banner_jpg__WEBPACK_IMPORTED_MODULE_0__}" width="1600" height="500" alt="">
+                </div>`
+    },
+    {
+        slider: `<div class="carousel">
+                    <div class="wrapper">
+                        <button type="button" class="prev"></button>
+                        <div class="clipper">${(0,_textbox_js__WEBPACK_IMPORTED_MODULE_1__["default"])()}</div>
+                        <button type="button" class="next"></button>
+                    </div>
+                </div>`
+    },
+];
 function createHomePage() {
-    return pageTitle + heroBanner + textSlider + (0,_products_js__WEBPACK_IMPORTED_MODULE_2__["default"])();
+
+    const content = elements.map(item => {
+        return Object.values(item);
+    });
+    return content.join('') + (0,_products_js__WEBPACK_IMPORTED_MODULE_2__["default"])();
 }
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createHomePage);
 
 /***/ }),
@@ -1022,9 +1039,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_homepage_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./pages/homepage.js */ "./src/pages/homepage.js");
 /* harmony import */ var _pages_somepage_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pages/somepage.js */ "./src/pages/somepage.js");
 /* harmony import */ var _pages_slider_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pages/_slider.js */ "./src/pages/_slider.js");
-
 //import "./styles/styles.css"; //excluded to avoid FOUC
  // include image css
+
 
 
 
@@ -1050,10 +1067,12 @@ injectContent(pageBox, currentPage);
 // NAVIGATION
 
 const tabMapping = {
+
     tab_1: (0,_pages_homepage_js__WEBPACK_IMPORTED_MODULE_2__["default"])(),
-    tab_2: (0,_pages_somepage_js__WEBPACK_IMPORTED_MODULE_3__["default"])()
+    tab_2: (0,_pages_somepage_js__WEBPACK_IMPORTED_MODULE_3__["default"])(),
 };
-tabs.forEach(tab => {
+
+for (const tab of tabs) {
 
     tab.addEventListener('click', () => {
         
@@ -1062,35 +1081,38 @@ tabs.forEach(tab => {
         } currentTab = tab.id;
         
         currentPage = tabMapping[tab.id];
+
         pageBox.replaceChildren();
         injectContent(pageBox, currentPage);
 
-        if (tab.id =='tab_1') {
+        if (tab.id ==='tab_1') {
             (0,_pages_slider_js__WEBPACK_IMPORTED_MODULE_4__["default"])(carousel());
-        }
+        } // renew
     });
-});
-
+}
 // SLIDER
 
-
-const carousel = () => document.querySelector('.carousel');
-(0,_pages_slider_js__WEBPACK_IMPORTED_MODULE_4__["default"])(carousel());
+const carousel = () => {
+    return document.querySelector('.carousel');
+}
+;(0,_pages_slider_js__WEBPACK_IMPORTED_MODULE_4__["default"])(carousel());
 
 // SCROLLER
 
 pageBox.addEventListener('click', (e) => {
+
     const target = e.target;
-    if (target.className === 'hero') {
-        target.classList.add('fade');
-        setTimeout(() => {
-            window.scrollTo({
-                top: document.body.scrollHeight,
-                behavior: 'smooth'
-            });
-            target.classList.remove('fade');
-        }, 1000);
-    }
+
+    if (target.className !== 'hero') return;
+    target.classList.add('fade');
+
+    setTimeout(() => {
+        window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: 'smooth'
+        });
+        target.classList.remove('fade');
+    }, 1000);
 });
 })();
 
