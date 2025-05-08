@@ -99,7 +99,6 @@ p:has(.no-winner) .player {
     display: inline-flex;
     align-items: center;
     column-gap: 10px;
-    margin-top: 20px;
 }
 #score_X,
 #score_O {
