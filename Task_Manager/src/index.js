@@ -5,6 +5,7 @@ import {createContent, viewArchive} from "./modules/_dom.js";
 import {currentFilter, currentTime, updateData} from "./modules/_data.js";
 import {getInput} from "./modules/_input.js";
 
+const menu = document.querySelector('.menu');
 const modal = document.querySelector('.modal');
 const title = document.querySelector('.header h1');
 const cdate = document.querySelector('.header .date');
@@ -54,6 +55,10 @@ document.addEventListener('click', (e) => {
         viewArchive.state = false;
     }
 
+    if (button.id !== 'menu_toggle') {
+        menu.classList.remove('active');
+    }
+
     switch(button.id) {
 
         case 'add_task':
@@ -86,10 +91,6 @@ document.addEventListener('click', (e) => {
             update.clearData(parent.label, 'label');
             break;
 
-        case 'close_form':
-            modal.classList.remove('active');
-            break;
-
         case 'all_tasks':
             currentFilter.length = 0;
             update.newData(); // just trigger dataChange
@@ -116,6 +117,14 @@ document.addEventListener('click', (e) => {
 
         case '': // labels
             update.filterData(parent.label, 'label');
+            break;
+
+        case 'close_form':
+            modal.classList.remove('active');
+            break;
+
+        case 'menu_toggle':
+            menu.classList.toggle('active');
     }
 });
 

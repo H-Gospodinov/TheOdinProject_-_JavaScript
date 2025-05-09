@@ -5,6 +5,9 @@ if styles.css is excluded from bundling */
 .sidebar {
     background-image: url(../images/background.png);
 }
+.menu-button {
+    background-image: url(../images/menu.png);
+}
 .nav-item.home {
     background-image: url(../images/nav1.png);
     background-position-y: 4px;

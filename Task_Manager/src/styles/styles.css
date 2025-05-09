@@ -72,6 +72,7 @@ body {
     font-size: 28px;
     letter-spacing: 1px;
     text-transform: uppercase;
+    white-space: nowrap;
 }
 .nav-list {
     display: flex;
@@ -446,7 +447,7 @@ body {
     }
     .grid .task {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template: auto / 1fr 1fr 1fr;
     }
     .task .data {
         border-radius: 0 !important;
@@ -466,19 +467,51 @@ body {
 @media (max-width: 900px) {
 
     .container {
-        display: block;
+        display: flex;
+        flex-flow: column;
     }
     .sidebar {
         flex-flow: row;
-        justify-content: space-between;
         align-items: center;
+        justify-content: space-between;
+        column-gap: 10px;
+        position: relative;
+        height: 80px;
         padding: 20px 5%;
     }
     .logo img {
         display: none;
     }
+    .menu-button {
+        min-width: 40px;
+        height: 36px;
+        border-radius: 5px;
+        border: 2px solid #fff;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
     nav.menu {
-        display: none;
+        position: fixed;
+        top: 80px;
+        bottom: 0;
+        left: 0; right: 0;
+        z-index: 1;
+        max-height: 0;
+        overflow: hidden;
+        background: #0c7e7cee;
+        padding: 0 5%;
+        transition: 1s ease;
+        opacity: 0;
+    }
+    .menu.active {
+        max-height: calc(100% - 80px);
+        opacity: 1;
+    }
+    .nav-list {
+        margin: 20px 0;
+    }
+    .board {
+        flex-grow: 1;
     }
     .content {
         padding: 30px 5%;
@@ -494,9 +527,6 @@ body {
 
 @media (max-width: 600px) {
 
-    .sidebar {
-        background-position: left center;
-    }
     .header h1 {
         font-size: 25px;
     }
