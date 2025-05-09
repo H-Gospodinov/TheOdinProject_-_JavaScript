@@ -23,20 +23,21 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ___CSS_LOADER_URL_IMPORT_0___ = new URL(/* asset import */ __webpack_require__(/*! ../images/background.png */ "./src/images/background.png"), __webpack_require__.b);
-var ___CSS_LOADER_URL_IMPORT_1___ = new URL(/* asset import */ __webpack_require__(/*! ../images/nav1.png */ "./src/images/nav1.png"), __webpack_require__.b);
-var ___CSS_LOADER_URL_IMPORT_2___ = new URL(/* asset import */ __webpack_require__(/*! ../images/nav2.png */ "./src/images/nav2.png"), __webpack_require__.b);
-var ___CSS_LOADER_URL_IMPORT_3___ = new URL(/* asset import */ __webpack_require__(/*! ../images/nav3.png */ "./src/images/nav3.png"), __webpack_require__.b);
-var ___CSS_LOADER_URL_IMPORT_4___ = new URL(/* asset import */ __webpack_require__(/*! ../images/nav4.png */ "./src/images/nav4.png"), __webpack_require__.b);
-var ___CSS_LOADER_URL_IMPORT_5___ = new URL(/* asset import */ __webpack_require__(/*! ../images/nav5.png */ "./src/images/nav5.png"), __webpack_require__.b);
-var ___CSS_LOADER_URL_IMPORT_6___ = new URL(/* asset import */ __webpack_require__(/*! ../images/pointer.png */ "./src/images/pointer.png"), __webpack_require__.b);
-var ___CSS_LOADER_URL_IMPORT_7___ = new URL(/* asset import */ __webpack_require__(/*! ../images/add1.svg */ "./src/images/add1.svg"), __webpack_require__.b);
-var ___CSS_LOADER_URL_IMPORT_8___ = new URL(/* asset import */ __webpack_require__(/*! ../images/add2.svg */ "./src/images/add2.svg"), __webpack_require__.b);
-var ___CSS_LOADER_URL_IMPORT_9___ = new URL(/* asset import */ __webpack_require__(/*! ../images/icon1.png */ "./src/images/icon1.png"), __webpack_require__.b);
-var ___CSS_LOADER_URL_IMPORT_10___ = new URL(/* asset import */ __webpack_require__(/*! ../images/icon2.png */ "./src/images/icon2.png"), __webpack_require__.b);
-var ___CSS_LOADER_URL_IMPORT_11___ = new URL(/* asset import */ __webpack_require__(/*! ../images/btn3.png */ "./src/images/btn3.png"), __webpack_require__.b);
-var ___CSS_LOADER_URL_IMPORT_12___ = new URL(/* asset import */ __webpack_require__(/*! ../images/btn1.png */ "./src/images/btn1.png"), __webpack_require__.b);
-var ___CSS_LOADER_URL_IMPORT_13___ = new URL(/* asset import */ __webpack_require__(/*! ../images/btn2.png */ "./src/images/btn2.png"), __webpack_require__.b);
-var ___CSS_LOADER_URL_IMPORT_14___ = new URL(/* asset import */ __webpack_require__(/*! ../images/btn4.png */ "./src/images/btn4.png"), __webpack_require__.b);
+var ___CSS_LOADER_URL_IMPORT_1___ = new URL(/* asset import */ __webpack_require__(/*! ../images/menu.png */ "./src/images/menu.png"), __webpack_require__.b);
+var ___CSS_LOADER_URL_IMPORT_2___ = new URL(/* asset import */ __webpack_require__(/*! ../images/nav1.png */ "./src/images/nav1.png"), __webpack_require__.b);
+var ___CSS_LOADER_URL_IMPORT_3___ = new URL(/* asset import */ __webpack_require__(/*! ../images/nav2.png */ "./src/images/nav2.png"), __webpack_require__.b);
+var ___CSS_LOADER_URL_IMPORT_4___ = new URL(/* asset import */ __webpack_require__(/*! ../images/nav3.png */ "./src/images/nav3.png"), __webpack_require__.b);
+var ___CSS_LOADER_URL_IMPORT_5___ = new URL(/* asset import */ __webpack_require__(/*! ../images/nav4.png */ "./src/images/nav4.png"), __webpack_require__.b);
+var ___CSS_LOADER_URL_IMPORT_6___ = new URL(/* asset import */ __webpack_require__(/*! ../images/nav5.png */ "./src/images/nav5.png"), __webpack_require__.b);
+var ___CSS_LOADER_URL_IMPORT_7___ = new URL(/* asset import */ __webpack_require__(/*! ../images/pointer.png */ "./src/images/pointer.png"), __webpack_require__.b);
+var ___CSS_LOADER_URL_IMPORT_8___ = new URL(/* asset import */ __webpack_require__(/*! ../images/add1.svg */ "./src/images/add1.svg"), __webpack_require__.b);
+var ___CSS_LOADER_URL_IMPORT_9___ = new URL(/* asset import */ __webpack_require__(/*! ../images/add2.svg */ "./src/images/add2.svg"), __webpack_require__.b);
+var ___CSS_LOADER_URL_IMPORT_10___ = new URL(/* asset import */ __webpack_require__(/*! ../images/icon1.png */ "./src/images/icon1.png"), __webpack_require__.b);
+var ___CSS_LOADER_URL_IMPORT_11___ = new URL(/* asset import */ __webpack_require__(/*! ../images/icon2.png */ "./src/images/icon2.png"), __webpack_require__.b);
+var ___CSS_LOADER_URL_IMPORT_12___ = new URL(/* asset import */ __webpack_require__(/*! ../images/btn3.png */ "./src/images/btn3.png"), __webpack_require__.b);
+var ___CSS_LOADER_URL_IMPORT_13___ = new URL(/* asset import */ __webpack_require__(/*! ../images/btn1.png */ "./src/images/btn1.png"), __webpack_require__.b);
+var ___CSS_LOADER_URL_IMPORT_14___ = new URL(/* asset import */ __webpack_require__(/*! ../images/btn2.png */ "./src/images/btn2.png"), __webpack_require__.b);
+var ___CSS_LOADER_URL_IMPORT_15___ = new URL(/* asset import */ __webpack_require__(/*! ../images/btn4.png */ "./src/images/btn4.png"), __webpack_require__.b);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 var ___CSS_LOADER_URL_REPLACEMENT_0___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_0___);
 var ___CSS_LOADER_URL_REPLACEMENT_1___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_1___);
@@ -53,6 +54,7 @@ var ___CSS_LOADER_URL_REPLACEMENT_11___ = _node_modules_css_loader_dist_runtime_
 var ___CSS_LOADER_URL_REPLACEMENT_12___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_12___);
 var ___CSS_LOADER_URL_REPLACEMENT_13___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_13___);
 var ___CSS_LOADER_URL_REPLACEMENT_14___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_14___);
+var ___CSS_LOADER_URL_REPLACEMENT_15___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_15___);
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, `
 /* CSS media must be bundled separately
@@ -61,60 +63,63 @@ if styles.css is excluded from bundling */
 .sidebar {
     background-image: url(${___CSS_LOADER_URL_REPLACEMENT_0___});
 }
-.nav-item.home {
+.menu-button {
     background-image: url(${___CSS_LOADER_URL_REPLACEMENT_1___});
+}
+.nav-item.home {
+    background-image: url(${___CSS_LOADER_URL_REPLACEMENT_2___});
     background-position-y: 4px;
 }
 .nav-item.upcoming {
-    background-image: url(${___CSS_LOADER_URL_REPLACEMENT_2___});
+    background-image: url(${___CSS_LOADER_URL_REPLACEMENT_3___});
     background-position-y: 5px;
 }
 .nav-item.overdue {
-    background-image: url(${___CSS_LOADER_URL_REPLACEMENT_3___});
-}
-.nav-item.important {
     background-image: url(${___CSS_LOADER_URL_REPLACEMENT_4___});
 }
-.nav-item.archive {
+.nav-item.important {
     background-image: url(${___CSS_LOADER_URL_REPLACEMENT_5___});
 }
-.nav-item.label {
+.nav-item.archive {
     background-image: url(${___CSS_LOADER_URL_REPLACEMENT_6___});
+}
+.nav-item.label {
+    background-image: url(${___CSS_LOADER_URL_REPLACEMENT_7___});
     background-position-x: 3px;
     background-size: 28px;
 }
 .header #add_task {
-    background-image: url(${___CSS_LOADER_URL_REPLACEMENT_7___});
-}
-.header #add_label {
     background-image: url(${___CSS_LOADER_URL_REPLACEMENT_8___});
 }
-.task .main::before {
+.header #add_label {
     background-image: url(${___CSS_LOADER_URL_REPLACEMENT_9___});
 }
-.prioritize .main::before {
+.task .main::before {
     background-image: url(${___CSS_LOADER_URL_REPLACEMENT_10___});
 }
-.completed .main::before {
+.prioritize .main::before {
     background-image: url(${___CSS_LOADER_URL_REPLACEMENT_11___});
+}
+.completed .main::before {
+    background-image: url(${___CSS_LOADER_URL_REPLACEMENT_12___});
 }
 .task #edit_task,
 .label #edit_label {
-    background-image: url(${___CSS_LOADER_URL_REPLACEMENT_12___});
+    background-image: url(${___CSS_LOADER_URL_REPLACEMENT_13___});
 }
 .task #remove_task,
 .label #remove_label {
-    background-image: url(${___CSS_LOADER_URL_REPLACEMENT_13___});
-}
-.task #complete {
-    background-image: url(${___CSS_LOADER_URL_REPLACEMENT_11___});
-}
-.task #restore {
     background-image: url(${___CSS_LOADER_URL_REPLACEMENT_14___});
 }
+.task #complete {
+    background-image: url(${___CSS_LOADER_URL_REPLACEMENT_12___});
+}
+.task #restore {
+    background-image: url(${___CSS_LOADER_URL_REPLACEMENT_15___});
+}
 .grid:empty::before {
-    background-image: url(${___CSS_LOADER_URL_REPLACEMENT_13___});
-}`, "",{"version":3,"sources":["webpack://./src/styles/media.css"],"names":[],"mappings":";AACA;yCACyC;;AAEzC;IACI,yDAA+C;AACnD;AACA;IACI,yDAAyC;IACzC,0BAA0B;AAC9B;AACA;IACI,yDAAyC;IACzC,0BAA0B;AAC9B;AACA;IACI,yDAAyC;AAC7C;AACA;IACI,yDAAyC;AAC7C;AACA;IACI,yDAAyC;AAC7C;AACA;IACI,yDAA4C;IAC5C,0BAA0B;IAC1B,qBAAqB;AACzB;AACA;IACI,yDAAyC;AAC7C;AACA;IACI,yDAAyC;AAC7C;AACA;IACI,yDAA0C;AAC9C;AACA;IACI,0DAA0C;AAC9C;AACA;IACI,0DAAyC;AAC7C;AACA;;IAEI,0DAAyC;AAC7C;AACA;;IAEI,0DAAyC;AAC7C;AACA;IACI,0DAAyC;AAC7C;AACA;IACI,0DAAyC;AAC7C;AACA;IACI,0DAAyC;AAC7C","sourcesContent":["\r\n/* CSS media must be bundled separately\r\nif styles.css is excluded from bundling */\r\n\r\n.sidebar {\r\n    background-image: url(../images/background.png);\r\n}\r\n.nav-item.home {\r\n    background-image: url(../images/nav1.png);\r\n    background-position-y: 4px;\r\n}\r\n.nav-item.upcoming {\r\n    background-image: url(../images/nav2.png);\r\n    background-position-y: 5px;\r\n}\r\n.nav-item.overdue {\r\n    background-image: url(../images/nav3.png);\r\n}\r\n.nav-item.important {\r\n    background-image: url(../images/nav4.png);\r\n}\r\n.nav-item.archive {\r\n    background-image: url(../images/nav5.png);\r\n}\r\n.nav-item.label {\r\n    background-image: url(../images/pointer.png);\r\n    background-position-x: 3px;\r\n    background-size: 28px;\r\n}\r\n.header #add_task {\r\n    background-image: url(../images/add1.svg);\r\n}\r\n.header #add_label {\r\n    background-image: url(../images/add2.svg);\r\n}\r\n.task .main::before {\r\n    background-image: url(../images/icon1.png);\r\n}\r\n.prioritize .main::before {\r\n    background-image: url(../images/icon2.png);\r\n}\r\n.completed .main::before {\r\n    background-image: url(../images/btn3.png);\r\n}\r\n.task #edit_task,\r\n.label #edit_label {\r\n    background-image: url(../images/btn1.png);\r\n}\r\n.task #remove_task,\r\n.label #remove_label {\r\n    background-image: url(../images/btn2.png);\r\n}\r\n.task #complete {\r\n    background-image: url(../images/btn3.png);\r\n}\r\n.task #restore {\r\n    background-image: url(../images/btn4.png);\r\n}\r\n.grid:empty::before {\r\n    background-image: url(../images/btn2.png);\r\n}"],"sourceRoot":""}]);
+    background-image: url(${___CSS_LOADER_URL_REPLACEMENT_14___});
+}`, "",{"version":3,"sources":["webpack://./src/styles/media.css"],"names":[],"mappings":";AACA;yCACyC;;AAEzC;IACI,yDAA+C;AACnD;AACA;IACI,yDAAyC;AAC7C;AACA;IACI,yDAAyC;IACzC,0BAA0B;AAC9B;AACA;IACI,yDAAyC;IACzC,0BAA0B;AAC9B;AACA;IACI,yDAAyC;AAC7C;AACA;IACI,yDAAyC;AAC7C;AACA;IACI,yDAAyC;AAC7C;AACA;IACI,yDAA4C;IAC5C,0BAA0B;IAC1B,qBAAqB;AACzB;AACA;IACI,yDAAyC;AAC7C;AACA;IACI,yDAAyC;AAC7C;AACA;IACI,0DAA0C;AAC9C;AACA;IACI,0DAA0C;AAC9C;AACA;IACI,0DAAyC;AAC7C;AACA;;IAEI,0DAAyC;AAC7C;AACA;;IAEI,0DAAyC;AAC7C;AACA;IACI,0DAAyC;AAC7C;AACA;IACI,0DAAyC;AAC7C;AACA;IACI,0DAAyC;AAC7C","sourcesContent":["\r\n/* CSS media must be bundled separately\r\nif styles.css is excluded from bundling */\r\n\r\n.sidebar {\r\n    background-image: url(../images/background.png);\r\n}\r\n.menu-button {\r\n    background-image: url(../images/menu.png);\r\n}\r\n.nav-item.home {\r\n    background-image: url(../images/nav1.png);\r\n    background-position-y: 4px;\r\n}\r\n.nav-item.upcoming {\r\n    background-image: url(../images/nav2.png);\r\n    background-position-y: 5px;\r\n}\r\n.nav-item.overdue {\r\n    background-image: url(../images/nav3.png);\r\n}\r\n.nav-item.important {\r\n    background-image: url(../images/nav4.png);\r\n}\r\n.nav-item.archive {\r\n    background-image: url(../images/nav5.png);\r\n}\r\n.nav-item.label {\r\n    background-image: url(../images/pointer.png);\r\n    background-position-x: 3px;\r\n    background-size: 28px;\r\n}\r\n.header #add_task {\r\n    background-image: url(../images/add1.svg);\r\n}\r\n.header #add_label {\r\n    background-image: url(../images/add2.svg);\r\n}\r\n.task .main::before {\r\n    background-image: url(../images/icon1.png);\r\n}\r\n.prioritize .main::before {\r\n    background-image: url(../images/icon2.png);\r\n}\r\n.completed .main::before {\r\n    background-image: url(../images/btn3.png);\r\n}\r\n.task #edit_task,\r\n.label #edit_label {\r\n    background-image: url(../images/btn1.png);\r\n}\r\n.task #remove_task,\r\n.label #remove_label {\r\n    background-image: url(../images/btn2.png);\r\n}\r\n.task #complete {\r\n    background-image: url(../images/btn3.png);\r\n}\r\n.task #restore {\r\n    background-image: url(../images/btn4.png);\r\n}\r\n.grid:empty::before {\r\n    background-image: url(../images/btn2.png);\r\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -639,6 +644,16 @@ module.exports = __webpack_require__.p + "8a111aeffb9ecba6d57f.png";
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = __webpack_require__.p + "8ab4f48ed16cd6db8c04.png";
+
+/***/ }),
+
+/***/ "./src/images/menu.png":
+/*!*****************************!*\
+  !*** ./src/images/menu.png ***!
+  \*****************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = __webpack_require__.p + "5e31d20f582d0214b674.png";
 
 /***/ }),
 
@@ -1420,6 +1435,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+const menu = document.querySelector('.menu');
 const modal = document.querySelector('.modal');
 const title = document.querySelector('.header h1');
 const cdate = document.querySelector('.header .date');
@@ -1469,6 +1485,10 @@ document.addEventListener('click', (e) => {
         _modules_dom_js__WEBPACK_IMPORTED_MODULE_1__.viewArchive.state = false;
     }
 
+    if (button.id !== 'menu_toggle') {
+        menu.classList.remove('active');
+    }
+
     switch(button.id) {
 
         case 'add_task':
@@ -1501,10 +1521,6 @@ document.addEventListener('click', (e) => {
             update.clearData(parent.label, 'label');
             break;
 
-        case 'close_form':
-            modal.classList.remove('active');
-            break;
-
         case 'all_tasks':
             _modules_data_js__WEBPACK_IMPORTED_MODULE_2__.currentFilter.length = 0;
             update.newData(); // just trigger dataChange
@@ -1531,6 +1547,14 @@ document.addEventListener('click', (e) => {
 
         case '': // labels
             update.filterData(parent.label, 'label');
+            break;
+
+        case 'close_form':
+            modal.classList.remove('active');
+            break;
+
+        case 'menu_toggle':
+            menu.classList.toggle('active');
     }
 });
 
