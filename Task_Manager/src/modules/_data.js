@@ -120,7 +120,7 @@ function updateData() {
 
                         case 'overdue':
                             currentFilter = currentData.filter(item => {
-                                return item.dueDate < currentTime();
+                                if (item.dueDate) return item.dueDate < currentTime();
                             });
                             break;
 
