@@ -30,6 +30,8 @@ body {
     overflow-x: hidden;
     background-color: #121922;
     font-family: Roboto, sans-serif;
+    font-size: 15px;
+    font-weight: 200;
     color: #fff;
 }
 .container {
@@ -54,16 +56,99 @@ body {
     /* font-weight: 700;
     color: #222; */
 }
-.date {
-    font-size: 42px;
-}
 .options {
     filter: invert(1);
 }
 .main {
     flex-grow: 1;
+    display: grid;
+    grid-template: 0.9fr 1.1fr / 1fr 2fr;
+    grid-gap: 10px 10px;
+}
+.section.now,
+.section.today {
     border-radius: 15px;
-    background-color: #0008;
+    background-color: #0004;
+    backdrop-filter: blur(5px);
+}
+.section.week {
+    grid-column: 1 / -1;
+    display: flex;
+    column-gap: 10px;
+}
+.section .box {
+    flex: 1;
+    display: flex;
+    flex-flow: column;
+    min-width: 0;
+}
+.current .date,
+.today .head {
+    display: flex;
+    align-items: center;
+    height: 62px; /*reserved*/
+    border-bottom: 1px solid #fff4;
+}
+.current .date {
+    padding: 0 4%;
+    font-size: 24px;
+}
+.current .temp {
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+    padding: 0 4%;
+    font-size: 64px;
+}
+.current .details {
+    padding: 4%;
+}
+.current .feels {
+    margin: -10px 0 10px;
+}
+.today .head {
+    justify-content: space-between;
+    padding-inline: 4% 5%;
+    font-weight: 300;
+}
+.today .hours {
+    display: flex;
+    padding: 2%;
+}
+.box.hour {
+    padding: 2%;
+}
+.hour .temp {
+    font-size: 22px;
+    font-weight: 300;
+}
+.box.day {
+    border-radius: 15px;
+    background-color: #0004;
+    backdrop-filter: blur(5px);
+    padding: 2%;
+}
+.day .name {
+    margin-bottom: 2px;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+.day .info {
+    flex-grow: 1;
+    margin-bottom: 10px;
+}
+.day .temp {
+    display: flex;
+}
+.day .temp +.temp {
+    margin-top: 5px;
+}
+.day .temp span {
+    min-width: 34px;
+}
+.day .temp strong {
+    font-weight: 700;
 }
 .footer {
     padding: 3% 0;

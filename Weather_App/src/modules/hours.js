@@ -2,9 +2,10 @@
 class Hour {
 
     constructor (
-        {datetime, icon, temp}
+        {datetime, feelslike, icon, temp}
     ) {
         this.datetime = datetime.slice(0, 5);
+        this.feelslike = feelslike;
         this.icon = icon;
         this.temp = temp;
     }
@@ -12,10 +13,11 @@ class Hour {
         const image = await import(`../images/icons/${this.icon}.svg`);
 
         return `
-            <div class="hour">
-                ${this.datetime},
+            <div class="box hour">
+                <div class="time">${this.datetime}</div>
                 <img src="${image.default}" width="128" height="128">
-                ${this.temp},
+                <div class="temp">${this.temp}</div>
+                <div class="fiels">${this.feelslike}</div>
             </div>
         `;
     }

@@ -10,10 +10,11 @@ class Day {
         this.tempmax = tempmax;
         this.tempmin = tempmin;
     }
-    convert() {
+    format() {
         const date = new Date(this.datetimeEpoch * 1000);
-        const options = {weekday: 'short', day: 'numeric', month: 'short'};
-        return date.toLocaleString('en-US', options);
+        const date1 = date.toLocaleString('en-US', {weekday: 'short'});
+        const date2 = date.toLocaleString('en-US', {day: 'numeric', month: 'short'});
+        return {date1, date2}
     }
     round (temperature) {
         if (temperature % 1 < 0.5) {
@@ -26,12 +27,18 @@ class Day {
         const image = await import(`../images/icons/${this.icon}.svg`);
 
         return `
-            <div class="day">
-                ${this.conditions},
-                ${this.convert()},
+            <div class="box day">
+                <div class="name">${this.format().date1}</div>
+                <div class="date">${this.format().date2}</div>
                 <img src="${image.default}" width="128" height="128">
-                Max: ${this.round(this.tempmax)},
-                Min: ${this.round(this.tempmin)},
+                <div class="info">${this.conditions}</div>
+                <div class="temp">
+                    <span>max:</span>
+                    <strong>${this.round(this.tempmax)}</strong>
+                    &nbsp;
+                    <span>min:</span>
+                    <strong>${this.round(this.tempmin)}</strong>
+                </div>
             </div>
         `;
     }
