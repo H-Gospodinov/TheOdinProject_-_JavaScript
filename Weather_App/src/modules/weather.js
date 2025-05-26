@@ -1,4 +1,5 @@
 import getLocation from "./location.js";
+export const tempScale = {units: 'metric'};
 
 // FIND WEATHER
 
@@ -18,11 +19,13 @@ async function findWeather(location, units) {
 async function getWeather() {
 
     const location = await getLocation();
-    //const cityname = location.city +','+ location.country_code2;
-    const coordinates = location.latitude +','+ location.longitude;
-    //const combined = coordinates + ',' +  cityname;
 
-    return await findWeather(coordinates, 'metric');
+    if (location.country_code2 === 'US') {
+        tempScale.units = 'us';
+    }
+    const coordinates = location.latitude +','+ location.longitude;
+
+    return await findWeather(coordinates, tempScale.units);
 }
 
 export default getWeather;

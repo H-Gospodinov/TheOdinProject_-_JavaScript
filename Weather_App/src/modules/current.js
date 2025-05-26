@@ -1,34 +1,44 @@
+import {tempScale} from "./weather.js";
 
 class Current {
 
     constructor(
-        {datetimeEpoch, feelslike, icon, temp}, description
+        {conditions, datetimeEpoch, feelslike, icon, temp}, description
     ) {
+        this.conditions = conditions;
         this.datetimeEpoch = datetimeEpoch;
         this.description = description;
         this.feelslike = feelslike;
         this.icon = icon;
         this.temp = temp;
     }
-    convert() {
+    format() {
         const date = new Date(this.datetimeEpoch * 1000);
         const options = { weekday: 'short', day: 'numeric', month: 'short',
                           hour: '2-digit', minute: '2-digit', hour12: false };
         return date.toLocaleString('en-US', options);
     }
     async render() {
+
         const image = await import(`../images/icons/${this.icon}.svg`);
+        const units = tempScale.units === 'metric' ? '°C' : '°F';
 
         return `
             <div class="box current">
-                <div class="date">${this.convert()}</div>
-                <div class="temp">
+                <div class="date">${this.format()}</div>
+                <div class="display">
                     <img src="${image.default}" width="104" height="104">
-                    <span>${this.temp}</span>
+                    <span class="temp">${this.temp} ${units}</span>
                 </div>
                 <div class="details">
-                    <div class="feels">Feels like: ${this.feelslike}</div>
-                    <div class="info">${this.description}</div>
+                    <div class="wrapper">
+                        <span class="feels">
+                            Feels like: <span>${this.feelslike} ${units}</span>
+                        </span>
+                        <span class="sep">/</span>
+                        <span class="info short">${this.conditions}</span>
+                    </div>
+                    <div class="info long">${this.description}</div>
                 </div>
             </div>
         `;

@@ -57,6 +57,8 @@ body {
     color: #222; */
 }
 .options {
+    display: flex;
+    column-gap: 10px;
     filter: invert(1);
 }
 .main {
@@ -93,18 +95,35 @@ body {
     padding: 0 4%;
     font-size: 24px;
 }
-.current .temp {
+.current .display {
     display: flex;
     align-items: center;
     column-gap: 20px;
     padding: 0 4%;
     font-size: 64px;
 }
+.current .temp {
+    white-space: nowrap;
+}
 .current .details {
     padding: 4%;
 }
-.current .feels {
+.current .wrapper {
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
     margin: -10px 0 10px;
+}
+.current .feels {
+    font-size: 20px;
+    white-space: nowrap;
+}
+.current .feels span {
+    margin-left: 5px;
+    font-size: 24px;
+}
+.current .short {
+    font-size: 21px;
 }
 .today .head {
     justify-content: space-between;
@@ -116,11 +135,33 @@ body {
     padding: 2%;
 }
 .box.hour {
+    align-items: center;
     padding: 2%;
 }
+.hour .time {
+    align-self: stretch;
+    font-weight: 300;
+}
 .hour .temp {
+    margin-bottom: 15px;
     font-size: 22px;
     font-weight: 300;
+    white-space: nowrap;
+}
+.hour .feels {
+    white-space: nowrap;
+}
+.hour .wind {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+}
+.hour .wind img {
+    filter: invert(1);
+    transform: scale(-1) rotate(var(--rotate));
+}
+.hour .wind .speed {
+    white-space: nowrap;
 }
 .box.day {
     border-radius: 15px;
@@ -134,23 +175,39 @@ body {
     font-weight: 700;
     letter-spacing: 1px;
 }
+.day .image {
+    align-self: center;
+}
 .day .info {
     flex-grow: 1;
     margin-bottom: 10px;
 }
 .day .temp {
     display: flex;
-}
-.day .temp +.temp {
-    margin-top: 5px;
+    justify-content: space-evenly;
+    font-size: 24px;
 }
 .day .temp span {
-    min-width: 34px;
+    opacity: 0.8;
 }
-.day .temp strong {
-    font-weight: 700;
+.day .temp .sep {
+    margin: 0 -10px;
+}
+.day .temp .max {
+    font-weight: 300;
+    opacity: 1;
 }
 .footer {
-    padding: 3% 0;
+    padding: 4% 0 2%;
     text-align: center;
+    font-weight: 300;
+    color: #fffc;
+}
+.footer span {
+    display: inline-block;
+    backdrop-filter: blur(3px);
+    padding: 5px 8px;
+}
+.footer a {
+    color: inherit;
 }

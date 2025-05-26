@@ -16,28 +16,27 @@ class Day {
         const date2 = date.toLocaleString('en-US', {day: 'numeric', month: 'short'});
         return {date1, date2}
     }
-    round (temperature) {
-        if (temperature % 1 < 0.5) {
-            return Math.floor(temperature);
+    round (value) {
+        if (value % 1 < 0.5) {
+            return Math.floor(value);
         } else {
-            return Math.ceil(temperature);
+            return Math.ceil(value);
         }
     }
     async render() {
+
         const image = await import(`../images/icons/${this.icon}.svg`);
 
         return `
             <div class="box day">
                 <div class="name">${this.format().date1}</div>
                 <div class="date">${this.format().date2}</div>
-                <img src="${image.default}" width="128" height="128">
+                <img class="image" src="${image.default}" width="128" height="128">
                 <div class="info">${this.conditions}</div>
                 <div class="temp">
-                    <span>max:</span>
-                    <strong>${this.round(this.tempmax)}</strong>
-                    &nbsp;
-                    <span>min:</span>
-                    <strong>${this.round(this.tempmin)}</strong>
+                    <span class="min">${this.round(this.tempmin)} °</span>
+                    <span class="sep">/&nbsp</span>
+                    <span class="max">${this.round(this.tempmax)} °</span>
                 </div>
             </div>
         `;
