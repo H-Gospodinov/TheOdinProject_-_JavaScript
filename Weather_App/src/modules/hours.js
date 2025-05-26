@@ -3,14 +3,24 @@ import {tempScale} from "./weather.js";
 class Hour {
 
     constructor (
-        {datetime, feelslike, icon, temp, winddir, windspeed}
+        {datetime, icon, temp, winddir, windspeed}
     ) {
-        this.datetime = datetime.slice(0, 5);
-        this.feelslike = feelslike;
+        this.datetime = datetime.slice(0, 2);
         this.icon = icon;
         this.temp = temp;
         this.winddir = winddir;
         this.windspeed = windspeed;
+    }
+    format () {
+        const hour = parseInt(this.datetime, 10);
+        const period = hour >= 12 ? 'PM' : 'AM';
+        return `${hour} <small>${period}</small>`;
+    }
+    split (value) {
+
+        const [integer, decimal] = value.toString().split('.');
+        if (!decimal) return integer;
+        else return integer + `<small>${decimal}</small>`;
     }
     async render() {
 
@@ -20,12 +30,12 @@ class Hour {
 
         return `
             <div class="box hour">
-                <div class="time">${this.datetime}</div>
+                <div class="time">${this.format()}</div>
                 <img src="${image.default}" width="128" height="128">
-                <div class="temp">${this.temp} °</div>
+                <div class="temp">${this.split(this.temp)} °</div>
                 <div class="wind">
                     <img src="${pointer.default}" width="16" height="16" style="--rotate: ${this.winddir}deg">
-                    <span class="speed">${this.windspeed} ${units}</span>
+                    <span class="speed">${this.windspeed} &nbsp;${units}</span>
                 </div>
             </div>
         `;

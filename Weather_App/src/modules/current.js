@@ -3,13 +3,15 @@ import {tempScale} from "./weather.js";
 class Current {
 
     constructor(
-        {conditions, datetimeEpoch, feelslike, icon, temp}, description
+        {conditions, datetimeEpoch, feelslike, icon, sunrise, sunset, temp}, description
     ) {
         this.conditions = conditions;
         this.datetimeEpoch = datetimeEpoch;
         this.description = description;
         this.feelslike = feelslike;
         this.icon = icon;
+        this.sunrise = sunrise.slice(0, 5);
+        this.sunset = sunset.slice(0, 5);
         this.temp = temp;
     }
     format() {
@@ -39,6 +41,11 @@ class Current {
                         <span class="info short">${this.conditions}</span>
                     </div>
                     <div class="info long">${this.description}</div>
+                    <div class="sun">
+                        <span>Sunrise ${this.sunrise}</span>
+                        <span class="sep">/</span>
+                        <span>Sunset ${this.sunset}</span>
+                    </div>
                 </div>
             </div>
         `;

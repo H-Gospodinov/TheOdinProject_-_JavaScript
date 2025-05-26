@@ -99,6 +99,7 @@ body {
     display: flex;
     align-items: center;
     column-gap: 20px;
+    margin: 8px 0 3px;
     padding: 0 4%;
     font-size: 64px;
 }
@@ -106,13 +107,16 @@ body {
     white-space: nowrap;
 }
 .current .details {
-    padding: 4%;
+    display: flex;
+    flex-flow: column;
+    row-gap: 8px;
+    padding: 0 4% 7%;
 }
 .current .wrapper {
     display: flex;
     align-items: center;
     column-gap: 15px;
-    margin: -10px 0 10px;
+    margin-bottom: 10px;
 }
 .current .feels {
     font-size: 20px;
@@ -122,13 +126,21 @@ body {
     margin-left: 5px;
     font-size: 24px;
 }
-.current .short {
+.current .info.short {
     font-size: 21px;
+}
+.current .sun {
+    display: flex;
+    column-gap: 15px;
+}
+.current .sun .sep {
+    margin: 0 -5px;
 }
 .today .head {
     justify-content: space-between;
     padding-inline: 4% 5%;
     font-weight: 300;
+    letter-spacing: 0.2px;
 }
 .today .hours {
     display: flex;
@@ -138,29 +150,50 @@ body {
     align-items: center;
     padding: 2%;
 }
+.box.hour > * {
+    flex-grow: 1;
+}
 .hour .time {
     align-self: stretch;
+    font-size: 17px;
+    font-weight: 300;
+}
+.hour .time small {
+    margin-left: 2px;
+    font-size: 14px;
     font-weight: 300;
 }
 .hour .temp {
     margin-bottom: 15px;
+    padding-left: 10px;
     font-size: 22px;
     font-weight: 300;
     white-space: nowrap;
 }
+.hour .temp small {
+    margin-left: 2px;
+    font-size: 15px;
+}
+.hour .temp small::before {
+    content: ".";
+    margin-right: 2px;
+}
 .hour .feels {
     white-space: nowrap;
 }
-.hour .wind {
+.hour .wind,
+.day .wind {
     display: flex;
     align-items: center;
     column-gap: 10px;
 }
-.hour .wind img {
+.hour .wind img,
+.day .wind img {
     filter: invert(1);
     transform: scale(-1) rotate(var(--rotate));
 }
-.hour .wind .speed {
+.hour .wind .speed,
+.day .wind .speed {
     white-space: nowrap;
 }
 .box.day {
@@ -181,6 +214,8 @@ body {
 .day .info {
     flex-grow: 1;
     margin-bottom: 10px;
+    text-align: center;
+    letter-spacing: 0.3px;
 }
 .day .temp {
     display: flex;
@@ -196,6 +231,11 @@ body {
 .day .temp .max {
     font-weight: 300;
     opacity: 1;
+}
+.day .wind {
+    justify-content: center;
+    margin-top: 10px;
+    padding-right: 10px;
 }
 .footer {
     padding: 4% 0 2%;
