@@ -1,4 +1,5 @@
 import {tempScale} from "./weather.js";
+export const dynamicLogo = {src: ''};
 
 class Current {
 
@@ -24,6 +25,7 @@ class Current {
 
         const image = await import(`../images/icons/${this.icon}.svg`);
         const units = tempScale.units === 'metric' ? '°C' : '°F';
+        dynamicLogo.src = image.default; // export
 
         return `
             <div class="box current">
