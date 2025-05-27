@@ -24,7 +24,7 @@ async function createContent() {
         currentWeather: async (target) => {
 
             //const current = await weather.currentConditions;
-            //const text = weather.description;
+            //const text = await weather.description;
 
             target.innerHTML = await createCurrent(current, text);
         },

@@ -27,13 +27,55 @@ html {
 }
 body {
     width: 100%;
-    overflow-x: hidden;
+    overflow-x: clip;
     background-color: #121922;
     font-family: Roboto, sans-serif;
     font-size: 15px;
     font-weight: 200;
     color: #fff;
 }
+.loader {
+    position: absolute;
+    inset: 0;
+    width: 128px;
+    height: 128px;
+    margin: auto;
+    backdrop-filter: none !important;
+    transition: 0.2s ease;
+    pointer-events: none;
+    opacity: 0;
+}
+.loader::after,
+.loader::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    width: 128px;
+    height: 128px;
+    border: 4px solid #fff;
+    border-radius: 50%;
+    animation: loader 2s linear infinite;
+}
+.loader::after {
+    animation-delay: 1s;
+}
+
+@keyframes loader {
+    0% {
+        transform: scale(0);
+        opacity: 1;}
+    100% {
+        transform: scale(1);
+        opacity: 0;}
+}
+.loading .loader {
+    opacity: 1;
+}
+.loading .section {
+    opacity: 0;
+}
+
 .container {
     display: flex;
     flex-flow: column;
@@ -46,15 +88,13 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 3% 0;
+    padding: 2% 0;
 }
 .logo {
     display: flex;
     align-items: center;
     column-gap: 20px;
     font-size: 52px;
-    /* font-weight: 700;
-    color: #222; */
 }
 .options {
     display: flex;
@@ -66,6 +106,9 @@ body {
     display: grid;
     grid-template: 0.9fr 1.1fr / 1fr 2fr;
     grid-gap: 10px 10px;
+}
+.section {
+    transition: 0.2s ease;
 }
 .section.now,
 .section.today {
@@ -83,6 +126,21 @@ body {
     display: flex;
     flex-flow: column;
     min-width: 0;
+}
+.box.hour {
+    align-items: center;
+    padding: 2% 2%;
+    white-space: nowrap;
+}
+.box.hour > * {
+    flex-grow: 1;
+}
+.box.day {
+    border-radius: 15px;
+    background-color: #0004;
+    backdrop-filter: blur(5px);
+    padding: 2% 2%;
+    white-space: nowrap;
 }
 .current .date,
 .today .head {
@@ -144,14 +202,8 @@ body {
 }
 .today .hours {
     display: flex;
+    height: calc(100% - 62px);
     padding: 2%;
-}
-.box.hour {
-    align-items: center;
-    padding: 2%;
-}
-.box.hour > * {
-    flex-grow: 1;
 }
 .hour .time {
     align-self: stretch;
@@ -192,16 +244,6 @@ body {
     filter: invert(1);
     transform: scale(-1) rotate(var(--rotate));
 }
-.hour .wind .speed,
-.day .wind .speed {
-    white-space: nowrap;
-}
-.box.day {
-    border-radius: 15px;
-    background-color: #0004;
-    backdrop-filter: blur(5px);
-    padding: 2%;
-}
 .day .name {
     margin-bottom: 2px;
     font-size: 22px;
@@ -216,6 +258,7 @@ body {
     margin-bottom: 10px;
     text-align: center;
     letter-spacing: 0.3px;
+    white-space: normal;
 }
 .day .temp {
     display: flex;
@@ -238,7 +281,7 @@ body {
     padding-right: 10px;
 }
 .footer {
-    padding: 4% 0 2%;
+    padding: 3% 0 2%;
     text-align: center;
     font-weight: 300;
     color: #fffc;

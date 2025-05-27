@@ -1,8 +1,12 @@
 //import "./styles/styles.css"; // do NOT include
 import "./styles/media.css"; // always include
 
-import {tempScale} from "./modules/weather.js";
+import {tempScale,localName} from "./modules/weather.js";
+import {dynamicLogo} from "./modules/current.js";
 import createContent from "./modules/render.js";
+
+const pageTitle = document.querySelector('#page_title');
+const logoImage = document.querySelector('.logo img');
 
 const displayCurrent = document.querySelector('.main .now');
 const displayHours = document.querySelector('.main .hours');
@@ -16,9 +20,31 @@ tempUnitBtn.setAttribute('data-id', tempScale.units);
 
 const render = await createContent();
 
-render.currentWeather(displayCurrent);
-render.forecastHours(displayHours);
-render.forecastDays(displayDays);
+async function initialize() {
+
+    document.body.classList.add('loading');
+    pageTitle.innerText = localName.name;
+
+    try {
+        await render.currentWeather(displayCurrent);
+        await render.forecastHours(displayHours);
+        await render.forecastDays(displayDays);
+
+        //logoImage.src = dynamicLogo.src;
+        //logoImage.className = 'dynamic';
+        logoImage.hidden = false;
+
+        document.body.classList.remove('loading');
+    }
+    catch (error) {
+        console.error('No content to render,', error);
+        pageTitle.innerText = 'no data available';
+    }
+    finally {
+        if (localName.name) return;
+        pageTitle.innerText = 'location ?';
+    }
+} initialize();
 
 // EVENT HANDLERS
 
@@ -50,8 +76,5 @@ tempUnitBtn.addEventListener('click', (e) => {
 document.addEventListener('changeUnits', async () => {
 
     await render.updateWeater();
-
-    render.currentWeather(displayCurrent);
-    render.forecastHours(displayHours);
-    render.forecastDays(displayDays);
+    await initialize();
 });
