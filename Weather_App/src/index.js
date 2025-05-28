@@ -8,13 +8,18 @@ import createContent from "./modules/render.js";
 const pageTitle = document.querySelector('#page_title');
 const logoImage = document.querySelector('.logo img');
 
+const tempUnitBtn = document.querySelector('#temp_unit');
+tempUnitBtn.setAttribute('data-id', tempScale.units);
+
 const displayCurrent = document.querySelector('.main .now');
 const displayHours = document.querySelector('.main .hours');
 const displayDays = document.querySelector('.main .week');
 
-const locationBtn = document.querySelector('#location');
-const tempUnitBtn = document.querySelector('#temp_unit');
-tempUnitBtn.setAttribute('data-id', tempScale.units);
+const modalBox = document.querySelector('.modal');
+const dataForm = document.querySelector('#locate');
+const formInput = document.querySelector('#search');
+const dropdown = document.querySelector('#result');
+
 
 // INITIAL LOAD
 
@@ -46,14 +51,14 @@ async function initialize() {
     }
 } initialize();
 
-// EVENT HANDLERS
 
-tempUnitBtn.addEventListener('click', (e) => {
+// CHANGE UNITS
 
-    const changeUnits = new CustomEvent('changeUnits');
-    document.dispatchEvent(changeUnits);
+function changeUnits(button) {
 
-    const button = e.currentTarget;
+    const setUnits = new CustomEvent('setUnits');
+    document.dispatchEvent(setUnits);
+
     const first = button.firstElementChild;
     const last = button.lastElementChild;
 
@@ -72,9 +77,50 @@ tempUnitBtn.addEventListener('click', (e) => {
         button.dataset.id = 'metric';
         toggle (first, last);
     }
-});
-document.addEventListener('changeUnits', async () => {
+}
+// AUTOCOMPLETE
+
+function setLocation(input) {
+
+    const inpuValue = input.value;
+    let debounceTimeout;
+
+    if (inpuValue.length < 3) return;
+
+    clearTimeout(debounceTimeout);
+    debounceTimeout = setTimeout(() => {
+
+        render.locationList(inpuValue, dropdown);
+    }, 300); // debounce input
+}
+
+// EVENT HANDLERS
+
+document.addEventListener('click', (e) => {
+
+    const button = e.target.closest('button');
+    if (!button) return; // not a button
+
+    switch (button.id) {
+
+        case 'temp_unit':
+            changeUnits(button); break;
+
+        case 'location':
+            modalBox.showModal(); break;
+
+        case 'close_btn':
+            modalBox.close(); break;
+    }
+});  // buttons only
+
+document.addEventListener('setUnits', async () => {
 
     await render.updateWeater();
     await initialize();
+});
+
+formInput.addEventListener('input', (e) => {
+
+    setLocation(e.target);
 });

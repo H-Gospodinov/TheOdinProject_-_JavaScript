@@ -49,6 +49,20 @@
             </span>
             <span class="loader"></span>
         </footer>
+        <dialog class="modal">
+            <strong class="title">Enter location</strong>
+            <button class="close" id="close_btn"></button>
+            <form class="dataform" id="locate" action="#">
+                <div class="form-input">
+                    <label class="label">Start typing city name<strong class="required">*</strong></label>
+                    <input class="input" id="search" type="text" list="result" placeholder="Minimum 3 symbols" autocomplete="off" required>
+                    <datalist class="dropdown" id="result"></datalist>
+                </div>
+                <div class="form-action">
+                    <button type="submit" class="button" id="submit_button">Submit</button>
+                </div>
+            </form>
+        </dialog>
     </div>
 </body>
 </html>

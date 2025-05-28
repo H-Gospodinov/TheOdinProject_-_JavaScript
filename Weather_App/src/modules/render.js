@@ -1,4 +1,5 @@
 import getWeather from "./weather.js";
+import searchLocation from "./search.js";
 import createCurrent from "./current.js";
 import createHour from "./hours.js";
 import createDay from "./days.js";
@@ -16,7 +17,7 @@ async function createContent() {
     return { // render
 
         updateWeater: async () => {
-            weather = await getWeather()
+            weather = await getWeather();
         },
 
         // CURRENT WEATHER
@@ -53,7 +54,30 @@ async function createContent() {
                 concatDays.push(await createDay(days[i]));
             }
             target.innerHTML = concatDays.join('');
-        }
+        },
+
+        // SEARCH LOCATION
+
+        locationList: async (input, target) => {
+
+            const locationList = await searchLocation(input);
+
+            target.replaceChildren();
+
+            if (locationList && locationList.length) {
+
+                for (const entry of locationList) {
+                    const result = document.createElement('option');
+                    result.value = entry.properties.formatted;
+                    target.append(result);
+                }
+                target.classList.remove('no-results');
+            }
+            else {
+                target.innerText = 'no results found';
+                target.classList.add('no-results');
+            }
+        }, // populate datalist
     }
 }
 export default createContent;

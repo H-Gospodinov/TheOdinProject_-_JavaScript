@@ -94,7 +94,7 @@ body {
     display: flex;
     align-items: center;
     column-gap: 20px;
-    min-height: 100px;
+    min-height: 128px;
     font-size: 52px;
 }
 .static {
@@ -113,6 +113,9 @@ body {
     display: flex;
     column-gap: 10px;
     filter: invert(1);
+}
+.options img {
+    pointer-events: none;
 }
 .main {
     flex-grow: 1;
@@ -260,8 +263,10 @@ body {
 .day .name {
     margin-bottom: 2px;
     font-size: 22px;
-    font-weight: 700;
+    font-weight: 300;
+    /*font-weight: 700;*/
     letter-spacing: 1px;
+    color: #fbbf24;
 }
 .day .image {
     align-self: center;
@@ -306,4 +311,151 @@ body {
 }
 .footer a {
     color: inherit;
+}
+
+.modal {
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    width: 450px;
+    max-width: 95%;
+    border: none;
+    border-radius: 5px;
+    overflow: visible;
+    background-color: #fff;
+    padding: 20px;
+}
+.modal::backdrop {
+    background-color: #000c;
+}
+.modal, .modal::backdrop {
+    transition: 0.5s ease allow-discrete;
+    opacity: 0; /*allow discrete*/
+}
+.modal[open],
+.modal[open]::backdrop {
+    opacity: 1;
+    @starting-style {
+        opacity: 0;
+    } /*start value goes last*/
+}
+.modal .close {
+    display: grid;
+    place-items: center;
+    position: absolute;
+    top: 0; right: 0;
+    width: 40px;
+    height: 40px;
+    transition: 0.5s ease;
+}
+.modal .close:before,
+.modal .close:after {
+    content: "";
+    grid-area: 1 / 1;
+    width: 16px;
+    height: 2px;
+    background-color: #000;
+}
+.modal .close:before {
+    transform: rotate(-45deg);
+}
+.modal .close:after {
+    transform: rotate(45deg);
+}
+.modal .close:hover {
+    transform: rotate(360deg);
+}
+.modal .title {
+    font-size: 30px;
+    line-height: 50px;
+    font-weight: normal;
+}
+.modal .hint {
+    margin-bottom: 20px;
+    color: #666;
+}
+.modal .required {
+    font-size: 17px;
+    color: red;
+}
+.modal .form-input {
+    display: flex;
+    flex-flow: column;
+    row-gap: 10px;
+    position: relative;
+}
+.modal .label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 300;
+    font-style: italic;
+}
+.modal .input {
+    width: 100%;
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 0 8px;
+}
+.modal .input:user-invalid {
+    border-color: red;
+}
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+.modal .input::placeholder {
+    color: #ccc;
+}
+.modal .input:focus::placeholder {
+    color: #fff;
+}
+.modal .dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0; right: 0;
+    background: #fff;
+    padding: 15px 15px;
+    box-shadow: 0 5px 10px #0003;
+    border-radius: 0 0 5px 5px;
+    font-weight: 300;
+}
+.modal .dropdown:empty {
+    display: none;
+}
+.modal .dropdown span {
+    display: block;
+    border-radius: 1px;
+    padding: 5px 0;
+    transition: 0.2s ease;
+    cursor: pointer;
+}
+.modal .dropdown span:hover {
+    box-shadow: 0 0 0 10px #eee;
+    background-color: #eee;
+}
+.modal .dropdown span +span {
+    margin-top: 10px;
+}
+.modal .no-results {
+    display: block;
+}
+.modal .form-action {
+    margin-top: 20px;
+    text-align: center;
+}
+.modal .button {
+    min-width: 180px;
+    border-radius: 4px;
+    background-color: #ad6;
+    padding: 15px 20px;
+    font-size: 17px;
+    line-height: 17px;
+    color: #000c;
+    text-shadow: 1px 1px #fff3;
+    transition: 0.2s ease;
+}
+.modal .button:hover {
+    box-shadow: 0 0 0 1px #0001,
+                0 0 0 1px #0001 inset;
+    color: #000d;
 }
