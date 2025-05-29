@@ -18,7 +18,7 @@ const displayDays = document.querySelector('.main .week');
 const modalBox = document.querySelector('.modal');
 const dataForm = document.querySelector('#locate');
 const formInput = document.querySelector('#search');
-const dropdown = document.querySelector('#result');
+const dataList = document.querySelector('#result');
 
 
 // INITIAL LOAD
@@ -43,21 +43,45 @@ async function initialize() {
     }
     catch (error) {
         console.error('No content to render,', error);
-        pageTitle.innerText = 'no data available';
-    }
-    finally {
-        if (localName.name) return;
-        pageTitle.innerText = 'location ?';
+        pageTitle.innerText = 'No location or data';
+        changeTriggered = false; // reset
     }
 } initialize();
 
 
+// CHANGE LOCATION
+
+function setLocation(e) {
+
+    const inputValue = e.target.value;
+    let debounceTimeout;
+
+    if (inputValue.length < 3) {
+        dataList.replaceChildren();
+        return; // stop
+    }
+    switch (e.type) { // if change: ignore input
+
+        case 'change':
+            changeTriggered = true; break;
+            
+        case 'input':
+            setTimeout(() => {
+                changeTriggered ? null : debounceInput();
+                changeTriggered = false;
+            }, 0);
+    }
+    const debounceInput = () => {
+        clearTimeout(debounceTimeout);
+        debounceTimeout = setTimeout(() => {
+            // autocomplete
+            render.locationList(inputValue, dataList);
+        }, 300);
+    }
+}
 // CHANGE UNITS
 
-function changeUnits(button) {
-
-    const setUnits = new CustomEvent('setUnits');
-    document.dispatchEvent(setUnits);
+async function changeUnits(button) {
 
     const first = button.firstElementChild;
     const last = button.lastElementChild;
@@ -77,21 +101,8 @@ function changeUnits(button) {
         button.dataset.id = 'metric';
         toggle (first, last);
     }
-}
-// AUTOCOMPLETE
-
-function setLocation(input) {
-
-    const inpuValue = input.value;
-    let debounceTimeout;
-
-    if (inpuValue.length < 3) return;
-
-    clearTimeout(debounceTimeout);
-    debounceTimeout = setTimeout(() => {
-
-        render.locationList(inpuValue, dropdown);
-    }, 300); // debounce input
+    await render.updateWeater(null, true);
+    await initialize();
 }
 
 // EVENT HANDLERS
@@ -112,15 +123,19 @@ document.addEventListener('click', (e) => {
         case 'close_btn':
             modalBox.close(); break;
     }
-});  // buttons only
-
-document.addEventListener('setUnits', async () => {
-
-    await render.updateWeater();
-    await initialize();
 });
+// FORM HANDLERS
 
-formInput.addEventListener('input', (e) => {
+let changeTriggered = false;
 
-    setLocation(e.target);
+formInput.addEventListener('change', setLocation);
+formInput.addEventListener('input', setLocation);
+
+dataForm.addEventListener('submit', async (e) => {
+
+    e.preventDefault();
+    
+    await render.updateWeater(formInput.value);
+    await initialize();
+    modalBox.close();
 });

@@ -1,7 +1,12 @@
 
 // FIND LOCATION
 
+let pendingRequest = false;
+
 async function findLocation(input) {
+
+    if (pendingRequest) return;
+    pendingRequest = true;
 
     const options = `text=${encodeURIComponent(input)}&type=city&limit=5`;
     const authorize = '4da60ad59b6b4b2b8510107378b5641f';
@@ -10,11 +15,13 @@ async function findLocation(input) {
         const locationData = await request.json();
 
         storedLocation[input] = locationData.features; // cache it
-        console.log(storedLocation)
         return locationData.features;
     }
     catch (error) {
         console.error('Error fetching location suggestions,', error);
+    }
+    finally {
+        pendingRequest = false;
     }
 }
 // SEARCH LOCATION

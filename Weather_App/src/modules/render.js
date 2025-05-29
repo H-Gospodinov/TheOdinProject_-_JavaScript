@@ -4,28 +4,30 @@ import createCurrent from "./current.js";
 import createHour from "./hours.js";
 import createDay from "./days.js";
 
-import sampleData from "./temp.json"; // TEMP
-const current = sampleData.currentConditions; // TEMP
-const text = sampleData.description;
-const hours = sampleData.days[0].hours; // TEMP
-const days = sampleData.days; // TEMP
+// CREATE CONTENT
 
 async function createContent() {
 
-    //let weather = await getWeather();
+    let weather = await getWeather();
+    let currentLocation;
 
     return { // render
 
-        updateWeater: async () => {
-            weather = await getWeather();
-        },
+        updateWeater: async (New, current) => {
 
+            if (current) {
+                weather = await getWeather(currentLocation);
+            } else {
+                weather = await getWeather(New);
+                currentLocation = New;
+            }
+        },
         // CURRENT WEATHER
 
         currentWeather: async (target) => {
 
-            //const current = await weather.currentConditions;
-            //const text = await weather.description;
+            const current = await weather.currentConditions;
+            const text = await weather.description;
 
             target.innerHTML = await createCurrent(current, text);
         },
@@ -34,7 +36,7 @@ async function createContent() {
 
         forecastHours: async (target) => {
 
-            //const hours = await weather.days[0].hours;
+            const hours = await weather.days[0].hours;
             const concatHours = [];
 
             for (let i of [0, 3, 6, 9, 12, 15, 18, 21]) {
@@ -47,7 +49,7 @@ async function createContent() {
 
         forecastDays: async (target) => {
 
-            //const days = await weather.days;
+            const days = await weather.days;
             const concatDays = [];
 
             for (let i = 0; i < 7; i++) {
@@ -71,13 +73,8 @@ async function createContent() {
                     result.value = entry.properties.formatted;
                     target.append(result);
                 }
-                target.classList.remove('no-results');
-            }
-            else {
-                target.innerText = 'no results found';
-                target.classList.add('no-results');
-            }
-        }, // populate datalist
-    }
+            } // skip undefined or empty
+        },
+    } // content factory
 }
 export default createContent;
