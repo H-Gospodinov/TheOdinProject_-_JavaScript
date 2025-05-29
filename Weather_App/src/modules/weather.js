@@ -38,7 +38,7 @@ async function getWeather(New) {
             tempScale.units = 'us';
         }
         const coordinates = location.latitude +','+ location.longitude;
-        localName.name = location.city +','+ location.country_code2;
+        localName.name = location.city +', '+ location.country_name;
         return await findWeather(coordinates, tempScale.units);
     }
 }

@@ -6,7 +6,7 @@ async function findLocation() {
         const request = await fetch('https://api.ipgeolocation.io/ipgeo?apiKey=1892a0be4984422185242d37d697cf21');
         const locationData = await request.json();
 
-        localStorage.setItem('locationData', JSON.stringify(locationData)); // cache it
+        //localStorage.setItem('locationData', JSON.stringify(locationData)); // cache it
         return locationData;
     }
     catch (error) {

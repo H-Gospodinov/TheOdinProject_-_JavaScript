@@ -16,7 +16,8 @@ class Current {
         this.temp = temp;
     }
     format() {
-        const date = new Date(this.datetimeEpoch * 1000);
+        // API time is historical, use system time instead
+        const date = new Date(/*(this.datetimeEpoch) * 1000*/);
         const options = { weekday: 'short', day: 'numeric', month: 'short',
                           hour: '2-digit', minute: '2-digit', hour12: false };
         return date.toLocaleString('en-US', options);

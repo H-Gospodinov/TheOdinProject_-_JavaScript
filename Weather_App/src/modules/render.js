@@ -16,9 +16,10 @@ async function createContent() {
         updateWeater: async (New, current) => {
 
             if (current) {
-                weather = await getWeather(currentLocation);
-            } else {
-                weather = await getWeather(New);
+                weather = await getWeather(currentLocation); // change units
+            }
+            else {
+                weather = await getWeather(New); // change location
                 currentLocation = New;
             }
         },
@@ -69,8 +70,10 @@ async function createContent() {
             if (locationList && locationList.length) {
 
                 for (const entry of locationList) {
+
                     const result = document.createElement('option');
-                    result.value = entry.properties.formatted;
+                    result.value = entry.properties.formatted.replace(/\s*\(.*?\)/g,'');
+                    // remove words in parentheses
                     target.append(result);
                 }
             } // skip undefined or empty
