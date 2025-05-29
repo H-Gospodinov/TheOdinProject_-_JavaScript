@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather App</title>
+    <meta name="description" content="Weather app completed for the Odin Project's JavaScript curriculum.">
+    <meta name="keywords" content="The Odin Project, JavaScript, Weather App">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="8a381d6707a7963fb6f1.woff2" rel="preload" as="font" type="font/woff2" crossorigin="anonymous">
+    <link href="4f5501c488df46c22c83.css" rel="stylesheet">
+    <link href="c9e554651c768bc4b1b8.ico" rel="icon">
+<script defer src="main.js"></script></head>
+<body class="loading">
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <img src="3720b147d1575f3f8744.png" class="static" width="160" height="160" hidden>
+                <span id="page_title"></span>
+            </div>
+            <div class="options">
+                <button id="location">
+                    <img src="b58755586954e04ad4d3.png" width="64" height="64">
+                </button>
+                <button id="temp_unit">
+                    <img src="a85a0ebd56e391e58ad3.png" id="celsius" width="64" height="64">
+                    <img src="3369dc742ca51210ec47.png" id="fahrenheit" width="64" height="64" hidden>
+                </button>
+            </div>
+        </header>
+        <main class="main">
+            <div class="section now">
+            </div>
+            <div class="section today">
+                <div class="head">
+                    <span>Night</span>
+                    <span>Morning</span>
+                    <span>Afternoon</span>
+                    <span>Evening</span>
+                </div>
+                <div class="hours"></div>
+            </div>
+            <div class="section week">
+            </div>
+        </main>
+        <footer class="footer">
+            <span>
+                Check source code on
+                <a href="https://h-gospodinov.github.io/H-Gospodinov/" target="_blank" rel="noopener">GitHub</a>
+            </span>
+            <span class="loader"></span>
+        </footer>
+        <dialog class="modal">
+            <strong class="title">Enter location</strong>
+            <button class="close" id="close_btn"></button>
+            <form class="dataform" id="locate" action="#">
+                <div class="form-input">
+                    <label class="label">Start typing city name<strong class="required">*</strong></label>
+                    <input class="input" id="search" type="text" list="result" placeholder="Minimum 3 symbols" autocomplete="off" required>
+                    <datalist class="dropdown" id="result"></datalist>
+                </div>
+                <div class="form-action">
+                    <button type="submit" class="button" id="submit_button">Submit</button>
+                </div>
+            </form>
+        </dialog>
+    </div>
+</body>
+</html>
