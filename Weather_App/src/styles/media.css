@@ -16,7 +16,8 @@ if styles.css is excluded from bundling */
     font-style: normal;
     font-display: swap;
 }
-
 body {
     background-image: url(../images/background.jpg);
+    background-position: center top;
+    background-attachment: fixed;
 }
