@@ -48,10 +48,11 @@ if styles.css is excluded from bundling */
     font-style: normal;
     font-display: swap;
 }
-
 body {
     background-image: url(${___CSS_LOADER_URL_REPLACEMENT_2___});
-}`, "",{"version":3,"sources":["webpack://./src/styles/media.css"],"names":[],"mappings":";AACA;yCACyC;;AAEzC;IACI,qBAAqB;IACrB,4DAA4D;IAC5D,gBAAgB;IAChB,kBAAkB;IAClB,kBAAkB;AACtB;AACA;IACI,qBAAqB;IACrB,4DAAuD;IACvD,gBAAgB;IAChB,kBAAkB;IAClB,kBAAkB;AACtB;;AAEA;IACI,yDAA+C;AACnD","sourcesContent":["\r\n/* CSS media must be bundled separately\r\nif styles.css is excluded from bundling */\r\n\r\n@font-face {\r\n    font-family: 'Roboto';\r\n    src: url('../fonts/Roboto-ExtraLight.woff2') format('woff2');\r\n    font-weight: 200;\r\n    font-style: normal;\r\n    font-display: swap;\r\n}\r\n@font-face {\r\n    font-family: 'Roboto';\r\n    src: url('../fonts/Roboto-Light.woff2') format('woff2');\r\n    font-weight: 300;\r\n    font-style: normal;\r\n    font-display: swap;\r\n}\r\n\r\nbody {\r\n    background-image: url(../images/background.jpg);\r\n}"],"sourceRoot":""}]);
+    background-position: center top;
+    background-attachment: fixed;
+}`, "",{"version":3,"sources":["webpack://./src/styles/media.css"],"names":[],"mappings":";AACA;yCACyC;;AAEzC;IACI,qBAAqB;IACrB,4DAA4D;IAC5D,gBAAgB;IAChB,kBAAkB;IAClB,kBAAkB;AACtB;AACA;IACI,qBAAqB;IACrB,4DAAuD;IACvD,gBAAgB;IAChB,kBAAkB;IAClB,kBAAkB;AACtB;AACA;IACI,yDAA+C;IAC/C,+BAA+B;IAC/B,4BAA4B;AAChC","sourcesContent":["\r\n/* CSS media must be bundled separately\r\nif styles.css is excluded from bundling */\r\n\r\n@font-face {\r\n    font-family: 'Roboto';\r\n    src: url('../fonts/Roboto-ExtraLight.woff2') format('woff2');\r\n    font-weight: 200;\r\n    font-style: normal;\r\n    font-display: swap;\r\n}\r\n@font-face {\r\n    font-family: 'Roboto';\r\n    src: url('../fonts/Roboto-Light.woff2') format('woff2');\r\n    font-weight: 300;\r\n    font-style: normal;\r\n    font-display: swap;\r\n}\r\nbody {\r\n    background-image: url(../images/background.jpg);\r\n    background-position: center top;\r\n    background-attachment: fixed;\r\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -922,8 +923,10 @@ class Day {
 
         return `
             <div class="box day">
-                <div class="name">${this.format().date1}</div>
-                <div class="date">${this.format().date2}</div>
+                <div class="date">
+                    <div class="name">${this.format().date1}</div>
+                    <div class="time">${this.format().date2}</div>
+                </div>
                 <img class="image" src="${image.default}" width="128" height="128">
                 <div class="info">${this.conditions}</div>
                 <div class="temp">
@@ -994,7 +997,7 @@ class Hour {
         return `
             <div class="box hour">
                 <div class="time">${this.format()}</div>
-                <img src="${image.default}" width="128" height="128">
+                <img class="image" src="${image.default}" width="128" height="128">
                 <div class="temp">${this.split(this.temp)} °</div>
                 <div class="wind">
                     <img src="${pointer.default}" width="16" height="16" style="--rotate: ${this.winddir}deg">
