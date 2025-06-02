@@ -82,21 +82,26 @@ body {
     max-width: 1920px;
     min-height: 100%;
     margin: auto auto;
-    padding-inline: clamp(5%, 10vw, 10%);
+    padding-inline: 10%;
     transition: 0.2s ease;
 }
 .header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    column-gap: 20px;
     padding: 2% 0;
 }
 .logo {
     display: flex;
     align-items: center;
     column-gap: 20px;
-    min-height: 128px;
-    font-size: 52px;
+    min-height: 160px;
+    font-size: clamp(36px, 4vw, 52px);
+    transition: 0.5s ease;
+}
+.logo img {
+    transition: width 0.5s ease;
 }
 .static {
     animation: rotate 20s linear infinite;
@@ -115,6 +120,13 @@ body {
     column-gap: 10px;
     filter: invert(1);
 }
+.options img {
+    transition: 0.5s ease;
+}
+.logo:has(span:empty) img,
+.logo:has(span:empty) ~.options {
+    display: none;
+}
 .main {
     flex-grow: 1;
     display: flex;
@@ -123,9 +135,11 @@ body {
     display: grid;
     grid-template: 0.9fr 1.1fr / 1fr 2fr;
     grid-gap: 10px 10px;
+    width: 100%;
     max-height: 700px;
 }
 .section {
+    min-width: 0;
     transition: 0.2s ease;
 }
 .section.now,
@@ -467,12 +481,27 @@ body {
 
 @media (max-width: 1600px) {
 
+    .container {
+        padding-inline: 8%;
+    }
     .day .image {
         flex-grow: 1;
     }
 }
 @media (max-width: 1400px) {
 
+    .container {
+        padding-inline: 6%;
+    }
+    .logo {
+        min-height: 120px;
+    }
+    .logo img {
+        width: 120px;
+    }
+    .options img {
+        width: 54px;
+    }
     .board {
         display: block;
         max-height: none;
@@ -499,5 +528,141 @@ body {
     .day .info {
         height: 36px;
         overflow: clip;
+    }
+}
+@media (max-width: 1000px) {
+
+    .container {
+        padding-inline: 4%;
+    }
+    .logo {
+        min-height: 80px;
+    }
+    .logo img {
+        width: 80px;
+    }
+    .options img {
+        width: 40px;
+    }
+    .section.week {
+        flex-flow: column;
+        border-radius: 15px;
+        overflow: clip;
+    }
+    .box.day {
+        flex-flow: row;
+        border-radius: 0;
+        padding: 0;
+    }
+    .box.day + .day {
+        border-top: 1px solid #fff4;
+    }
+    .box.day > * {
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        margin: unset;
+        padding: 10px;
+    }
+    .day .date {
+        flex-basis: 15%;
+        min-width: 15%;
+        justify-content: center;
+        flex-flow: column;
+    }
+    .day .date ~ * {
+        border-left: 1px solid #fff4;
+    }
+    .day .image {
+        flex-basis: 22%;
+        max-width: 128px;
+    }
+    .day .info {
+        flex-basis: 23%;
+        justify-content: center;
+        height: auto;
+    }
+    .day .temp {
+        flex-basis: 22%;
+        min-width: 22%;
+    }
+    .day .wind {
+        flex-basis: 18%;
+    }
+}
+@media (max-width: 768px) {
+
+    .section.today {
+        border-top: none;
+    }
+    .today .hours {
+        flex-flow: column;
+        padding: 0;
+    }
+    .box.hour {
+        flex-flow: row;
+        align-items: stretch;
+        border-top: 1px solid #fff4;
+        padding: 0;
+    }
+    .box.hour > * {
+        flex: 1 0 25%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: unset;
+        padding: 0 10px;
+    }
+    .hour:first-child {
+        border-top-style: dotted;
+    }
+    .hour .time ~ * {
+        border-left: 1px solid #fff4;
+    }
+    .hour .image {
+        max-width: 128px;
+    }
+    .footer {
+        padding: 15px 0;
+    }
+}
+@media (max-width: 600px) {
+
+    .header {
+        flex-flow: column;
+        row-gap: 15px;
+        padding: 15px 0;
+    }
+    .logo {
+        min-height: 0;
+    }
+    .logo img {
+        display: none;
+    }
+    .options {
+        column-gap: 15px;
+    }
+    .hour .time small {
+        margin-left: 5px;
+        font-size: 11px;
+    }
+    .hour .image {
+        max-width: 25%;
+    }
+    .hour .wind img,
+    .day .wind img {
+        display: none;
+    }
+    .day .name {
+        font-size: 17px;
+    }
+    .day .image {
+        max-width: 22%;
+    }
+    .day .info {
+        display: none;
+    }
+    .day .temp .sep {
+        margin: 0 -5px;
     }
 }

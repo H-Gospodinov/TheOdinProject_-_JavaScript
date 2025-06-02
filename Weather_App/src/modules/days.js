@@ -33,8 +33,10 @@ class Day {
 
         return `
             <div class="box day">
-                <div class="name">${this.format().date1}</div>
-                <div class="date">${this.format().date2}</div>
+                <div class="date">
+                    <div class="name">${this.format().date1}</div>
+                    <div class="time">${this.format().date2}</div>
+                </div>
                 <img class="image" src="${image.default}" width="128" height="128">
                 <div class="info">${this.conditions}</div>
                 <div class="temp">
