@@ -52,7 +52,18 @@ body {
     background-image: url(${___CSS_LOADER_URL_REPLACEMENT_2___});
     background-position: center top;
     background-attachment: fixed;
-}`, "",{"version":3,"sources":["webpack://./src/styles/media.css"],"names":[],"mappings":";AACA;yCACyC;;AAEzC;IACI,qBAAqB;IACrB,4DAA4D;IAC5D,gBAAgB;IAChB,kBAAkB;IAClB,kBAAkB;AACtB;AACA;IACI,qBAAqB;IACrB,4DAAuD;IACvD,gBAAgB;IAChB,kBAAkB;IAClB,kBAAkB;AACtB;AACA;IACI,yDAA+C;IAC/C,+BAA+B;IAC/B,4BAA4B;AAChC","sourcesContent":["\r\n/* CSS media must be bundled separately\r\nif styles.css is excluded from bundling */\r\n\r\n@font-face {\r\n    font-family: 'Roboto';\r\n    src: url('../fonts/Roboto-ExtraLight.woff2') format('woff2');\r\n    font-weight: 200;\r\n    font-style: normal;\r\n    font-display: swap;\r\n}\r\n@font-face {\r\n    font-family: 'Roboto';\r\n    src: url('../fonts/Roboto-Light.woff2') format('woff2');\r\n    font-weight: 300;\r\n    font-style: normal;\r\n    font-display: swap;\r\n}\r\nbody {\r\n    background-image: url(../images/background.jpg);\r\n    background-position: center top;\r\n    background-attachment: fixed;\r\n}"],"sourceRoot":""}]);
+    background-repeat: no-repeat;
+}
+@supports (-webkit-hyphens:none) {
+    body {
+        background-image: none;
+    }
+    body::before {
+        background-image: url(${___CSS_LOADER_URL_REPLACEMENT_2___});
+        background-position: center top;
+        background-repeat: no-repeat;
+    }
+}`, "",{"version":3,"sources":["webpack://./src/styles/media.css"],"names":[],"mappings":";AACA;yCACyC;;AAEzC;IACI,qBAAqB;IACrB,4DAA4D;IAC5D,gBAAgB;IAChB,kBAAkB;IAClB,kBAAkB;AACtB;AACA;IACI,qBAAqB;IACrB,4DAAuD;IACvD,gBAAgB;IAChB,kBAAkB;IAClB,kBAAkB;AACtB;AACA;IACI,yDAA+C;IAC/C,+BAA+B;IAC/B,4BAA4B;IAC5B,4BAA4B;AAChC;AACA;IACI;QACI,sBAAsB;IAC1B;IACA;QACI,yDAA+C;QAC/C,+BAA+B;QAC/B,4BAA4B;IAChC;AACJ","sourcesContent":["\r\n/* CSS media must be bundled separately\r\nif styles.css is excluded from bundling */\r\n\r\n@font-face {\r\n    font-family: 'Roboto';\r\n    src: url('../fonts/Roboto-ExtraLight.woff2') format('woff2');\r\n    font-weight: 200;\r\n    font-style: normal;\r\n    font-display: swap;\r\n}\r\n@font-face {\r\n    font-family: 'Roboto';\r\n    src: url('../fonts/Roboto-Light.woff2') format('woff2');\r\n    font-weight: 300;\r\n    font-style: normal;\r\n    font-display: swap;\r\n}\r\nbody {\r\n    background-image: url(../images/background.jpg);\r\n    background-position: center top;\r\n    background-attachment: fixed;\r\n    background-repeat: no-repeat;\r\n}\r\n@supports (-webkit-hyphens:none) {\r\n    body {\r\n        background-image: none;\r\n    }\r\n    body::before {\r\n        background-image: url(../images/background.jpg);\r\n        background-position: center top;\r\n        background-repeat: no-repeat;\r\n    }\r\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

@@ -123,10 +123,6 @@ body {
 .options img {
     transition: 0.5s ease;
 }
-.logo:has(span:empty) img,
-.logo:has(span:empty) ~.options {
-    display: none;
-}
 .main {
     flex-grow: 1;
     display: flex;
@@ -414,6 +410,7 @@ body {
     border: 1px solid #ccc;
     border-radius: 3px;
     padding: 0 8px;
+    font-size: 14px;
 }
 .modal .input:user-invalid {
     border-color: red;
@@ -635,6 +632,7 @@ body {
     }
     .logo {
         min-height: 0;
+        text-align: center;
     }
     .logo img {
         display: none;
@@ -664,5 +662,31 @@ body {
     }
     .day .temp .sep {
         margin: 0 -5px;
+    }
+}
+
+/* additional */
+
+.logo:has(span:empty) img,
+.logo:has(span:empty) ~.options {
+    opacity: 0;
+    pointer-events: none;
+}
+@supports (-webkit-hyphens:none) {
+    /* iOS fixes */
+    body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        min-height: 100vh;
+    }
+    .logo:has(span:empty) img,
+    .logo:has(span:empty) ~.options {
+        opacity: 1;
+        pointer-events: auto;
+    }
+    .modal .input {
+        font-size: 16px;
     }
 }
