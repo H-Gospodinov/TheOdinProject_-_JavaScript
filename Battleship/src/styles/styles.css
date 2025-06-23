@@ -71,3 +71,6 @@ body {
 .occupied {
     background-color: #ad6;
 }
+#board-2 .cell {
+    cursor: crosshair;
+}

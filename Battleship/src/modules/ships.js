@@ -48,10 +48,11 @@ class Ship {
                 this.enclose(segment, fleet);
             }
         } while (occupied);
+
         return position;
     }
 
-    enclose(pos, fleet) { // disable adjacent
+    enclose(pos, fleet) { // disable adjacent positions
 
         const adjacentPositions = [
             { x: pos.x - 1, y: pos.y - 1 },
@@ -68,16 +69,4 @@ class Ship {
         });
     }
 }
-function createShips(boardSize) {
-
-    const ships = []; // predefined lengths
-    const lengths = [4, 3, 3, 2, 2, 1, 1, 1];
-    const fleet = new Set(); // reserved space
-
-    for (let shipLength of lengths) {
-        ships.push(new Ship(boardSize, shipLength).create(fleet));
-    }
-    return ships;
-}
-
-export default createShips;
+export default Ship;
