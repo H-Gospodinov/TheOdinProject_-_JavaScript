@@ -1,14 +1,15 @@
 import Ship from "./ships.js";
 import Player from "./player.js";
 
-let currentPlayer = Math.random() < 0.5 ? 0 : 1; // random
-currentPlayer ? performAction().computerAttack() : null;
+let currentPlayer, humanFleet, computerFleet;
 
-function performAction() {
+// PERFORM ACTION
+
+function performAction(area) {
 
     return {
 
-        createShips: (boardSize) => {
+        createShips() {
 
             const ships = []; // predefined lengths
             const lengths = [4, 3, 3, 2, 2, 1, 1, 1];
@@ -16,28 +17,31 @@ function performAction() {
 
             for (let shipSize of lengths) {
 
-                ships.push(new Ship(
-                    boardSize, shipSize).create(fleet)
-                );
-            } return ships;
+                ships.push(new Ship(area, shipSize).create(fleet));
+            }
+            if (humanFleet) computerFleet = ships;
+            else humanFleet = ships;
+
+            return ships;
         },
 
-        humanAttack: () => {
+        selectPlayer() { // random start
 
-            alert('human attack');
-            new Player(currentPlayer).action();
-            performAction().switchPlayer();
-
-            setTimeout(() => {
-                performAction().computerAttack();
-            }, 1000);
+            currentPlayer = Math.random() < 0.5 ? 0 : 1;
+            // 0 = human, 1 = computer
+            return currentPlayer;
         },
 
-        computerAttack: () => {
+        performAttack(target) {
 
-                alert('computer attack');
-                new Player(currentPlayer).action();
-                performAction().switchPlayer();
+            const now = target ? 'human' : 'computer';
+
+            return new Promise((resolve) => {
+
+                const action = Player(area).attack(target, now);
+                resolve(action);
+                this.switchPlayer();
+            });
         },
 
         switchPlayer: () => {

@@ -1,16 +1,17 @@
 //import "./styles/styles.css"; // do NOT include
 //import "./styles/media.css"; // always include
 
-import createBoard from "./modules/render.js";
+import {createBoard, updateBoard} from "./modules/render.js";
 import performAction from "./modules/game.js";
 
 const boards = document.querySelectorAll('.board');
+const [humanBoard, computerBoard] = boards;
 
 
 // HTML INJECTION
 
 const boardSize = 10; // default size
-const gameBoard = createBoard(boards, boardSize);
+const gameBoard = createBoard(boardSize);
 
 for (const board of boards) {
 
@@ -25,6 +26,9 @@ for (const board of boards) {
 
 // EVENT HANDLERS
 
-boards[1].addEventListener('click', () => {
-    performAction().humanAttack();
+const randomStart = performAction().selectPlayer();
+if (randomStart === 1) updateBoard(computerBoard).computerStrike();
+
+computerBoard.addEventListener('click', (e) => {
+    updateBoard(computerBoard).humanStrike(e);
 });
