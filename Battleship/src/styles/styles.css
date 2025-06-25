@@ -71,6 +71,12 @@ body {
 .occupied {
     background-color: #ad6;
 }
+.missed {
+    background-color: #eee;
+}
+.destroyed {
+    background-color: #c00;
+}
 #board-2 .cell {
     cursor: crosshair;
 }

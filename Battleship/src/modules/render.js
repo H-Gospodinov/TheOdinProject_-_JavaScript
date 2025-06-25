@@ -1,14 +1,19 @@
 import performAction from "./game.js";
 
-// SET GAMEBOARD
+let newAction; // TO DO
 
-function createBoard(boards, size) {
+
+// CREATE BOARD
+
+function createBoard(size) {
+
+    newAction = performAction(size);
 
     return {
 
         createLabels: (wrapper) => {
 
-            for (let i = 1; i <= size; i++) {
+            for (let i = 0; i < size; i++) {
 
                 const label = document.createElement('span');
 
@@ -36,7 +41,7 @@ function createBoard(boards, size) {
 
         startGame: (grid) => {
 
-            const ships = performAction().createShips(size);
+            const ships = newAction.createShips();
 
             for (const ship of ships) {
 
@@ -49,9 +54,52 @@ function createBoard(boards, size) {
                 }
             } // both are arrays
         },
-    }; // return functions
+    };
 }
-function updateBoard() {
+// UPDATE BOARD
 
+function updateBoard(board) {
+
+    let target; // both boards
+
+    return {
+
+        async humanStrike(event) {
+
+            target = event.target;
+            this.displayStrike(target);
+
+            const attack = await newAction.performAttack(target);
+
+            board.style.pointerEvents = 'none';
+            target.style.pointerEvents = 'none';
+
+            setTimeout(async () => {
+                await this.computerStrike();
+            }, 500);
+        },
+
+        async computerStrike() {
+
+            const attack = await newAction.performAttack();
+            const index = attack.y * 10 + attack.x;
+
+            target = board.previousElementSibling;
+            target = target.querySelector(`div[data-id="${index}"]`);
+
+            this.displayStrike(target);
+            board.removeAttribute('style');
+        },
+
+        displayStrike(target) {
+
+            if (target.classList.contains('occupied')) {
+                target.classList.add('destroyed');
+            }
+            else {
+                target.classList.add('missed')
+            }
+        },
+    };
 }
-export default createBoard;
+export {createBoard, updateBoard};
