@@ -7,13 +7,13 @@ let currentPlayer, humanFleet, computerFleet;
 
 function performAction(area) {
 
-    return {
+    return { // factory
 
-        createShips() {
+        createShips: () => {
 
-            const ships = []; // predefined lengths
+            const ships = [];
             const lengths = [4, 3, 3, 2, 2, 1, 1, 1];
-            const fleet = new Set(); // reserved space
+            const fleet = new Set();
 
             for (let shipSize of lengths) {
 
@@ -25,23 +25,18 @@ function performAction(area) {
             return ships;
         },
 
-        selectPlayer() { // random start
+        selectPlayer: () => { // random start
 
             currentPlayer = Math.random() < 0.5 ? 0 : 1;
-            // 0 = human, 1 = computer
             return currentPlayer;
         },
 
-        performAttack(target) {
+        performAttack(target) { // no arrow
 
             const now = target ? 'human' : 'computer';
 
-            return new Promise((resolve) => {
-
-                const action = Player(area).attack(target, now);
-                resolve(action);
-                this.switchPlayer();
-            });
+            const action = Player(area).attack(target, now);
+            this.switchPlayer(); return action;
         },
 
         switchPlayer: () => {

@@ -50,6 +50,7 @@ body {
     justify-content: center;
     align-items: center;
     padding: 10px;
+    pointer-events: none;
 }
 .label:last-child {
     writing-mode: horizontal-tb;
@@ -62,6 +63,7 @@ body {
     flex: 1 0 10%;
     box-shadow: 0 0 0 1px #000;
     background-color: #fff;
+    transition: 0.2s ease;
 }
 .cell::before {
     content: "";
@@ -71,12 +73,25 @@ body {
 .occupied {
     background-color: #ad6;
 }
-.missed {
-    background-color: #eee;
-}
 .destroyed {
     background-color: #c00;
 }
+#board-1 .missed {
+    background-color: #ddd;
+}
 #board-2 .cell {
+    position: relative;
     cursor: crosshair;
+}
+#board-2 .cell::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: #ddd;
+}
+#board-2 .visible::after {
+    display: none;
+}
+.cell:not(.visible):hover::after {
+    background-color: #eee !important;
 }

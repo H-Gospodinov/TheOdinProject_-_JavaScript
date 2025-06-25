@@ -26,9 +26,13 @@ for (const board of boards) {
 
 // EVENT HANDLERS
 
-const randomStart = performAction().selectPlayer();
-if (randomStart === 1) updateBoard(computerBoard).computerStrike();
+const autoStart = performAction().selectPlayer();
+autoStart ? updateBoard(boardSize).computerStrike(humanBoard) : null;
 
 computerBoard.addEventListener('click', (e) => {
-    updateBoard(computerBoard).humanStrike(e);
+
+    const target = e.target;
+
+    if (!target.classList.contains('cell')) return;
+    updateBoard(boardSize).humanStrike(computerBoard, e.target);
 });

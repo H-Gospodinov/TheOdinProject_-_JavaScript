@@ -1,7 +1,6 @@
 import performAction from "./game.js";
 
-let newAction; // TO DO
-
+let newAction; // create or update
 
 // CREATE BOARD
 
@@ -9,7 +8,7 @@ function createBoard(size) {
 
     newAction = performAction(size);
 
-    return {
+    return { // factory
 
         createLabels: (wrapper) => {
 
@@ -58,47 +57,49 @@ function createBoard(size) {
 }
 // UPDATE BOARD
 
-function updateBoard(board) {
+function updateBoard(size) {
 
-    let target; // both boards
+    let target; // across any board
 
-    return {
+    return { // factory
 
-        async humanStrike(event) {
+        humanStrike(board, target) {
 
-            target = event.target;
-            this.displayStrike(target);
+            newAction.performAttack(target);
 
-            const attack = await newAction.performAttack(target);
-
-            board.style.pointerEvents = 'none';
             target.style.pointerEvents = 'none';
+            board.style.pointerEvents = 'none';
 
-            setTimeout(async () => {
-                await this.computerStrike();
+            this.displayStrike(board, target);
+
+            board = board.previousElementSibling;
+            this.computerStrike(board);
+        },
+
+        computerStrike(board) {
+
+            const attack = newAction.performAttack();
+            const index = attack.y * size + attack.x;
+
+            target = board.querySelector(`div[data-id="${index}"]`);
+            board = board.nextElementSibling;
+
+            setTimeout(() => {
+                this.displayStrike(null, target);
+                board.removeAttribute('style');
             }, 500);
         },
 
-        async computerStrike() {
-
-            const attack = await newAction.performAttack();
-            const index = attack.y * 10 + attack.x;
-
-            target = board.previousElementSibling;
-            target = target.querySelector(`div[data-id="${index}"]`);
-
-            this.displayStrike(target);
-            board.removeAttribute('style');
-        },
-
-        displayStrike(target) {
+        displayStrike(reveal, target) {
 
             if (target.classList.contains('occupied')) {
                 target.classList.add('destroyed');
             }
             else {
-                target.classList.add('missed')
+                target.classList.add('missed');
             }
+            // reveal enemy target
+            if(reveal) target.classList.add('visible');
         },
     };
 }
