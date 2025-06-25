@@ -44,14 +44,13 @@ function createBoard(size) {
 
             for (const ship of ships) {
 
-                for (const segment of ship) {
+                const [x, y] = ship.split(', ').map(Number);
 
-                    const index = segment.y * size + segment.x;
-                    const cell = grid.querySelector(`div[data-id="${index}"]`);
+                const index = y * size + x;
+                const cell = grid.querySelector(`div[data-id="${index}"]`);
 
-                    cell.classList.add('occupied');
-                }
-            } // both are arrays
+                cell.classList.add('occupied');
+            }
         },
     };
 }

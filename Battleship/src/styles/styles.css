@@ -61,6 +61,7 @@ body {
 }
 .cell {
     flex: 1 0 10%;
+    position: relative;
     box-shadow: 0 0 0 1px #000;
     background-color: #fff;
     transition: 0.2s ease;
@@ -80,7 +81,6 @@ body {
     background-color: #ddd;
 }
 #board-2 .cell {
-    position: relative;
     cursor: crosshair;
 }
 #board-2 .cell::after {
@@ -88,10 +88,11 @@ body {
     position: absolute;
     inset: 0;
     background-color: #ddd;
+    transition: 0.2s ease;
+}
+#board-2 .cell:hover::after {
+    background-color: #eee;
 }
 #board-2 .visible::after {
     display: none;
-}
-.cell:not(.visible):hover::after {
-    background-color: #eee !important;
 }

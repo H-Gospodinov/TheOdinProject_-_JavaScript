@@ -1,7 +1,8 @@
 import Ship from "./ships.js";
 import Player from "./player.js";
 
-let currentPlayer, humanFleet, computerFleet;
+let currentPlayer;
+let humanFleet, computerFleet;
 
 // PERFORM ACTION
 
@@ -11,18 +12,17 @@ function performAction(area) {
 
         createShips: () => {
 
-            const ships = [];
-            const lengths = [4, 3, 3, 2, 2, 1, 1, 1];
             const fleet = new Set();
+            const sizes = [4, 3, 3, 2, 2, 1, 1, 1];
 
-            for (let shipSize of lengths) {
+            for (let size of sizes) {
 
-                ships.push(new Ship(area, shipSize).create(fleet));
+                new Ship(area, size).create(fleet);
             }
-            if (humanFleet) computerFleet = ships;
-            else humanFleet = ships;
+            if (humanFleet) computerFleet = fleet;
+            else humanFleet = fleet;
 
-            return ships;
+            return fleet;
         },
 
         selectPlayer: () => { // random start
@@ -34,8 +34,8 @@ function performAction(area) {
         performAttack(target) { // no arrow
 
             const now = target ? 'human' : 'computer';
-
             const action = Player(area).attack(target, now);
+
             this.switchPlayer(); return action;
         },
 

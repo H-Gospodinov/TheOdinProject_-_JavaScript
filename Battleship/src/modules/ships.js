@@ -18,7 +18,7 @@ class Ship {
         }
         while ((orientation === 0 && x + this.ship > this.board) || 
                  (orientation === 1 && y + this.ship > this.board));
-    
+
         return {x, y, orientation};
     }
 
@@ -42,7 +42,7 @@ class Ship {
                 position.push(coords);
             }
             if (occupied) continue; // already unavailable
-            
+
             for (const segment of position) {
                 fleet.add(`${segment.x}, ${segment.y}`);
                 this.enclose(segment, fleet);
