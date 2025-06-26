@@ -2,7 +2,7 @@ import Ship from "./ships.js";
 import Player from "./player.js";
 
 let currentPlayer;
-let humanFleet, computerFleet;
+let currentFleet = [];
 
 // PERFORM ACTION
 
@@ -19,9 +19,7 @@ function performAction(area) {
 
                 new Ship(area, size).create(fleet);
             }
-            if (humanFleet) computerFleet = fleet;
-            else humanFleet = fleet;
-
+            currentFleet.push(fleet);
             return fleet;
         },
 
@@ -33,10 +31,20 @@ function performAction(area) {
 
         performAttack(target) { // no arrow
 
-            const now = target ? 'human' : 'computer';
+            const now = currentPlayer;
             const action = Player(area).attack(target, now);
 
+            this.takeDamage(action, now);
             this.switchPlayer(); return action;
+        },
+
+        takeDamage: (action, now) => {
+
+            const target = `${action.x}, ${action.y}`;
+            const enemy = now ? currentFleet[0] : currentFleet[1];
+
+            enemy.has(target) ? enemy.delete(target) : null;
+            if (!enemy.size) alert('Game over');
         },
 
         switchPlayer: () => {
@@ -46,7 +54,7 @@ function performAction(area) {
                 case 0: currentPlayer = 1; break;
                 case 1: currentPlayer = 0;
             }
-        }
+        } // 0 = human player, 1 = computer
     };
 }
 export default performAction;

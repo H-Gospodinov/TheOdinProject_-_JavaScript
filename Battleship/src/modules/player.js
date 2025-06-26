@@ -33,10 +33,10 @@ function Player(boardSize) {
 
             switch (player) {
 
-                case 'human':
+                case 0: // human
                     return this.human(target);
 
-                case 'computer':
+                case 1: // computer
                     return this.computer();
             }
         },
