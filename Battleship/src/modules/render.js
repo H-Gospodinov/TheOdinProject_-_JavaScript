@@ -38,9 +38,10 @@ function createBoard(size) {
             }
         },
 
-        startGame: (grid) => {
+        startGame: (grid, first) => {
 
             const ships = newAction.createShips();
+            const autoStart = newAction.selectPlayer();
 
             for (const ship of ships) {
 
@@ -50,6 +51,9 @@ function createBoard(size) {
                 const cell = grid.querySelector(`div[data-id="${index}"]`);
 
                 cell.classList.add('occupied');
+            }
+            if (autoStart) {
+                updateBoard(size).computerStrike(first);
             }
         },
     };
@@ -91,14 +95,12 @@ function updateBoard(size) {
 
         displayStrike(reveal, target) {
 
-            if (target.classList.contains('occupied')) {
-                target.classList.add('destroyed');
-            }
-            else {
-                target.classList.add('missed');
-            }
-            // reveal enemy target
-            if(reveal) target.classList.add('visible');
+            const X = target.classList.contains('occupied');
+            const mark = X ? 'destroyed' : 'missed';
+
+            target.classList.add(mark);
+
+            reveal ? target.classList.add('visible') : null;
         },
     };
 }

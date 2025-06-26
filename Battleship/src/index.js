@@ -2,7 +2,6 @@
 //import "./styles/media.css"; // always include
 
 import {createBoard, updateBoard} from "./modules/render.js";
-import performAction from "./modules/game.js";
 
 const boards = document.querySelectorAll('.board');
 const [humanBoard, computerBoard] = boards;
@@ -12,6 +11,7 @@ const [humanBoard, computerBoard] = boards;
 
 const boardSize = 10; // default size
 const gameBoard = createBoard(boardSize);
+const autoStart = humanBoard;
 
 for (const board of boards) {
 
@@ -21,13 +21,10 @@ for (const board of boards) {
     gameBoard.createLabels(labels);
     gameBoard.createGrid(grid);
 
-    gameBoard.startGame(grid);
+    gameBoard.startGame(grid, autoStart);
 }
 
 // EVENT HANDLERS
-
-const autoStart = performAction().selectPlayer();
-autoStart ? updateBoard(boardSize).computerStrike(humanBoard) : null;
 
 computerBoard.addEventListener('click', (e) => {
 
