@@ -12,7 +12,7 @@ function createBoard(size) {
 
         createLabels: (wrapper) => {
 
-            for (let i = 0; i < size; i++) {
+            for (let i = 1; i <= size; i++) {
 
                 const label = document.createElement('span');
 
@@ -38,10 +38,9 @@ function createBoard(size) {
             }
         },
 
-        startGame: (grid, first) => {
+        startGame: (grid) => { // both
 
             const ships = newAction.createShips();
-            const autoStart = newAction.selectPlayer();
 
             for (const ship of ships) {
 
@@ -52,9 +51,15 @@ function createBoard(size) {
 
                 cell.classList.add('occupied');
             }
+        },
+
+        firstPlayer: (target) => {
+
+            const autoStart = newAction.selectPlayer();
+
             if (autoStart) {
-                updateBoard(size).computerStrike(first);
-            }
+                updateBoard(size).computerStrike(target);
+            } // random
         },
     };
 }
@@ -89,7 +94,7 @@ function updateBoard(size) {
 
             setTimeout(() => {
                 this.displayStrike(null, target);
-                board.removeAttribute('style');
+                board.style.pointerEvents = '';
             }, 500);
         },
 

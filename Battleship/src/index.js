@@ -1,5 +1,5 @@
 //import "./styles/styles.css"; // do NOT include
-//import "./styles/media.css"; // always include
+import "./styles/media.css"; // always include
 
 import {createBoard, updateBoard} from "./modules/render.js";
 
@@ -9,22 +9,26 @@ const [humanBoard, computerBoard] = boards;
 
 // HTML INJECTION
 
-const boardSize = 10; // default size
+const boardSize = 10; // default
 const gameBoard = createBoard(boardSize);
-const autoStart = humanBoard;
 
 for (const board of boards) {
 
     const labels = board.querySelector('.labels');
     const grid = board.querySelector('.grid');
 
+    board.style.setProperty('--cell-size', 100 / boardSize +'%');
+
     gameBoard.createLabels(labels);
     gameBoard.createGrid(grid);
 
-    gameBoard.startGame(grid, autoStart);
+    gameBoard.startGame(grid);
 }
 
 // EVENT HANDLERS
+
+const autoStart = humanBoard;
+gameBoard.firstPlayer(autoStart);
 
 computerBoard.addEventListener('click', (e) => {
 
