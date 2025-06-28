@@ -1,45 +1,35 @@
 
-function Player(boardSize) {
+class Player {
 
-    return {
+    constructor (boardSize, hitTarget) {
 
-        human(target) {
+        this.board = boardSize;
+        this.target = hitTarget;
+    }
 
-            const index = target.dataset.id;
+    human() {
 
-            const x = index % boardSize;
-            const y = Math.floor(index / boardSize);
+        const index = this.target.dataset.id;
 
-            return {x, y};
-        },
+        const x = index % this.board;
+        const y = Math.floor(index / this.board);
 
-        computer() {
+        return {x, y};
+    }
 
-            const strikes = new Set();
-            let x, y, key;
+    computer() {
 
-            do {
-                x = Math.floor(Math.random() * boardSize);
-                y = Math.floor(Math.random() * boardSize);
+        let x, y, key; // random
 
-                key = `${x}, ${y}`;
-            }
-            while (strikes.has(key));
+        do {
+            x = Math.floor(Math.random() * this.board);
+            y = Math.floor(Math.random() * this.board);
 
-            strikes.add(key); return {x, y};
-        },
+            key = `${x}, ${y}`;
+        }
+        while (this.target.has(key));
 
-        attack(target, player) {
-
-            switch (player) {
-
-                case 0: // human
-                    return this.human(target);
-
-                case 1: // computer
-                    return this.computer();
-            }
-        },
-    };
+        this.target.add(key); return {x, y};
+    }
 }
 export default Player;

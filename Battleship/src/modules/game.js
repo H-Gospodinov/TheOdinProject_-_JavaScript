@@ -1,8 +1,9 @@
 import Ship from "./ships.js";
 import Player from "./player.js";
 
-let currentPlayer;
-let currentFleet = [];
+let player; // current
+
+const armadas = [], targets = new Set();
 
 // PERFORM ACTION
 
@@ -19,42 +20,45 @@ function performAction(area) {
 
                 new Ship(area, size).create(fleet);
             }
-            currentFleet.push(fleet);
+            armadas.push(fleet);
             return fleet;
         },
 
-        selectPlayer: () => { // random start
+        selectPlayer: () => { // random
 
-            currentPlayer = Math.random() < 0.5 ? 0 : 1;
-            return currentPlayer;
+            return player = Math.random() < 0.5 ? 0 : 1;
+            // 1 = human, 0 = computer
         },
 
         performAttack(target) { // no arrow
 
-            const now = currentPlayer;
-            const action = Player(area).attack(target, now);
+            if (!player) target = targets; // computer
 
-            this.takeDamage(action, now);
-            this.switchPlayer(); return action;
+            const action = new Player(area, target)[player ? 'human' : 'computer']();
+
+            this.takeDamage(action, player);
+            this.switchPlayer();
+
+            return action;
         },
 
-        takeDamage: (action, now) => {
+        takeDamage: (action, player) => {
 
             const target = `${action.x}, ${action.y}`;
-            const enemy = now ? currentFleet[0] : currentFleet[1];
+            const enemy = player ? armadas[1] : armadas[0];
 
-            enemy.has(target) ? enemy.delete(target) : null;
+            if (enemy.has(target)) enemy.delete(target);
             if (!enemy.size) alert('Game over');
         },
 
         switchPlayer: () => {
 
-            switch (currentPlayer) {
+            switch (player) {
 
-                case 0: currentPlayer = 1; break;
-                case 1: currentPlayer = 0;
+                case 0: player = 1; break;
+                case 1: player = 0;
             }
-        } // 0 = human player, 1 = computer
+        } // 1 = human, 0 = computer
     };
 }
 export default performAction;
