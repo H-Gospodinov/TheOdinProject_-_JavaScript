@@ -24,7 +24,7 @@ class Ship {
 
     create(fleet) {
 
-        let position; let occupied;
+        let position, occupied;
 
         do { // run once, then repeat if occupied
             position = []; occupied = false;
@@ -33,7 +33,7 @@ class Ship {
 
             for (let i = 0; i < this.ship; i++) {
 
-                const coords = !orientation ? { x: x + i, y: y } : { x: x, y: y + i };
+                const coords = !orientation ? { x: x + i, y } : { x, y: y + i };
 
                 if (fleet.has(`${coords.x}, ${coords.y}`) || this.enclose(coords, fleet)) {
                     // unavailable, try another

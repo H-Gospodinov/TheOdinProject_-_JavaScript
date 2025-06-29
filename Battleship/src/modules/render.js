@@ -55,7 +55,7 @@ function createBoard(size) {
 
         firstPlayer: (target) => {
 
-            const autoStart = !newAction.selectPlayer();
+            const autoStart = !newAction.selectPlayer(true);
 
             if (autoStart) {
                 updateBoard(size).computerStrike(target);

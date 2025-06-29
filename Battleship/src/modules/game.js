@@ -24,10 +24,14 @@ function performAction(area) {
             return fleet;
         },
 
-        selectPlayer: () => { // random
+        selectPlayer: (initial) => {
 
-            return player = Math.random() < 0.5 ? 0 : 1;
-            // 1 = human, 0 = computer
+            if (initial) { // random first
+
+                // 1 = human, 0 = computer
+                return player = Math.random() < 0.5 ? 0 : 1;
+            }
+            player ? player = 0 : player = 1;
         },
 
         performAttack(target) { // no arrow
@@ -37,7 +41,7 @@ function performAction(area) {
             const action = new Player(area, target)[player ? 'human' : 'computer']();
 
             this.takeDamage(action, player);
-            this.switchPlayer();
+            this.selectPlayer();
 
             return action;
         },
@@ -50,15 +54,6 @@ function performAction(area) {
             if (enemy.has(target)) enemy.delete(target);
             if (!enemy.size) alert('Game over');
         },
-
-        switchPlayer: () => {
-
-            switch (player) {
-
-                case 0: player = 1; break;
-                case 1: player = 0;
-            }
-        } // 1 = human, 0 = computer
     };
 }
 export default performAction;
