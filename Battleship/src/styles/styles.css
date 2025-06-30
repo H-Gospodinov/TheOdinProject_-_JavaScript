@@ -31,10 +31,29 @@ body {
     margin: auto;
 }
 .header {
-    padding-top: 3%;
-    text-align: center;
+    flex-grow: 1.5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3% 0;
+}
+.header::before,
+.header::after {
+    content: "";
+    width: 200px;
+    height: 40px;
+    margin: 0 3%;
+    margin-top: -15px;
+    opacity: 0.7;
+}
+.header::before {
+    transform: scaleX(-1);
+}
+.header::after {
+    transform: translateX(-10px);
 }
 .header h1 {
+    margin-right: -20px; /*ls fix*/
     font-size: 50px;
     font-weight: normal;
     letter-spacing: 25px;
@@ -42,6 +61,30 @@ body {
     color: #012d;
     text-shadow: 1px 1px #fff3, -1px -1px #fff3,
                 -1px 1px #fff3, 1px -1px #fff3;
+}
+.buttons {
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+    position: absolute;
+    right: 15px; top: 15px;
+    filter: invert(1);
+}
+.button {
+    display: flex;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+button::before {
+    content: "";
+    flex-grow: 1;
+    transition: 0.5s ease;
+}
+button:hover::before {
+    transform: scaleX(-1);
 }
 .main {
     flex-grow: 1;
@@ -59,8 +102,11 @@ body {
     display: grid;
     grid-template: auto 1fr / auto 1fr;
     max-width: 850px;
-    margin-left: -20px;
     padding: 0 5%;
+    transform: translate(0, -10px);
+}
+.board +.board {
+    transform: translate(-38px, -10px);
 }
 .labels {
     display: flex;
@@ -92,14 +138,9 @@ body {
 }
 .cell {
     flex: 1 0 var(--cell-size, 10%);
-    position: relative;
+    aspect-ratio: 1 / 1;
     box-shadow: 0 0 0 1px #000;
     transition: 0.2s ease;
-}
-.cell::before {
-    content: "";
-    display: block;
-    padding-top: 100%;
 }
 #board-1 .cell,
 #board-2 .missed.visible,
@@ -122,9 +163,13 @@ body {
     cursor: crosshair;
 }
 .footer {
-    padding-bottom: 2%;
+    flex-grow: 0.5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2% 0;
     text-align: center;
-    color: #012b;
+    color: #fffb;
 }
 .footer a {
     transition: 0.2s ease;
@@ -132,4 +177,11 @@ body {
 }
 .footer a:hover {
     color: #fff;
+}
+
+@media (min-width: 1650px) {
+
+    .footer {
+        color: #012b;
+    }
 }
