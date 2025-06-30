@@ -54,6 +54,12 @@ function performAction(area) {
             if (enemy.has(target)) enemy.delete(target);
             if (!enemy.size) alert('Game over');
         },
+
+        restartGame: () => {
+
+            armadas.length = 0;
+            targets.clear();
+        },
     };
 }
 export default performAction;

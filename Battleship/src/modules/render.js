@@ -61,6 +61,16 @@ function createBoard(size) {
                 updateBoard(size).computerStrike(target);
             } // random
         },
+
+        resetBoard: (cells) => {
+
+            for (const cell of [...cells]) {
+
+                cell.className = 'cell';
+                cell.style.pointerEvents = '';
+            }
+            newAction.restartGame();
+        },
     };
 }
 // UPDATE BOARD
