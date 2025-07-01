@@ -28,7 +28,6 @@ button {
     background: none;
     cursor: pointer;
 }
-
 .container {
     display: flex;
     flex-flow: column;
@@ -41,6 +40,7 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
     padding: 3% 0;
 }
 .header .title {
@@ -67,7 +67,6 @@ button {
     animation: flipX 12s infinite,
                opacity 12s infinite;
 }
-
 @keyframes slideLeft {
     0% {transform: translateX(20px);}
     50% {transform: translateX(-300px);}
@@ -93,10 +92,9 @@ button {
     90% {opacity: 1;}
     100% {opacity: 0;}
 }
-
 .header h1 {
     margin-right: -20px; /*ls fix*/
-    font-size: 50px;
+    font-size: clamp(40px, 4vw, 50px);
     font-weight: normal;
     letter-spacing: 25px;
     text-transform: uppercase;
@@ -132,7 +130,6 @@ button:hover::before {
 }
 .boards {
     display: flex;
-    justify-content: space-evenly;
     justify-content: center;
     width: 100%;
 }
@@ -288,12 +285,41 @@ button:hover::before {
     color: #fff;
 }
 
-@media (min-width: 1800px) {
+@media (max-width: 1000px) {
 
-    .main {
-        align-items: center;
+    .header {
+        flex-flow: column;
+        row-gap: 20px;
     }
-    /* .footer {
-        color: #012b;
-    } */
+    .buttons {
+        position: static;
+        filter: none;
+        opacity: 0.9;
+    }
+    .header h1 {
+        font-size: clamp(30px, 5vw, 40px);
+        letter-spacing: clamp(15px, 3vw, 20px);
+    }
+    .header .icon,
+    .header #animate {
+        display: none;
+    }
+    .boards {
+        display: grid;
+        grid-template: 1fr / 1fr;
+    }
+    .board {
+        grid-area: 1 / 1;
+        width: 100%;
+        max-width: 700px;
+        margin: auto;
+        transform: translate(-15px, -10px) !important;
+        transition: opacity 0.8s ease;
+        pointer-events: none;
+        opacity: 0;
+    }
+    .board.active {
+        pointer-events: auto;
+        opacity: 1;
+    }
 }

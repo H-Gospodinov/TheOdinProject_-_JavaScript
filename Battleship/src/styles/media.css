@@ -19,17 +19,17 @@ body {
     background-position: center;
     background-repeat: no-repeat;
 }
-#info::before {
-    background-image: url(../images/rules.svg);
-    background-size: 41px;
-}
 #reset::before {
     background-image: url(../images/reset.svg);
     background-size: 43px;
 }
+#info::before {
+    background-image: url(../images/rules.svg);
+    background-size: 41px;
+}
 #animate::before {
     background-image: url(../images/smile.svg);
-    background-size: 43px;
+    background-size: 42px;
 }
 .missed {
     background-image: url(../images/marker.png);

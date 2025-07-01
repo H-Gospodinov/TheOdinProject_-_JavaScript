@@ -96,6 +96,8 @@ function updateBoard(size) {
 
         computerStrike(board) {
 
+            this.displayBoard(board); // mobile devices
+
             const attack = newAction.performAttack();
             const index = attack.y * size + attack.x;
 
@@ -116,6 +118,21 @@ function updateBoard(size) {
             target.classList.add(mark);
 
             reveal ? target.classList.add('visible') : null;
+        },
+
+        displayBoard(board) { // mobile devices
+
+            const sibling = board.nextElementSibling;
+            const toggle = (board_1, board_2) => {
+
+                board_1.classList.toggle('active');
+                board_2.classList.toggle('active');
+            }
+            toggle(board, sibling);
+
+            setTimeout(() => {
+                toggle(board, sibling);
+            }, 1600);
         },
     };
 }
