@@ -9,6 +9,7 @@ const [humanBoard, computerBoard] = boards;
 const [grids, cells] = [[], []];
 
 const infoBtn = document.querySelector('#info');
+const modalBox = document.querySelector('.modal');
 const resetBtn = document.querySelector('#reset');
 
 
@@ -47,7 +48,7 @@ computerBoard.addEventListener('click', (e) => {
     const target = e.target;
 
     if (!target.classList.contains('cell')) return;
-    updateBoard(boardSize).humanStrike(computerBoard, e.target);
+    updateBoard(boardSize).humanStrike(computerBoard, target);
 });
 
 // RESET BOARD
@@ -60,4 +61,14 @@ resetBtn.addEventListener('click', () => {
         gameBoard.startGame(grid);
     }
     gameBoard.firstPlayer(autoStart);
+});
+
+// GAME INFO
+
+infoBtn.addEventListener('click', () => {
+
+    modalBox.showModal();
+
+    const closeBtn = modalBox.querySelector('#close');
+    closeBtn.onclick = () => modalBox.close();
 });

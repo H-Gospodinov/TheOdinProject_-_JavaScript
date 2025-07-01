@@ -23,6 +23,12 @@ body {
     font-size: 15px;
     color: #012;
 }
+button {
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
 .container {
     display: flex;
     flex-flow: column;
@@ -74,9 +80,6 @@ body {
     display: flex;
     width: 40px;
     height: 40px;
-    border: none;
-    background: none;
-    cursor: pointer;
 }
 button::before {
     content: "";
@@ -89,7 +92,7 @@ button:hover::before {
 .main {
     flex-grow: 1;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
 }
 .boards {
     display: flex;
@@ -162,6 +165,75 @@ button:hover::before {
 #board-2 .cell {
     cursor: crosshair;
 }
+.modal {
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    width: 450px;
+    max-width: 95%;
+    border: none;
+    border-radius: 5px;
+    overflow: visible;
+    background-color: #fff;
+    color: #012d;
+}
+.modal::backdrop {
+    background-color: #000c;
+}
+.modal, .modal::backdrop {
+    transition: 0.5s ease allow-discrete;
+    opacity: 0; /*allow discrete*/
+}
+.modal[open],
+.modal[open]::backdrop {
+    opacity: 1;
+    @starting-style {
+        opacity: 0;
+    } /*start value goes last*/
+}
+.modal .close {
+    display: grid;
+    place-items: center;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #fff;
+    transition: 0.5s ease;
+}
+.modal .close:before,
+.modal .close:after {
+    content: "";
+    grid-area: 1 / 1;
+    width: 16px;
+    height: 2px;
+    background-color: #000;
+}
+.modal .close:before {
+    transform: rotate(-45deg);
+}
+.modal .close:after {
+    transform: rotate(45deg);
+}
+.modal .close:hover {
+    transform: rotate(360deg);
+}
+.modal .title {
+    display: block;
+    border-radius: 6px 6px 0 0;
+    background-color: #eee;
+    padding: 18px 20px;
+    font-size: 25px;
+    font-weight: normal;
+}
+.modal .text {
+    display: flex;
+    flex-flow: column;
+    row-gap: 15px;
+    padding: 20px;
+    line-height: 20px;
+}
 .footer {
     flex-grow: 0.5;
     display: flex;
@@ -172,16 +244,20 @@ button:hover::before {
     color: #fffb;
 }
 .footer a {
-    transition: 0.2s ease;
+    text-decoration: none;
     color: inherit;
+    transition: 0.2s ease;
 }
 .footer a:hover {
     color: #fff;
 }
 
-@media (min-width: 1650px) {
+@media (min-width: 1800px) {
 
-    .footer {
-        color: #012b;
+    .main {
+        align-items: center;
     }
+    /* .footer {
+        color: #012b;
+    } */
 }
