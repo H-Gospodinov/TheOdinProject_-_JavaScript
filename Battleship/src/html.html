@@ -12,10 +12,15 @@
 <body>
     <div class="container">
         <header class="header">
-            <h1>Battleship</h1>
+            <div class="title">
+                <span class="icon left"><img src="images/battleship1.png"></span>
+                <h1>Battleship</h1>
+                <span class="icon right"><img src="images/battleship2.png"></span>
+            </h1>
             <div class="buttons">
-                <button class="button" id="info" title="Game rules"></button>
                 <button class="button" id="reset" title="Restart game"></button>
+                <button class="button" id="info" title="Game rules"></button>
+                <button class="button" id="animate" title="Toggle animation"></button>
             </div>
         </header>
         <main class="main">
@@ -35,7 +40,7 @@
                 <div class="text">
                     <p>Your fleet is on the left. Your opponent is a computer.<br>Each fleet has 8 ships:</p>
                     <p>1 carrier (size 4), 2 battleships (size 3), 2 cruisers (size 2), and 3 destroyers (size 1).</p>
-                    <p>Ships cannot "touch" each other, <u>there's at least 1 square gap</u> between them in all directions.</p>
+                    <p>Ships never "touch" each other, <u>there's at least 1 square gap</u> between them in all directions.</p>
                     <p>The first player is determined randomly. If it's the computer, the game starts immediately.</p>
                 </div>
             </dialog>

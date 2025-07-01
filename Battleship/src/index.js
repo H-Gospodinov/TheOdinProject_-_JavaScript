@@ -8,9 +8,11 @@ const [humanBoard, computerBoard] = boards;
 
 const [grids, cells] = [[], []];
 
-const infoBtn = document.querySelector('#info');
-const modalBox = document.querySelector('.modal');
 const resetBtn = document.querySelector('#reset');
+const infoBtn = document.querySelector('#info');
+const animateBtn = document.querySelector('#animate');
+
+const modalBox = document.querySelector('.modal');
 
 
 // HTML INJECTION
@@ -71,4 +73,11 @@ infoBtn.addEventListener('click', () => {
 
     const closeBtn = modalBox.querySelector('#close');
     closeBtn.onclick = () => modalBox.close();
+});
+
+// toggle animation
+
+animateBtn.addEventListener('click', () => {
+
+    document.body.classList.toggle('animate');
 });

@@ -9,9 +9,11 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
 }
-.header::before,
+.header::before {
+    background-image: url(../images/battleship1.png);
+}
 .header::after {
-    background-image: url(../images/battleship.png);
+    background-image: url(../images/battleship2.png);
 }
 .button, .cell {
     background-position: center;
@@ -23,6 +25,10 @@ body {
 }
 #reset::before {
     background-image: url(../images/reset.svg);
+    background-size: 43px;
+}
+#animate::before {
+    background-image: url(../images/smile.svg);
     background-size: 43px;
 }
 .missed {
