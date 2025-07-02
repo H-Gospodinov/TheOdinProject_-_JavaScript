@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Battleship</title>
+    <meta name="description" content="Battleship game completed for the Odin Project's JavaScript curriculum.">
+    <meta name="keywords" content="The Odin Project, JavaScript, Battleship">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="6295d507372ce096071b.css" rel="stylesheet">
+    <link href="a338003fab01af6f27be.ico" rel="icon">
+<script defer src="main.js"></script></head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="title">
+                <span class="icon left"><img src="abb114b858d608f0c993.png"></span>
+                <h1>Battleship</h1>
+                <span class="icon right"><img src="8da6174bd692fec906bd.png"></span>
+            </div>
+            <div class="buttons">
+                <button class="button" id="reset" title="Restart game"></button>
+                <button class="button" id="info" title="Game rules"></button>
+                <button class="button" id="animate" title="Toggle animation"></button>
+            </div>
+        </header>
+        <main class="main">
+            <div class="boards">
+                <div class="board" id="board-1">
+                    <div class="labels"></div>
+                    <div class="grid"></div>
+                </div>
+                <div class="board active" id="board-2">
+                    <div class="labels"></div>
+                    <div class="grid"></div>
+                </div>
+            </div>
+            <dialog class="modal">
+                <strong class="title">Game rules</strong>
+                <button class="close" id="close"></button>
+                <div class="text">
+                    <p>Your fleet is on the left. Your opponent is a computer.<br>Each fleet has 8 ships:</p>
+                    <p>1 carrier (size 4), 2 battleships (size 3), 2 cruisers (size 2), and 3 destroyers (size 1).</p>
+                    <p>Ships never "touch" each other, <u>there's at least 1 square gap</u> between them in all directions.</p>
+                    <p>The first player is determined randomly. If it's the computer, the game starts immediately.</p>
+                </div>
+            </dialog>
+        </main>
+        <footer class="footer">
+            <a href="https://h-gospodinov.github.io/H-Gospodinov/" target="_blank" rel="noopener">Check source code on GitHub</a>
+        </footer>
+    </div>
+</body>
+</html>
