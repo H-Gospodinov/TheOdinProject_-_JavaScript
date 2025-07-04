@@ -3,11 +3,16 @@ import Player from "./player.js";
 
 let player; // current
 
-const armadas = [], targets = new Set();
+const armadas = [], targets = [];
 
 // PERFORM ACTION
 
 function performAction(area) {
+
+    for (let i = 0; i < area**2; i++) {
+        // map random targets
+        targets.push([Math.floor(i / area), i % area]);
+    }
 
     return { // factory
 
@@ -58,7 +63,11 @@ function performAction(area) {
         restartGame: () => {
 
             armadas.length = 0;
-            targets.clear();
+            targets.length = 0;
+
+            for (let i = 0; i < area**2; i++) {
+                targets.push([Math.floor(i / area), i % area]);
+            } // re-map random targets
         },
     };
 }

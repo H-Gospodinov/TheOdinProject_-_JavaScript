@@ -19,17 +19,12 @@ class Player {
 
     computer() {
 
-        let x, y, key; // random
+        const index = Math.floor(Math.random() * this.target.length);
 
-        do {
-            x = Math.floor(Math.random() * this.board);
-            y = Math.floor(Math.random() * this.board);
+        const [x, y] = this.target[index];
+        this.target.splice(index, 1);
 
-            key = `${x}, ${y}`;
-        }
-        while (this.target.has(key));
-
-        this.target.add(key); return {x, y};
+        return {x, y};
     }
 }
 export default Player;
