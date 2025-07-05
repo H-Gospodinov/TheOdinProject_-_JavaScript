@@ -3,14 +3,14 @@ import Player from "./player.js";
 
 let player; // current
 
-const armadas = [], targets = [];
+const armadas = [], targets = [], queue = [];
 
 // PERFORM ACTION
 
 function performAction(area) {
 
     for (let i = 0; i < area**2; i++) {
-        // map random targets
+        // map auto targets
         targets.push([Math.floor(i / area), i % area]);
     }
 
@@ -41,9 +41,9 @@ function performAction(area) {
 
         performAttack(target) { // no arrow
 
-            if (!player) target = targets; // computer
-
-            const action = new Player(area, target)[player ? 'human' : 'computer']();
+            const action = player ?
+                  new Player(area, target).human() :
+                  new Player(area, targets, queue).computer(armadas[0]);
 
             this.takeDamage(action, player);
             this.selectPlayer();
@@ -62,12 +62,12 @@ function performAction(area) {
 
         restartGame: () => {
 
-            armadas.length = 0;
-            targets.length = 0;
-
+            for (const data of [armadas, targets, queue]) {
+                data.length = 0;
+            }
             for (let i = 0; i < area**2; i++) {
                 targets.push([Math.floor(i / area), i % area]);
-            } // re-map random targets
+            } // re-map auto targets
         },
     };
 }
