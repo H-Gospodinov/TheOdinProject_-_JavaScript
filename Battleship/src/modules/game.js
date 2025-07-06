@@ -1,5 +1,5 @@
 import Ship from "./ships.js";
-import Player from "./player.js";
+import Action from "./player.js";
 
 let player; // current
 
@@ -42,8 +42,8 @@ function performAction(area) {
         performAttack(target) { // no arrow
 
             const action = player ?
-                  new Player(area, target).human() :
-                  new Player(area, targets).computer(armadas[0]);
+                Action(area, target).human() :
+                Action(area, targets).computer(armadas[0]);
 
             this.takeDamage(action, player);
             this.selectPlayer();
