@@ -3,7 +3,7 @@ import Player from "./player.js";
 
 let player; // current
 
-const armadas = [], targets = [], queue = [];
+const armadas = [], targets = [];
 
 // PERFORM ACTION
 
@@ -43,7 +43,7 @@ function performAction(area) {
 
             const action = player ?
                   new Player(area, target).human() :
-                  new Player(area, targets, queue).computer(armadas[0]);
+                  new Player(area, targets).computer(armadas[0]);
 
             this.takeDamage(action, player);
             this.selectPlayer();
@@ -62,7 +62,7 @@ function performAction(area) {
 
         restartGame: () => {
 
-            for (const data of [armadas, targets, queue]) {
+            for (const data of [armadas, targets]) {
                 data.length = 0;
             }
             for (let i = 0; i < area**2; i++) {
