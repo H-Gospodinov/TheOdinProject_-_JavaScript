@@ -12,7 +12,7 @@ function createBoard(size) {
 
         createLabels: (wrapper) => {
 
-            for (let i = 1; i <= size; i++) {
+            for (let i = 0; i < size; i++) {
 
                 const label = document.createElement('span');
 
@@ -107,7 +107,7 @@ function updateBoard(size) {
             setTimeout(() => {
                 this.displayStrike(null, target);
                 board.style.pointerEvents = '';
-            }, 500);
+            }, 400);
         },
 
         displayStrike(reveal, target) {

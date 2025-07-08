@@ -1,5 +1,6 @@
 
-let previousHit, nextHit = [];
+let previousHit;
+export let nextHit = [];
 
 function Action(board, target) {
 
