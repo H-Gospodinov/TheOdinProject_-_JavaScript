@@ -74,7 +74,10 @@ function performAction(area) {
                 player ? null : this.sinkShips(target);
                 enemy.delete(target);
             }
-            if (!enemy.size) alert('Game over');
+            if (enemy.size) return;
+
+            const gameOver = new CustomEvent('GameOver');
+            document.dispatchEvent(gameOver);
         },
 
         sinkShips: (target) => {

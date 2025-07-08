@@ -81,3 +81,13 @@ animateBtn.addEventListener('click', () => {
 
     document.body.classList.toggle('animate');
 });
+
+// GAME OVER
+
+document.addEventListener('GameOver', () => {
+
+    for (const cell of cells) {
+        cell.style.pointerEvents = 'none';
+    }
+    alert('Game over');
+});
