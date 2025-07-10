@@ -601,13 +601,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-let player; // current
+let player, flagships, flag;
 
-const armadas = [], targets = new Set();
+const armadas = [], targets = [];
 
 // PERFORM ACTION
 
 function performAction(area) {
+
+    for (let i = 0; i < area**2; i++) {
+        // map auto targets
+        targets.push([Math.floor(i / area), i % area]);
+    }
 
     return { // factory
 
@@ -621,6 +626,17 @@ function performAction(area) {
                 new _ships_js__WEBPACK_IMPORTED_MODULE_0__["default"](area, size).create(fleet);
             }
             armadas.push(fleet);
+
+            if (armadas.length === 1) {
+
+                let d = 0; flagships = [];
+
+                for (const size of sizes) {
+
+                    flagships.push(new Set([...fleet].slice(d, d + size)));
+                    d += size; // delta
+                } // allocate ships
+            }
             return fleet;
         },
 
@@ -634,11 +650,13 @@ function performAction(area) {
             player ? player = 0 : player = 1;
         },
 
-        performAttack(target) { // no arrow
+        performAttack(target) {
 
-            if (!player) target = targets; // computer
+            const action = player ?
 
-            const action = new _player_js__WEBPACK_IMPORTED_MODULE_1__["default"](area, target)[player ? 'human' : 'computer']();
+                (0,_player_js__WEBPACK_IMPORTED_MODULE_1__["default"])(area, target).human() :
+                // seek and destroy
+                (0,_player_js__WEBPACK_IMPORTED_MODULE_1__["default"])(area, targets).computer(armadas[0]);
 
             this.takeDamage(action, player);
             this.selectPlayer();
@@ -646,19 +664,65 @@ function performAction(area) {
             return action;
         },
 
-        takeDamage: (action, player) => {
+        takeDamage(action, player) {
 
             const target = `${action.x}, ${action.y}`;
             const enemy = player ? armadas[1] : armadas[0];
 
-            if (enemy.has(target)) enemy.delete(target);
-            if (!enemy.size) alert('Game over');
+            if (enemy.has(target)) {
+
+                player ? null : this.sinkShips(target);
+                enemy.delete(target);
+            }
+            if (enemy.size) return;
+
+            const gameOver = new CustomEvent('GameOver');
+            // signal to lock the board
+            document.dispatchEvent(gameOver);
+        },
+
+        sinkShips: (target) => { // clear attack queue
+
+            for (const ship of flagships) {
+
+                if (!ship.has(target)) continue;
+
+                if (ship === flagships.at(-1) && ship.has(target) &&
+                    flagships.every(ship => ship.size <= 1)) {
+                    // three flagships (3 x 1)
+                    _player_js__WEBPACK_IMPORTED_MODULE_1__.nextHit.length = 0;
+                }
+                ship.delete(target);
+            }
+            if (!flagships[0].size) { // one flagship
+
+                _player_js__WEBPACK_IMPORTED_MODULE_1__.nextHit.length = 0;
+                flagships = flagships.filter(ship => ship.size > 0);
+
+                if (flagships.length < 2) flag = false;
+
+                else flag = flagships[1].size == flagships[0].size;
+                // flag's true if more than one flagship
+            }
+            else if (flag && !flagships[1].size) { // two flagships
+
+                _player_js__WEBPACK_IMPORTED_MODULE_1__.nextHit.length = 0;
+                flagships.splice(1, 1); flag = false;
+            }
+            /* a flagship is the current biggest ship (one or more). when a flagship
+            is sunk the computer stops striking adjacent targets and reverts to random.
+            the function follows the current ship config (1x4, 2x3, 2x2, 3x1) */
         },
 
         restartGame: () => {
 
-            armadas.length = 0;
-            targets.clear();
+            for (const data of [armadas, targets, _player_js__WEBPACK_IMPORTED_MODULE_1__.nextHit]) {
+                data.length = 0;
+            } flag = false; // reset globals
+
+            for (let i = 0; i < area**2; i++) {
+                targets.push([Math.floor(i / area), i % area]);
+            } // re-map auto targets
         },
     };
 }
@@ -674,43 +738,106 @@ function performAction(area) {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   nextHit: () => (/* binding */ nextHit)
 /* harmony export */ });
 
-class Player {
+let previousHit;
+let nextHit = [];
 
-    constructor (boardSize, hitTarget) {
+function Action(board, target) {
 
-        this.board = boardSize;
-        this.target = hitTarget;
-    }
+    return {
 
-    human() {
+        human: () => { // manual
 
-        const index = this.target.dataset.id;
+            const index = target.dataset.id;
 
-        const x = index % this.board;
-        const y = Math.floor(index / this.board);
+            const x = index % board;
+            const y = Math.floor(index / board);
 
-        return {x, y};
-    }
+            return {x, y};
+        },
 
-    computer() {
+        computer(fleet) { // auto
 
-        let x, y, key; // random
+            let coords; // random or not
 
-        do {
-            x = Math.floor(Math.random() * this.board);
-            y = Math.floor(Math.random() * this.board);
+            if (nextHit.length) {
+                coords = nextHit.shift();
+            }
+            else {
+                const length = target.length;
+                const index = Math.floor(Math.random() * length);
 
-            key = `${x}, ${y}`;
-        }
-        while (this.target.has(key));
+                const [x, y] = target[index];
+                coords = {x, y};
 
-        this.target.add(key); return {x, y};
+                // remove from target pool
+                target[index] = target[length - 1]; target.pop();
+                previousHit = null;
+            }
+
+            if (fleet.has(`${coords.x}, ${coords.y}`)) {
+                // successful strike
+                this.enclose(coords);
+            }
+            return coords;
+        },
+
+        enclose({x, y}) { // adjacent
+
+            const directions = [
+                // straight      // diagonal
+                {dx: 0, dy: -1}, {dx: 1, dy: -1}, // top, top-right
+                {dx: 1, dy: 0},  {dx: 1, dy: 1},  // right, bottom-right
+                {dx: 0, dy: 1},  {dx: -1, dy: 1}, // bottom, bottom-left
+                {dx: -1, dy: 0}, {dx: -1, dy: -1} // left, top-left
+            ];
+
+            for (const {dx, dy} of directions) {
+
+                const newX = x + dx, newY = y + dy;
+
+                if (newX < 0 || newX >= board || 
+                    newY < 0 || newY >= board) continue;
+
+                const index = target.findIndex(([x, y]) => {
+                    return x === newX && y === newY;
+                });
+                if (index < 0) continue;
+
+                // add non-diagonal to attack queue
+                if (dx === 0 || dy === 0) {
+                    nextHit.push({x: newX, y: newY});
+                }
+                // remove all from target pool
+                target.splice(index, 1);
+            }
+
+            const filter = this.orientation({x, y});
+            // filter if orientation is known
+            if (filter !== 'H' && filter !== 'V') return;
+
+            nextHit = nextHit.filter(item => 
+                (filter === 'H' && item.y === y) || 
+                (filter === 'V' && item.x === x)
+            );
+        },
+
+        orientation: ({x, y}) => {
+
+            if (!previousHit) {
+                previousHit = {x, y}; return;
+            }
+            const horizontal = y === previousHit.y;
+            const vertical = x === previousHit.x;
+
+            return horizontal ? 'H' : vertical ? 'V' : 0;
+        },
     }
 }
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Player);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Action);
 
 /***/ }),
 
@@ -740,7 +867,7 @@ function createBoard(size) {
 
         createLabels: (wrapper) => {
 
-            for (let i = 1; i <= size; i++) {
+            for (let i = 0; i < size; i++) {
 
                 const label = document.createElement('span');
 
@@ -835,7 +962,7 @@ function updateBoard(size) {
             setTimeout(() => {
                 this.displayStrike(null, target);
                 board.style.pointerEvents = '';
-            }, 500);
+            }, 400);
         },
 
         displayStrike(reveal, target) {
@@ -1233,6 +1360,16 @@ infoBtn.addEventListener('click', () => {
 animateBtn.addEventListener('click', () => {
 
     document.body.classList.toggle('animate');
+});
+
+// GAME OVER
+
+document.addEventListener('GameOver', () => {
+
+    for (const cell of cells) {
+        cell.style.pointerEvents = 'none';
+    }
+    alert('Game over');
 });
 })();
 
