@@ -1,7 +1,7 @@
 import Ship from "./ships.js";
 import Action, { nextHit as queue } from "./player.js";
 
-let player, flagships;
+let player, flagships, flag;
 
 const armadas = [], targets = [];
 
@@ -34,7 +34,7 @@ function performAction(area) {
                 for (const size of sizes) {
 
                     flagships.push(new Set([...fleet].slice(d, d + size)));
-                    d += size;
+                    d += size; // delta
                 } // allocate ships
             }
             return fleet;
@@ -77,32 +77,49 @@ function performAction(area) {
             if (enemy.size) return;
 
             const gameOver = new CustomEvent('GameOver');
+            // signal to lock the board
             document.dispatchEvent(gameOver);
         },
 
-        sinkShips: (target) => {
+        sinkShips: (target) => { // clear attack queue
 
             for (const ship of flagships) {
 
                 if (!ship.has(target)) continue;
+
+                if (ship === flagships.at(-1) && ship.has(target) &&
+                    flagships.every(ship => ship.size <= 1)) {
+                    // three flagships (3 x 1)
+                    queue.length = 0;
+                }
                 ship.delete(target);
             }
-            if (flagships[0].size) return; // not sunk yet
+            if (!flagships[0].size) { // one flagship
 
-            queue.length = 0; // clear attack queue
-            flagships = flagships.filter(ship => ship.size > 0);
+                queue.length = 0;
+                flagships = flagships.filter(ship => ship.size > 0);
 
-            /* ToDo: still have to find a way to emulate human behavior
-            when ships of equal sizes are destroyed in an order different
-            than creation order. In such scenario the computer continues
-            to hit adjacent targets while a human would not do that */
+                if (flagships.length < 2) flag = false;
+
+                else flag = flagships[1].size == flagships[0].size;
+                // flag's true if more than one flagship
+            }
+            else if (flag && !flagships[1].size) { // two flagships
+
+                queue.length = 0;
+                flagships.splice(1, 1); flag = false;
+            }
+            /* a flagship is the current biggest ship (one or more). when a flagship
+            is sunk the computer stops striking adjacent targets and reverts to random.
+            the function follows the current ship config (1x4, 2x3, 2x2, 3x1) */
         },
 
         restartGame: () => {
 
             for (const data of [armadas, targets, queue]) {
                 data.length = 0;
-            }
+            } flag = false; // reset globals
+
             for (let i = 0; i < area**2; i++) {
                 targets.push([Math.floor(i / area), i % area]);
             } // re-map auto targets
