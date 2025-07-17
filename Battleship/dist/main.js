@@ -594,7 +594,8 @@ module.exports = __webpack_require__.p + "9ccf1ecea600dffec97d.svg";
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   winner: () => (/* binding */ winner)
 /* harmony export */ });
 /* harmony import */ var _ships_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ships.js */ "./src/modules/ships.js");
 /* harmony import */ var _player_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./player.js */ "./src/modules/player.js");
@@ -602,6 +603,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let player, flagships, flag;
+let winner = false;
 
 const armadas = [], targets = [];
 
@@ -676,8 +678,8 @@ function performAction(area) {
             }
             if (enemy.size) return;
 
+            winner = true; // export
             const gameOver = new CustomEvent('GameOver');
-            // signal to lock the board
             document.dispatchEvent(gameOver);
         },
 
@@ -718,7 +720,8 @@ function performAction(area) {
 
             for (const data of [armadas, targets, _player_js__WEBPACK_IMPORTED_MODULE_1__.nextHit]) {
                 data.length = 0;
-            } flag = false; // reset globals
+            }
+            flag = false; winner = false;
 
             for (let i = 0; i < area**2; i++) {
                 targets.push([Math.floor(i / area), i % area]);
@@ -917,10 +920,12 @@ function createBoard(size) {
             } // random
         },
 
-        resetBoard: (cells) => {
+        resetBoard: (boards, cells) => {
 
+            for (const board of boards) {
+                board.classList.remove('winner');
+            }
             for (const cell of [...cells]) {
-
                 cell.className = 'cell';
                 cell.style.pointerEvents = '';
             }
@@ -940,10 +945,15 @@ function updateBoard(size) {
 
             newAction.performAttack(target);
 
+            this.displayStrike(target, board);
+
+            if (_game_js__WEBPACK_IMPORTED_MODULE_0__.winner) {
+                setTimeout(() => {
+                    board.classList.add('winner');
+                }, 400); return; // stop
+            }
             target.style.pointerEvents = 'none';
             board.style.pointerEvents = 'none';
-
-            this.displayStrike(board, target);
 
             board = board.previousElementSibling;
             this.computerStrike(board);
@@ -951,21 +961,24 @@ function updateBoard(size) {
 
         computerStrike(board) {
 
-            this.displayBoard(board); // mobile devices
-
             const attack = newAction.performAttack();
             const index = attack.y * size + attack.x;
 
             target = board.querySelector(`div[data-id="${index}"]`);
-            board = board.nextElementSibling;
 
-            setTimeout(() => {
-                this.displayStrike(null, target);
-                board.style.pointerEvents = '';
-            }, 400);
+            this.displayBoard(board); // mobile devices
+
+            setTimeout(() => { // better UX
+
+                this.displayStrike(target);
+
+                if (_game_js__WEBPACK_IMPORTED_MODULE_0__.winner) board.classList.add('winner');
+
+                board = board.nextElementSibling;
+                board.style.pointerEvents = '';}, 400);
         },
 
-        displayStrike(reveal, target) {
+        displayStrike(target, reveal) {
 
             const X = target.classList.contains('occupied');
             const mark = X ? 'destroyed' : 'missed';
@@ -984,6 +997,7 @@ function updateBoard(size) {
                 board_2.classList.toggle('active');
             }
             toggle(board, sibling);
+            if (_game_js__WEBPACK_IMPORTED_MODULE_0__.winner) return;
 
             setTimeout(() => {
                 toggle(board, sibling);
@@ -1337,7 +1351,10 @@ computerBoard.addEventListener('click', (e) => {
 
 resetBtn.addEventListener('click', () => {
 
-    gameBoard.resetBoard(cells);
+    humanBoard.classList.remove('active');
+    computerBoard.classList.add('active');
+
+    gameBoard.resetBoard(boards, cells);
 
     for (const grid of grids) {
         gameBoard.startGame(grid);
@@ -1368,8 +1385,11 @@ document.addEventListener('GameOver', () => {
 
     for (const cell of cells) {
         cell.style.pointerEvents = 'none';
-    }
-    alert('Game over');
+
+        if (cell.classList.contains('occupied')) {
+            cell.classList.add('visible');
+        }
+    } // lock and reveal
 });
 })();
 
