@@ -172,6 +172,27 @@ button {
 .grid {
     display: flex;
     flex-wrap: wrap;
+    position: relative;
+}
+.winner .grid::after {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    inset: 0; /**/
+    background-color: #fffc;
+    text-align: center;
+    font-size: min(3vw, 40px);
+    letter-spacing: 12px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: #012d;
+}
+#board-1.winner .grid::after {
+    content: "You lost";
+}
+#board-2.winner .grid::after {
+    content: "You win";
 }
 .cell {
     flex: 1 0 var(--cell-size, 10%);
@@ -322,5 +343,8 @@ button {
     .board.active {
         pointer-events: auto;
         opacity: 1;
+    }
+    .winner .grid::after {
+        font-size: min(36px, 6vw);
     }
 }

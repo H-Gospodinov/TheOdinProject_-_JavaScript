@@ -57,7 +57,10 @@ computerBoard.addEventListener('click', (e) => {
 
 resetBtn.addEventListener('click', () => {
 
-    gameBoard.resetBoard(cells);
+    humanBoard.classList.remove('active');
+    computerBoard.classList.add('active');
+
+    gameBoard.resetBoard(boards, cells);
 
     for (const grid of grids) {
         gameBoard.startGame(grid);
@@ -88,6 +91,9 @@ document.addEventListener('GameOver', () => {
 
     for (const cell of cells) {
         cell.style.pointerEvents = 'none';
-    }
-    alert('Game over');
+
+        if (cell.classList.contains('occupied')) {
+            cell.classList.add('visible');
+        }
+    } // lock and reveal
 });

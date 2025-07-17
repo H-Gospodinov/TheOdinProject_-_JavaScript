@@ -2,6 +2,7 @@ import Ship from "./ships.js";
 import Action, { nextHit as queue } from "./player.js";
 
 let player, flagships, flag;
+export let winner = false;
 
 const armadas = [], targets = [];
 
@@ -76,8 +77,8 @@ function performAction(area) {
             }
             if (enemy.size) return;
 
+            winner = true; // export
             const gameOver = new CustomEvent('GameOver');
-            // signal to lock the board
             document.dispatchEvent(gameOver);
         },
 
@@ -118,7 +119,8 @@ function performAction(area) {
 
             for (const data of [armadas, targets, queue]) {
                 data.length = 0;
-            } flag = false; // reset globals
+            }
+            flag = false; winner = false;
 
             for (let i = 0; i < area**2; i++) {
                 targets.push([Math.floor(i / area), i % area]);

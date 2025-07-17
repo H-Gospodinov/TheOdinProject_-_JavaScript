@@ -1,4 +1,4 @@
-import performAction from "./game.js";
+import performAction, { winner } from "./game.js";
 
 let newAction; // create or update
 
@@ -62,10 +62,12 @@ function createBoard(size) {
             } // random
         },
 
-        resetBoard: (cells) => {
+        resetBoard: (boards, cells) => {
 
+            for (const board of boards) {
+                board.classList.remove('winner');
+            }
             for (const cell of [...cells]) {
-
                 cell.className = 'cell';
                 cell.style.pointerEvents = '';
             }
@@ -85,10 +87,15 @@ function updateBoard(size) {
 
             newAction.performAttack(target);
 
+            this.displayStrike(target, board);
+
+            if (winner) {
+                setTimeout(() => {
+                    board.classList.add('winner');
+                }, 400); return; // stop
+            }
             target.style.pointerEvents = 'none';
             board.style.pointerEvents = 'none';
-
-            this.displayStrike(board, target);
 
             board = board.previousElementSibling;
             this.computerStrike(board);
@@ -96,21 +103,24 @@ function updateBoard(size) {
 
         computerStrike(board) {
 
-            this.displayBoard(board); // mobile devices
-
             const attack = newAction.performAttack();
             const index = attack.y * size + attack.x;
 
             target = board.querySelector(`div[data-id="${index}"]`);
-            board = board.nextElementSibling;
 
-            setTimeout(() => {
-                this.displayStrike(null, target);
-                board.style.pointerEvents = '';
-            }, 400);
+            this.displayBoard(board); // mobile devices
+
+            setTimeout(() => { // better UX
+
+                this.displayStrike(target);
+
+                if (winner) board.classList.add('winner');
+
+                board = board.nextElementSibling;
+                board.style.pointerEvents = '';}, 400);
         },
 
-        displayStrike(reveal, target) {
+        displayStrike(target, reveal) {
 
             const X = target.classList.contains('occupied');
             const mark = X ? 'destroyed' : 'missed';
@@ -129,6 +139,7 @@ function updateBoard(size) {
                 board_2.classList.toggle('active');
             }
             toggle(board, sibling);
+            if (winner) return;
 
             setTimeout(() => {
                 toggle(board, sibling);
