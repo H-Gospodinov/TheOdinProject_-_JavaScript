@@ -115,12 +115,13 @@ button {
     width: 40px;
     height: 40px;
 }
-button::before {
+.button::before {
     content: "";
     flex-grow: 1;
+    align-self: stretch;
     transition: 0.5s ease;
 }
-button:hover::before {
+.button:hover::before {
     transform: scaleX(-1);
 }
 .main {
