@@ -22,7 +22,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var ___CSS_LOADER_URL_IMPORT_0___ = new URL(/* asset import */ __webpack_require__(/*! ../images/background.jpg */ "./src/images/background.jpg"), __webpack_require__.b);
+var ___CSS_LOADER_URL_IMPORT_0___ = new URL(/* asset import */ __webpack_require__(/*! ../images/background.webp */ "./src/images/background.webp"), __webpack_require__.b);
 var ___CSS_LOADER_URL_IMPORT_1___ = new URL(/* asset import */ __webpack_require__(/*! ../images/battleship1.png */ "./src/images/battleship1.png"), __webpack_require__.b);
 var ___CSS_LOADER_URL_IMPORT_2___ = new URL(/* asset import */ __webpack_require__(/*! ../images/battleship2.png */ "./src/images/battleship2.png"), __webpack_require__.b);
 var ___CSS_LOADER_URL_IMPORT_3___ = new URL(/* asset import */ __webpack_require__(/*! ../images/reset.svg */ "./src/images/reset.svg"), __webpack_require__.b);
@@ -78,7 +78,7 @@ body {
 }
 .destroyed {
     background-image: url(${___CSS_LOADER_URL_REPLACEMENT_7___});
-}`, "",{"version":3,"sources":["webpack://./src/styles/media.css"],"names":[],"mappings":";AACA;yCACyC;;AAEzC;IACI,yDAA+C;IAC/C,+BAA+B;IAC/B,4BAA4B;IAC5B,4BAA4B;IAC5B,sBAAsB;AAC1B;AACA;IACI,yDAAgD;AACpD;AACA;IACI,yDAAgD;AACpD;AACA;IACI,2BAA2B;IAC3B,4BAA4B;AAChC;AACA;IACI,yDAA0C;IAC1C,qBAAqB;AACzB;AACA;IACI,yDAA0C;IAC1C,qBAAqB;AACzB;AACA;IACI,yDAA0C;IAC1C,qBAAqB;AACzB;AACA;IACI,yDAA2C;AAC/C;AACA;IACI,yDAA4C;AAChD","sourcesContent":["\r\n/* CSS media must be bundled separately\r\nif styles.css is excluded from bundling */\r\n\r\nbody {\r\n    background-image: url(../images/background.jpg);\r\n    background-position: center top;\r\n    background-attachment: fixed;\r\n    background-repeat: no-repeat;\r\n    background-size: cover;\r\n}\r\n.header::before {\r\n    background-image: url(../images/battleship1.png);\r\n}\r\n.header::after {\r\n    background-image: url(../images/battleship2.png);\r\n}\r\n.button, .cell {\r\n    background-position: center;\r\n    background-repeat: no-repeat;\r\n}\r\n#reset::before {\r\n    background-image: url(../images/reset.svg);\r\n    background-size: 43px;\r\n}\r\n#info::before {\r\n    background-image: url(../images/rules.svg);\r\n    background-size: 41px;\r\n}\r\n#animate::before {\r\n    background-image: url(../images/smile.svg);\r\n    background-size: 42px;\r\n}\r\n.missed {\r\n    background-image: url(../images/marker.png);\r\n}\r\n.destroyed {\r\n    background-image: url(../images/blast-w.png);\r\n}"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/styles/media.css"],"names":[],"mappings":";AACA;yCACyC;;AAEzC;IACI,yDAAgD;IAChD,+BAA+B;IAC/B,4BAA4B;IAC5B,4BAA4B;IAC5B,sBAAsB;AAC1B;AACA;IACI,yDAAgD;AACpD;AACA;IACI,yDAAgD;AACpD;AACA;IACI,2BAA2B;IAC3B,4BAA4B;AAChC;AACA;IACI,yDAA0C;IAC1C,qBAAqB;AACzB;AACA;IACI,yDAA0C;IAC1C,qBAAqB;AACzB;AACA;IACI,yDAA0C;IAC1C,qBAAqB;AACzB;AACA;IACI,yDAA2C;AAC/C;AACA;IACI,yDAA4C;AAChD","sourcesContent":["\r\n/* CSS media must be bundled separately\r\nif styles.css is excluded from bundling */\r\n\r\nbody {\r\n    background-image: url(../images/background.webp);\r\n    background-position: center top;\r\n    background-attachment: fixed;\r\n    background-repeat: no-repeat;\r\n    background-size: cover;\r\n}\r\n.header::before {\r\n    background-image: url(../images/battleship1.png);\r\n}\r\n.header::after {\r\n    background-image: url(../images/battleship2.png);\r\n}\r\n.button, .cell {\r\n    background-position: center;\r\n    background-repeat: no-repeat;\r\n}\r\n#reset::before {\r\n    background-image: url(../images/reset.svg);\r\n    background-size: 43px;\r\n}\r\n#info::before {\r\n    background-image: url(../images/rules.svg);\r\n    background-size: 41px;\r\n}\r\n#animate::before {\r\n    background-image: url(../images/smile.svg);\r\n    background-size: 42px;\r\n}\r\n.missed {\r\n    background-image: url(../images/marker.png);\r\n}\r\n.destroyed {\r\n    background-image: url(../images/blast-w.png);\r\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -506,13 +506,13 @@ module.exports = styleTagTransform;
 
 /***/ }),
 
-/***/ "./src/images/background.jpg":
-/*!***********************************!*\
-  !*** ./src/images/background.jpg ***!
-  \***********************************/
+/***/ "./src/images/background.webp":
+/*!************************************!*\
+  !*** ./src/images/background.webp ***!
+  \************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-module.exports = __webpack_require__.p + "03f3a3424f41fc6dca7c.jpg";
+module.exports = __webpack_require__.p + "b38b7b86b9daac6001ad.webp";
 
 /***/ }),
 
