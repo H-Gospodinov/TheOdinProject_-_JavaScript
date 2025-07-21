@@ -37,7 +37,7 @@ class Day {
                     <div class="name">${this.format().date1}</div>
                     <div class="time">${this.format().date2}</div>
                 </div>
-                <img class="image" src="${image.default}" width="128" height="128">
+                <img class="image" src="${image.default}" width="128" height="128" alt="">
                 <div class="info">${this.conditions}</div>
                 <div class="temp">
                     <span class="min">${this.round(this.tempmin)} °</span>
@@ -45,7 +45,7 @@ class Day {
                     <span class="max">${this.round(this.tempmax)} °</span>
                 </div>
                 <div class="wind">
-                    <img src="${pointer.default}" width="16" height="16" style="--rotate: ${this.winddir}deg">
+                    <img src="${pointer.default}" width="16" height="16" style="--rotate: ${this.winddir}deg" alt="">
                     <span class="speed">${this.windspeed} &nbsp;${units}</span>
                 </div>
             </div>

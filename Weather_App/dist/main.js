@@ -24,7 +24,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_URL_IMPORT_0___ = new URL(/* asset import */ __webpack_require__(/*! ../fonts/Roboto-ExtraLight.woff2 */ "./src/fonts/Roboto-ExtraLight.woff2"), __webpack_require__.b);
 var ___CSS_LOADER_URL_IMPORT_1___ = new URL(/* asset import */ __webpack_require__(/*! ../fonts/Roboto-Light.woff2 */ "./src/fonts/Roboto-Light.woff2"), __webpack_require__.b);
-var ___CSS_LOADER_URL_IMPORT_2___ = new URL(/* asset import */ __webpack_require__(/*! ../images/background.jpg */ "./src/images/background.jpg"), __webpack_require__.b);
+var ___CSS_LOADER_URL_IMPORT_2___ = new URL(/* asset import */ __webpack_require__(/*! ../images/background.webp */ "./src/images/background.webp"), __webpack_require__.b);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 var ___CSS_LOADER_URL_REPLACEMENT_0___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_0___);
 var ___CSS_LOADER_URL_REPLACEMENT_1___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_1___);
@@ -63,7 +63,7 @@ body {
         background-position: center top;
         background-repeat: no-repeat;
     }
-}`, "",{"version":3,"sources":["webpack://./src/styles/media.css"],"names":[],"mappings":";AACA;yCACyC;;AAEzC;IACI,qBAAqB;IACrB,4DAA4D;IAC5D,gBAAgB;IAChB,kBAAkB;IAClB,kBAAkB;AACtB;AACA;IACI,qBAAqB;IACrB,4DAAuD;IACvD,gBAAgB;IAChB,kBAAkB;IAClB,kBAAkB;AACtB;AACA;IACI,yDAA+C;IAC/C,+BAA+B;IAC/B,4BAA4B;IAC5B,4BAA4B;AAChC;AACA;IACI;QACI,sBAAsB;IAC1B;IACA;QACI,yDAA+C;QAC/C,+BAA+B;QAC/B,4BAA4B;IAChC;AACJ","sourcesContent":["\r\n/* CSS media must be bundled separately\r\nif styles.css is excluded from bundling */\r\n\r\n@font-face {\r\n    font-family: 'Roboto';\r\n    src: url('../fonts/Roboto-ExtraLight.woff2') format('woff2');\r\n    font-weight: 200;\r\n    font-style: normal;\r\n    font-display: swap;\r\n}\r\n@font-face {\r\n    font-family: 'Roboto';\r\n    src: url('../fonts/Roboto-Light.woff2') format('woff2');\r\n    font-weight: 300;\r\n    font-style: normal;\r\n    font-display: swap;\r\n}\r\nbody {\r\n    background-image: url(../images/background.jpg);\r\n    background-position: center top;\r\n    background-attachment: fixed;\r\n    background-repeat: no-repeat;\r\n}\r\n@supports (-webkit-hyphens:none) {\r\n    body {\r\n        background-image: none;\r\n    }\r\n    body::before {\r\n        background-image: url(../images/background.jpg);\r\n        background-position: center top;\r\n        background-repeat: no-repeat;\r\n    }\r\n}"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/styles/media.css"],"names":[],"mappings":";AACA;yCACyC;;AAEzC;IACI,qBAAqB;IACrB,4DAA4D;IAC5D,gBAAgB;IAChB,kBAAkB;IAClB,kBAAkB;AACtB;AACA;IACI,qBAAqB;IACrB,4DAAuD;IACvD,gBAAgB;IAChB,kBAAkB;IAClB,kBAAkB;AACtB;AACA;IACI,yDAAgD;IAChD,+BAA+B;IAC/B,4BAA4B;IAC5B,4BAA4B;AAChC;AACA;IACI;QACI,sBAAsB;IAC1B;IACA;QACI,yDAAgD;QAChD,+BAA+B;QAC/B,4BAA4B;IAChC;AACJ","sourcesContent":["\r\n/* CSS media must be bundled separately\r\nif styles.css is excluded from bundling */\r\n\r\n@font-face {\r\n    font-family: 'Roboto';\r\n    src: url('../fonts/Roboto-ExtraLight.woff2') format('woff2');\r\n    font-weight: 200;\r\n    font-style: normal;\r\n    font-display: swap;\r\n}\r\n@font-face {\r\n    font-family: 'Roboto';\r\n    src: url('../fonts/Roboto-Light.woff2') format('woff2');\r\n    font-weight: 300;\r\n    font-style: normal;\r\n    font-display: swap;\r\n}\r\nbody {\r\n    background-image: url(../images/background.webp);\r\n    background-position: center top;\r\n    background-attachment: fixed;\r\n    background-repeat: no-repeat;\r\n}\r\n@supports (-webkit-hyphens:none) {\r\n    body {\r\n        background-image: none;\r\n    }\r\n    body::before {\r\n        background-image: url(../images/background.webp);\r\n        background-position: center top;\r\n        background-repeat: no-repeat;\r\n    }\r\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -522,14 +522,14 @@ module.exports = __webpack_require__.p + "7d0ad7612d886ced9d14.woff2";
 
 /***/ }),
 
-/***/ "./src/images/background.jpg":
-/*!***********************************!*\
-  !*** ./src/images/background.jpg ***!
-  \***********************************/
+/***/ "./src/images/background.webp":
+/*!************************************!*\
+  !*** ./src/images/background.webp ***!
+  \************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
-module.exports = __webpack_require__.p + "2c04cef961b7869de6b5.jpg";
+module.exports = __webpack_require__.p + "5acb6ad8cc73c8b36358.webp";
 
 /***/ }),
 
@@ -855,7 +855,7 @@ class Current {
             <div class="box current">
                 <div class="date">${this.format()}</div>
                 <div class="display">
-                    <img src="${image.default}" width="104" height="104">
+                    <img src="${image.default}" width="104" height="104" alt="">
                     <span class="temp">${this.temp} ${units}</span>
                 </div>
                 <div class="details">
@@ -938,7 +938,7 @@ class Day {
                     <div class="name">${this.format().date1}</div>
                     <div class="time">${this.format().date2}</div>
                 </div>
-                <img class="image" src="${image.default}" width="128" height="128">
+                <img class="image" src="${image.default}" width="128" height="128" alt="">
                 <div class="info">${this.conditions}</div>
                 <div class="temp">
                     <span class="min">${this.round(this.tempmin)} °</span>
@@ -946,7 +946,7 @@ class Day {
                     <span class="max">${this.round(this.tempmax)} °</span>
                 </div>
                 <div class="wind">
-                    <img src="${pointer.default}" width="16" height="16" style="--rotate: ${this.winddir}deg">
+                    <img src="${pointer.default}" width="16" height="16" style="--rotate: ${this.winddir}deg" alt="">
                     <span class="speed">${this.windspeed} &nbsp;${units}</span>
                 </div>
             </div>
@@ -1008,10 +1008,10 @@ class Hour {
         return `
             <div class="box hour">
                 <div class="time">${this.format()}</div>
-                <img class="image" src="${image.default}" width="128" height="128">
+                <img class="image" src="${image.default}" width="128" height="128" alt="">
                 <div class="temp">${this.split(this.temp)} °</div>
                 <div class="wind">
-                    <img src="${pointer.default}" width="16" height="16" style="--rotate: ${this.winddir}deg">
+                    <img src="${pointer.default}" width="16" height="16" style="--rotate: ${this.winddir}deg" alt="">
                     <span class="speed">${this.windspeed} &nbsp;${units}</span>
                 </div>
             </div>

@@ -32,7 +32,7 @@ class Current {
             <div class="box current">
                 <div class="date">${this.format()}</div>
                 <div class="display">
-                    <img src="${image.default}" width="104" height="104">
+                    <img src="${image.default}" width="104" height="104" alt="">
                     <span class="temp">${this.temp} ${units}</span>
                 </div>
                 <div class="details">

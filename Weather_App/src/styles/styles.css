@@ -103,16 +103,14 @@ body {
 .logo img {
     transition: width 0.5s ease;
 }
-.static {
+/*.static {
     animation: rotate 20s linear infinite;
-}
+}*/
 @keyframes rotate {
     100% {transform: rotate(360deg)}
 }
 .dynamic {
-    width: 100px;
-    border-radius: 50%;
-    background-color: #fff6;
+    margin: 0 -20px;
     filter: brightness(1.1);
 }
 .options {

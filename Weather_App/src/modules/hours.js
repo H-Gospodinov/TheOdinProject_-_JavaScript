@@ -31,10 +31,10 @@ class Hour {
         return `
             <div class="box hour">
                 <div class="time">${this.format()}</div>
-                <img class="image" src="${image.default}" width="128" height="128">
+                <img class="image" src="${image.default}" width="128" height="128" alt="">
                 <div class="temp">${this.split(this.temp)} °</div>
                 <div class="wind">
-                    <img src="${pointer.default}" width="16" height="16" style="--rotate: ${this.winddir}deg">
+                    <img src="${pointer.default}" width="16" height="16" style="--rotate: ${this.winddir}deg" alt="">
                     <span class="speed">${this.windspeed} &nbsp;${units}</span>
                 </div>
             </div>
