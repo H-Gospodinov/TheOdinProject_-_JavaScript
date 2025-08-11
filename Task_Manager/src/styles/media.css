@@ -46,7 +46,7 @@ body {
     background-image: url(../images/add2.svg);
 }
 .task .main::before {
-    background-image: url(../images/icon1a.png);
+    background-image: url(../images/icon1.png);
 }
 .prioritize .main::before {
     background-image: url(../images/icon2.png);
