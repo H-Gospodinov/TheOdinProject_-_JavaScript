@@ -2,9 +2,10 @@
 /* CSS media must be bundled separately
 if styles.css is excluded from bundling */
 
-/* .sidebar {
-    background-image: url(../images/background.png);
-} */
+body {
+    background-image: url(../images/background.jpg);
+    background-size: cover;
+}
 .menu-button {
     background-image: url(../images/menu.png);
 }
@@ -14,21 +15,29 @@ if styles.css is excluded from bundling */
 }
 .nav-item.upcoming {
     background-image: url(../images/nav2.png);
-    background-position-y: 5px;
+    background-position: 2px 5px;
+    background-size: 26px;
 }
 .nav-item.overdue {
     background-image: url(../images/nav3.png);
+    background-position-x: 1px;
+    background-size: 28px;
 }
 .nav-item.important {
     background-image: url(../images/nav4.png);
 }
 .nav-item.archive {
     background-image: url(../images/nav5.png);
+    background-position-x: -1px;
 }
 .nav-item.label {
     background-image: url(../images/pointer.png);
     background-position-x: 3px;
     background-size: 28px;
+}
+.header .title {
+    background-image: url(../images/clip.png);
+    background-size: 30px;
 }
 .header #add_task {
     background-image: url(../images/add1.svg);
@@ -37,7 +46,7 @@ if styles.css is excluded from bundling */
     background-image: url(../images/add2.svg);
 }
 .task .main::before {
-    background-image: url(../images/icon1.png);
+    background-image: url(../images/icon1a.png);
 }
 .prioritize .main::before {
     background-image: url(../images/icon2.png);
