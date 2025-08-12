@@ -1,6 +1,6 @@
 import {setInput, editLabel} from "./input.js";
-
-const fetchData = await fetch('../data.json');
+// use root relative data path
+const fetchData = await fetch('./data.json');
 const sampleData = await fetchData.json();
 
 let currentData = sampleData;
