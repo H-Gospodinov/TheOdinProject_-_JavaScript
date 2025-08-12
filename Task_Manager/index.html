@@ -2,8 +2,115 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0; url=./dist/index.html">
+    <title>Task Manager</title>
+    <meta name="description" content="Task Manager app completed for the Odin Project's JavaScript curriculum.">
+    <meta name="keywords" content="The Odin Project, JavaScript, Task Manager, To-Do List">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="styles.css" rel="stylesheet">
+    <link href="favicon.ico" rel="icon">
 </head>
 <body>
+    <div class="container">
+        <header class="sidebar">
+            <div class="logo">
+                <img src="images/logo.png" title="Task Manager" width="170" height="185">
+                <span>Task Manager</span>
+            </div>
+            <button class="menu-button" id="menu_toggle" aria-label="Menu"></button>
+            <nav class="menu">
+                <ul class="nav-list">
+                    <li class="nav-item home">
+                        <button class="nav-link" id="all_tasks" type="button">All tasks</button>
+                    </li>
+                    <li class="nav-item important">
+                        <button class="nav-link" id="important" type="button">High priority</button>
+                    </li>
+                    <li class="nav-item upcoming">
+                        <button class="nav-link" id="upcoming" type="button">Upcoming</button>
+                    </li>
+                    <li class="nav-item overdue">
+                        <button class="nav-link" id="overdue" type="button">Overdue</button>
+                    </li>
+                    <li class="nav-item archive">
+                        <button class="nav-link" id="archive" type="button">Archive</button>
+                    </li>
+                </ul>
+                <ul class="nav-list labels">
+                    <!--labels-->
+                </ul>
+            </nav>
+        </header>
+        <main class="board">
+            <div class="header">
+                <div class="display">
+                    <h1 class="title">All tasks</h1>
+                    <span class="date"><!--date--></span>
+                </div>
+                <div class="action">
+                    <button class="create task" id="add_task" type="button">Create task</button>
+                    <button class="create label" id="add_label" type="button">Create label</button>
+                </div>
+            </div>
+            <div class="content">
+                <div class="ghead">
+                    <span class="text">Description</span>
+                    <span class="text">Due date</span>
+                    <span class="text">Label</span>
+                    <span class="text">Actions</span>
+                </div>
+                <div class="grid">
+                    <!--tasks-->
+                </div>
+            </div>
+            <div class="modal">
+                <div class="box">
+                    <h3 class="title">Add new task</h3>
+                    <p class="hint">Data fileds marked with <strong class="required">*</strong> are mandatory.</p>
+                    <form id="task_form" action="#">
+                        <div class="form-input">
+                            <div class="input-group">
+                                <label class="label">Title <strong class="required">*</strong></label>
+                                <input class="input" id="title" type="text" required>
+                            </div>
+                            <div class="input-group">
+                                <label class="label">Due date</label>
+                                <input class="input" id="dueDate" type="date">
+                            </div>
+                            <div class="input-group select">
+                                <label class="label">Label</label>
+                                <select class="input" id="label">
+                                    <!--options-->
+                                </select>
+                            </div>
+                            <div class="input-group priority">
+                                <input class="input checkbox" id="priority" type="checkbox" value="low">
+                                <label for="priority">Mark as high priority</label>
+                            </div>
+                            <input class="input" id="id" type="hidden" value="">
+                        </div>
+                        <div class="form-action">
+                            <button class="submit" id="submit_task" type="submit">Add New Task</button>
+                        </div>
+                    </form>
+                    <form id="label_form" action="#" hidden>
+                        <div class="form-input">
+                            <div class="input-group">
+                                <label class="label">Label <strong class="required">*</strong></label>
+                                <input class="input" id="new_label" type="text" required>
+                            </div>
+                        </div>
+                        <div class="form-action">
+                            <button class="submit" id="submit_label" type="submit">Create label</button>
+                        </div>
+                    </form>
+                    <button class="close" id="close_form" type="button"></button>
+                </div>
+            </div>
+        </main>
+        <footer class="footer">
+            <span>Check source code on <a href="https://h-gospodinov.github.io/H-Gospodinov/" target="_blank" rel="noopener">GitHub</a></span>
+        </footer>
+    </div>
+    <script src="index.js" type="module"></script>
 </body>
 </html>
