@@ -37,7 +37,8 @@ async function initialize() {
 
         //logoImage.src = dynamicLogo.src;
         //logoImage.className = 'dynamic';
-        logoImage.hidden = false;
+        // (!) logo img needs 'hidden' attr
+        //logoImage.hidden = false;
 
         document.body.classList.remove('loading');
     }

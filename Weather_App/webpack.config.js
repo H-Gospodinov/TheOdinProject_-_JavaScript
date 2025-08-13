@@ -38,6 +38,9 @@ module.exports = {
       {
         test: /\.(woff|woff2|svg|ttf|otf)$/i,
         type: 'asset/resource',
+        generator: {
+          filename: "[name][ext]", // keep original
+        },
       },
     ],
   },
