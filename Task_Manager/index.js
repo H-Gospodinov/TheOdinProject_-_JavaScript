@@ -18,7 +18,7 @@ render.createLabels();
 
 document.body.classList.remove('loading');
 document.body.style.backgroundImage =
-'url(images/background.jpg)';
+'url(images/background.webp)';
 
 // UPDATE FORM
 
