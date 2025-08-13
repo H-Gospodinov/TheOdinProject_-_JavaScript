@@ -7,7 +7,7 @@
   \********************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-module.exports = __webpack_require__.p + "043065d8eda909b7bf31.svg";
+module.exports = __webpack_require__.p + "showers-night.svg";
 
 /***/ })
 

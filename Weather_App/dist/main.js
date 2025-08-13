@@ -507,7 +507,7 @@ module.exports = styleTagTransform;
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
-module.exports = __webpack_require__.p + "8a381d6707a7963fb6f1.woff2";
+module.exports = __webpack_require__.p + "Roboto-ExtraLight.woff2";
 
 /***/ }),
 
@@ -518,7 +518,7 @@ module.exports = __webpack_require__.p + "8a381d6707a7963fb6f1.woff2";
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
-module.exports = __webpack_require__.p + "7d0ad7612d886ced9d14.woff2";
+module.exports = __webpack_require__.p + "Roboto-Light.woff2";
 
 /***/ }),
 
@@ -701,7 +701,8 @@ async function initialize() {
 
         //logoImage.src = dynamicLogo.src;
         //logoImage.className = 'dynamic';
-        logoImage.hidden = false;
+        // (!) logo img needs 'hidden' attr
+        //logoImage.hidden = false;
 
         document.body.classList.remove('loading');
     }
@@ -1382,9 +1383,12 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 /************************************************************************/
 /******/ 	/* webpack/runtime/async module */
 /******/ 	(() => {
-/******/ 		var webpackQueues = typeof Symbol === "function" ? Symbol("webpack queues") : "__webpack_queues__";
-/******/ 		var webpackExports = typeof Symbol === "function" ? Symbol("webpack exports") : "__webpack_exports__";
-/******/ 		var webpackError = typeof Symbol === "function" ? Symbol("webpack error") : "__webpack_error__";
+/******/ 		var hasSymbol = typeof Symbol === "function";
+/******/ 		var webpackQueues = hasSymbol ? Symbol("webpack queues") : "__webpack_queues__";
+/******/ 		var webpackExports = hasSymbol ? Symbol("webpack exports") : "__webpack_exports__";
+/******/ 		var webpackError = hasSymbol ? Symbol("webpack error") : "__webpack_error__";
+/******/ 		
+/******/ 		
 /******/ 		var resolveQueue = (queue) => {
 /******/ 			if(queue && queue.d < 1) {
 /******/ 				queue.d = 1;
@@ -1394,6 +1398,7 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 /******/ 		}
 /******/ 		var wrapDeps = (deps) => (deps.map((dep) => {
 /******/ 			if(dep !== null && typeof dep === "object") {
+/******/ 		
 /******/ 				if(dep[webpackQueues]) return dep;
 /******/ 				if(dep.then) {
 /******/ 					var queue = [];
@@ -1406,6 +1411,7 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 /******/ 						resolveQueue(queue);
 /******/ 					});
 /******/ 					var obj = {};
+/******/ 		
 /******/ 					obj[webpackQueues] = (fn) => (fn(queue));
 /******/ 					return obj;
 /******/ 				}
@@ -1430,10 +1436,11 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 /******/ 			promise[webpackExports] = exports;
 /******/ 			promise[webpackQueues] = (fn) => (queue && fn(queue), depQueues.forEach(fn), promise["catch"](x => {}));
 /******/ 			module.exports = promise;
-/******/ 			body((deps) => {
+/******/ 			var handle = (deps) => {
 /******/ 				currentDeps = wrapDeps(deps);
 /******/ 				var fn;
 /******/ 				var getResult = () => (currentDeps.map((d) => {
+/******/ 		
 /******/ 					if(d[webpackError]) throw d[webpackError];
 /******/ 					return d[webpackExports];
 /******/ 				}))
@@ -1444,7 +1451,9 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 /******/ 					currentDeps.map((dep) => (dep[webpackQueues](fnQueue)));
 /******/ 				});
 /******/ 				return fn.r ? promise : getResult();
-/******/ 			}, (err) => ((err ? reject(promise[webpackError] = err) : outerResolve(exports)), resolveQueue(queue)));
+/******/ 			}
+/******/ 			var done = (err) => ((err ? reject(promise[webpackError] = err) : outerResolve(exports)), resolveQueue(queue))
+/******/ 			body(handle, done);
 /******/ 			queue && queue.d < 0 && (queue.d = 0);
 /******/ 		};
 /******/ 	})();
@@ -1482,7 +1491,7 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 /******/ 			__webpack_require__.r(ns);
 /******/ 			var def = {};
 /******/ 			leafPrototypes = leafPrototypes || [null, getProto({}), getProto([]), getProto(getProto)];
-/******/ 			for(var current = mode & 2 && value; typeof current == 'object' && !~leafPrototypes.indexOf(current); current = getProto(current)) {
+/******/ 			for(var current = mode & 2 && value; (typeof current == 'object' || typeof current == 'function') && !~leafPrototypes.indexOf(current); current = getProto(current)) {
 /******/ 				Object.getOwnPropertyNames(current).forEach((key) => (def[key] = () => (value[key])));
 /******/ 			}
 /******/ 			def['default'] = () => (value);
