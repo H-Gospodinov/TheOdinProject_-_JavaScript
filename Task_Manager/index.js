@@ -18,6 +18,9 @@ render.createTasks();
 render.createLabels();
 
 cdate.innerText = currentTime();
+document.body.classList.remove('loading');
+document.body.style.backgroundImage =
+'url(images/background.jpg)';
 
 // UPDATE FORM
 
