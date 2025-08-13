@@ -1,11 +1,10 @@
 import {createContent, viewArchive} from "./modules/dom.js";
-import {currentFilter, currentTime, updateData} from "./modules/data.js";
+import {currentFilter, updateData} from "./modules/data.js";
 import {getInput} from "./modules/input.js";
 
 const menu = document.querySelector('.menu');
 const modal = document.querySelector('.modal');
 const title = document.querySelector('.header h1');
-const cdate = document.querySelector('.header .date');
 
 const taskForm = document.querySelector('#task_form');
 const labelForm = document.querySelector('#label_form');
@@ -17,7 +16,6 @@ const render = createContent();
 render.createTasks();
 render.createLabels();
 
-cdate.innerText = currentTime();
 document.body.classList.remove('loading');
 document.body.style.backgroundImage =
 'url(images/background.jpg)';

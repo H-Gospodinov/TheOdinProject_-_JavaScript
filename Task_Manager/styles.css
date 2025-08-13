@@ -38,6 +38,10 @@ body {
     font-family: 'segoe ui',
     ubuntu, helvetica, sans-serif;
 }
+.loading .menu,
+.loading .content {
+    opacity: 0;
+}
 .container {
     display: grid;
     grid-template: 1fr auto / max-content auto;
@@ -45,12 +49,6 @@ body {
     min-height: 100%;
     margin: auto; /**/
     background-color: #fffc;
-}
-.loading > .container > * {
-    opacity: 0;
-}
-.sidebar, .board, .footer {
-    transition: 0.5s ease;
 }
 .sidebar {
     grid-row: 1 /-1;
@@ -87,6 +85,9 @@ body {
     letter-spacing: 1px;
     text-transform: uppercase;
     white-space: nowrap;
+}
+nav.menu {
+    transition: 0.5s ease;
 }
 .nav-list {
     display: flex;
@@ -192,7 +193,6 @@ body {
 }
 .header .date {
     order: -1;
-    min-width: 158px;
     white-space: nowrap;
     font-size: 31px;
     font-style: italic;
@@ -223,6 +223,7 @@ body {
 }
 .content {
     padding: 30px 40px 30px 0;
+    transition: 0.5s ease;
 }
 .ghead {
     display: grid;
