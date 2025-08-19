@@ -610,10 +610,11 @@ nav.menu {
         padding: 0;
     }
     .nav-item .action {
+        margin-right: unset;
         opacity: 1;
     }
-    .nav-item .action {
-        margin-right: unset;
+    .nav-link {
+        color: #fff;
     }
     .board {
         flex-grow: 1;
