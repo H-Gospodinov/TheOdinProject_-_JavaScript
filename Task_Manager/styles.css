@@ -32,11 +32,49 @@ html {
 body {
     width: 100%;
     overflow-x: hidden;
+    background-image: url(images/background.webp);
     background-color: #fff;
     background-position: center;
     background-size: cover;
     font-family: 'segoe ui',
     ubuntu, helvetica, sans-serif;
+}
+.loader {
+    position: fixed;
+    inset: 0;
+    width: 128px;
+    height: 128px;
+    margin: auto;
+    backdrop-filter: none !important;
+    transition: 0.2s ease;
+    pointer-events: none;
+    opacity: 0;
+}
+.loader::after,
+.loader::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    width: 128px;
+    height: 128px;
+    border: 5px solid #0c7e7c;
+    border-radius: 50%;
+    animation: loader 2s linear infinite;
+}
+.loader::after {
+    animation-delay: 1s;
+}
+@keyframes loader {
+    0% {
+        transform: scale(0);
+        opacity: 1;}
+    100% {
+        transform: scale(1);
+        opacity: 0;}
+}
+.loading .loader {
+    opacity: 1;
 }
 .loading .menu,
 .loading .content {

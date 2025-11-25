@@ -16,9 +16,9 @@ const render = createContent();
 render.createTasks();
 render.createLabels();
 
-document.body.classList.remove('loading');
-document.body.style.backgroundImage =
-'url(images/background.webp)';
+requestAnimationFrame(() => {
+    document.body.classList.remove('loading');
+});
 
 // UPDATE FORM
 
